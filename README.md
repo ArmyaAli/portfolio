@@ -1,12 +1,13 @@
 ## Ali's Portfolio
 
 #### Tooling
-###### Source code
+<br>
+#### Tech stack 
 
 - SPA front-end (Angular) 
 - Managed back-end (Pocketbase)
 
-###### Infrastucture (in-house, self managed)
+#### Infrastucture (in-house, self managed)
 
 - Vagrant
 - Ansible
