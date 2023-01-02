@@ -1,15 +1,19 @@
 ## Portfolio
 
-#### Tooling
+## Description
+
+Hello! This will be my personal portfolio. Maybe i'll finally be happy with this iteration :O!!
+
 #### Tech stack 
 
-- SPA front-end (Angular) 
-- Managed back-end (Pocketbase)
+- Angular
+- Pocketbase
 
 #### Infrastucture (in-house, self managed)
 
-- Vagrant
-- Ansible
-- Production enviornment - CentOS 7
+- Vagrant 
+- Ansible 
+- Development env - Ubuntu Server LTS
+- Production env  - Ubuntu Server LTS
 
 
