@@ -1,7 +1,6 @@
-## Ali's Portfolio
+## Portfolio
 
 #### Tooling
-<br>
 #### Tech stack 
 
 - SPA front-end (Angular) 
