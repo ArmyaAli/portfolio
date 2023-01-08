@@ -2,18 +2,15 @@
 
 ## Description
 
-Hello! This will be my personal portfolio. Maybe i'll finally be happy with this iteration :O!!
+Personal Portfolio
 
-#### Tech stack 
+#### Getting Started
 
-- Angular
-- Pocketbase
+#### Pre-requisites
 
-#### Infrastructure 
+- Vagrant
+- VirtualBox
 
-- Vagrant 
-- Ansible 
-- Development env - Ubuntu Server LTS
-- Production env - Ubuntu Server LTS
+#### Guide
 
-
+    git clone $repo_url && Vagrant up 
