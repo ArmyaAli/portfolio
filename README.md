@@ -4,9 +4,9 @@
 
 Personal Portfolio
 
-#### Getting Started
+#### Getting Started - Development Environment
 
-#### Pre-requisites
+## Pre-requisites
 
 - Vagrant
 - VirtualBox
@@ -14,3 +14,4 @@ Personal Portfolio
 #### Guide
 
     git clone $repo_url && Vagrant up 
+
