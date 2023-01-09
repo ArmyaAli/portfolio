@@ -15,4 +15,4 @@ This will be my personal portfolio. It will consist of an SPA client with a mono
 
     git clone $repo_url && Vagrant up 
 
-By default the development environment is configured with a static ip set to 10.0.0.1 which exposes port 7001 to your host OS. You may change these values within the Vagrantfile
+- By default the development environment is configured with a static ip set to ```10.0.0.1``` which exposes port 7001 to your host OS. You may change these values within the Vagrantfile
