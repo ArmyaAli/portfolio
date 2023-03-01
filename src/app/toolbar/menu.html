@@ -1,0 +1,26 @@
+<mat-nav-list>
+  <a *ngIf="this.sharedState.showHome" mat-list-item (click)="openLink($event, 'home')">
+    <span matListItemTitle>Home</span>
+    <span matLine>Home page</span>
+  </a>
+
+  <a mat-list-item (click)="openLink($event, 'career')">
+    <span matListItemTitle>Career</span>
+    <span matLine>Professional journey :P</span>
+  </a>
+
+  <a mat-list-item (click)="openLink($event, 'education')">
+    <span matListItemTitle>Education</span>
+    <span matLine>Academic journey :O</span>
+  </a>
+
+  <a mat-list-item (click)="openLink($event, 'resume')">
+    <span matListItemTitle>Resume</span>
+    <span matLine>My resume</span>
+  </a>
+
+  <a mat-list-item (click)="openLink($event, 'contact')">
+    <span matListItemTitle>Contact</span>
+    <span matLine>Contact form</span>
+  </a>
+</mat-nav-list>

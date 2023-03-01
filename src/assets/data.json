@@ -1,0 +1,49 @@
+{
+  "about": {
+    "name": "Ali Umar",
+    "occupation": "Software Developer",
+    "description": "Hello! I am a programmer located in Toronto, Canada. I have a couple years of professional experience working in corporate/enterprise environment. I very much so enjoy programming and working with people/teams. I am a very technical person and love talking about implementation details. I also like to follow technology as it evolves. I'm particularly interested in compilers & programming languages although business solutions love to implement CRUD(S) systems which do pay the bills. Oh and I tend not to take life too seriously!",
+    "skills": [
+      "Systems programming",
+      "System intergration",
+      "Linux",
+      "Various shells",
+      "Various web frameworks",
+      "Enterprise software development",
+      "Automation",
+      "Technical documentation",
+      "Technical communication"
+    ],
+    "technologies": [
+      "Angular",
+      "React",
+      "Nodejs",
+      ".NET",
+      "Oracle tools",
+      "Microsoft tools",
+      "Source/Version Control tooling (git, svn etc)",
+      "various project management systems"
+    ],
+    "languages": [
+      "C",
+      "C++",
+      "C#",
+      "Shell",
+      "Java",
+      "Typescript/Javascript",
+      "Python"
+    ],
+    "interests": [
+      "Networking protocols & Backend systems",
+      "Compilers & Programming languages",
+      "Operating Systems",
+      "Video game engines",
+      "Signal processing",
+      "Automation",
+      "Homelab",
+      "System design",
+      "Software Architecture",
+      "Vim style text editors"
+    ]
+  }
+}

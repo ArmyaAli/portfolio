@@ -1,0 +1,37 @@
+.about-card {
+  color: white;
+  margin: 8px 0;
+}
+
+.skill-card {
+  color: white;
+  margin: 8px 0;
+}
+
+.interests-card {
+  color: white;
+  margin: 8px 0;
+  margin-bottom: 0;
+}
+
+.technologies-card {
+  color: white;
+  margin: 8px 0;
+}
+
+.languages-card {
+  color: white;
+  margin: 8px 0;
+  margin-bottom: 0;
+}
+
+.example-header-image {
+  background-image: url('https://media.licdn.com/dms/image/C4E03AQHnkmv7galXQg/profile-displayphoto-shrink_400_400/0/1640311449323?e=1683158400&v=beta&t=UvEY4v7FIpE7J0Efdo75Y_jNLpCpfwoQ91OVUO4ZWoo');
+  background-size: cover;
+}
+
+.tab {
+  color: white;
+  background-color: black;
+  padding: 8px;
+}
