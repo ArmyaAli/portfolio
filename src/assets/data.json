@@ -45,5 +45,72 @@
       "Software Architecture",
       "Vim style text editors"
     ]
-  }
+  },
+  "career": [
+    {
+      "title": "System Integrator",
+      "start_date": "2023-09-01",
+      "end_date": "present",
+      "employer": "Ministry of Children, Youth & Social Services (MCCSS)",
+      "location": "5700 Yonge Street, Toronto, Ontario, Canada",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque aliquam fringilla placerat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent luctus velit ac orci sollicitudin, ut ullamcorper sapien posuere. Quisque sit amet felis aliquam, ornare nulla in, convallis dui. Suspendisse porta, turpis a ultrices rutrum, lectus dui dapibus nisi, ac vulputate nulla justo at elit. Morbi ut elit id ligula interdum aliquet. Suspendisse potenti. Pellentesque accumsan lacinia mi, eu pretium odio semper id. Maecenas varius ultricies augue vel vehicula. Suspendisse convallis ante tellus, non bibendum purus ornare sed. Cras consequat finibus eros at gravida."
+    },
+    {
+      "title": "Software Developer Co-op",
+      "start_date": "2022-05-01",
+      "end_date": "2022-08-30",
+      "employer": "Ministry of Children, Youth & Social Services (MCCSS)",
+      "location": "5700 Yonge Street, Toronto, Ontario, Canada",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque aliquam fringilla placerat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent luctus velit ac orci sollicitudin, ut ullamcorper sapien posuere. Quisque sit amet felis aliquam, ornare nulla in, convallis dui. Suspendisse porta, turpis a ultrices rutrum, lectus dui dapibus nisi, ac vulputate nulla justo at elit. Morbi ut elit id ligula interdum aliquet. Suspendisse potenti. Pellentesque accumsan lacinia mi, eu pretium odio semper id. Maecenas varius ultricies augue vel vehicula. Suspendisse convallis ante tellus, non bibendum purus ornare sed. Cras consequat finibus eros at gravida."
+    },
+    {
+      "title": "Software Developer Co-op",
+      "start_date": "2020-01-01",
+      "end_date": "2020-08-30",
+      "employer": "Ministry of Government & Consumer Services (MGCS)",
+      "location": "222 Jarvis Street, Toronto, Ontario, Canada",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque aliquam fringilla placerat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent luctus velit ac orci sollicitudin, ut ullamcorper sapien posuere. Quisque sit amet felis aliquam, ornare nulla in, convallis dui. Suspendisse porta, turpis a ultrices rutrum, lectus dui dapibus nisi, ac vulputate nulla justo at elit. Morbi ut elit id ligula interdum aliquet. Suspendisse potenti. Pellentesque accumsan lacinia mi, eu pretium odio semper id. Maecenas varius ultricies augue vel vehicula. Suspendisse convallis ante tellus, non bibendum purus ornare sed. Cras consequat finibus eros at gravida."
+    }
+  ],
+  "education": [
+    {
+      "school": "York University",
+      "credentuial": "Honours Bachelor Of Science - BSc, Computer Science",
+      "start_year": "2021",
+      "end_year": "2024",
+      "location": "Toronto, Ontario, Canada",
+      "courses": [
+        "Discrete Mathematics",
+        "Introduction to Logic",
+        "Fundamentals of Data Structures",
+        "Design & Analysis of Algorithms"
+      ]
+    },
+    {
+      "school": "Seneca College",
+      "credentuial": "Ontario College Advanced Diploma, Computer Engineering Technology",
+      "start_year": "2019",
+      "end_year": "2021",
+      "location": "Toronto, Ontario, Canada",
+      "courses": [
+        "PRG155: Programming Fundamentals Using C",
+        "LNX255: Introduction to Linux",
+        "PRG255: Advanced Programming Using C",
+        "PRG355: Object Orientated Programming using C++",
+        "PRG455: Event Driven Programming",
+        "DGS255: Digital Electronics",
+        "MCO455: Microcontroller Concepts",
+        "MCO556: ARM Microcontroller for Real-time Embedded Applications",
+        "NET455: Networking Essentials",
+        "NET655: Network Servers and Peripherals",
+        "NET556: Cisco Internetworking I",
+        "PRG550: Programming Python with the Raspberry Pi",
+        "WCM555: Wireless communication and Microcontrollers",
+        "PRG650: Advanced Programming Concepts",
+        "ETD555: Engineering Technology & Design",
+        "SEC555: Cyber Security",
+        "TEC400: Technical Communications" 
+      ]
+    }
+  ]
 }
