@@ -1,9 +1,7 @@
 name: github-pages-deployment 
 on:
   push:
-    # Sequence of patterns matched against refs/heads
-    branches:    
-      - main
+    # Only run job on tags being pushed!
     tags:        
       - v*.*.*
 
