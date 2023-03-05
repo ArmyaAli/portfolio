@@ -1,6 +1,6 @@
-<mat-nav-list>
+<mat-nav-list class="{{ '' | darkLightPipe | async }}">
   <a *ngIf="this.sharedState.showHome" mat-list-item (click)="openLink($event, 'home')">
-    <span matListItemTitle>Home</span>
+    <span class="{{ '' | darkLightPipe | async }}" matListItemTitle>Home</span>
     <span matLine>Home page</span>
   </a>
 
