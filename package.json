@@ -6,7 +6,7 @@
     "dev": "ng serve --open",
     "snapshot": "npm version minor",
     "release": "npm version major",
-    "build": "ng build",
+    "build": "ng build --output-hashing=all",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
