@@ -1,5 +1,5 @@
 name: github-pages-deploy
-on: workflow_dispatch
+on: [workflow_dispatch]
 jobs:
   Download-Deploy-Latest-Artifact:
     runs-on: ubuntu-latest
