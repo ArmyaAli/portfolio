@@ -35,7 +35,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MaterialModule,
     MatExpansionModule,
-    PdfViewerModule,
     ReactiveFormsModule
   ],
   providers: [
