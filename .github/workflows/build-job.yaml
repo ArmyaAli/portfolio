@@ -1,9 +1,6 @@
 name: github-pages-build
 on:
   push:
-    branches:
-    - automation-builds
-    # Only run job on tags being pushed!
     tags:
       - v*.*.*
 
