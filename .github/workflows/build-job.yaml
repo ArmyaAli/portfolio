@@ -21,5 +21,5 @@ jobs:
          npm run build
          TIMESTAMP=$(date +%s)
          VERSION=$(npm pkg get version | sed 's/"//g')
-         tar -czf PORTFOLIO-BUILD-$TIMESTAMP-$VERSION.gz /path/to/directory-or-file
-         ls -ltr dist/portfolio  
+         tar -czf PORTFOLIO-BUILD-$TIMESTAMP-$VERSION.gz dist/portfolio
+         ls -ltr . 
