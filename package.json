@@ -4,9 +4,10 @@
   "scripts": {
     "ng": "ng",
     "dev": "ng serve --open",
-    "snapshot": "npm version minor",
+    "snapshot": "npm version path --git-tag-version=false",
+    "checkpoint": "npm version minor",
     "release": "npm version major",
-    "build": "ng build --output-hashing=all",
+    "build": "ng build --output-hashing=all --aot --build-optimizer=true",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
