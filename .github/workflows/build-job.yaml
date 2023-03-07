@@ -8,7 +8,7 @@ on:
       - v*.*.*
 
 jobs:
-  Explore-GitHub-Actions:
+  Build-Create-Upload-Artifact:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo code
@@ -19,4 +19,7 @@ jobs:
          npm i
          npm install -g @angular/cli
          npm run build
-         ls -ltr dist
+         TIMESTAMP=$(date +%s)
+         VERSION=$(npm pkg get version | sed 's/"//g')
+         tar -czf PORTFOLIO-BUILD-$TIMESTAMP-$VERSION.gz /path/to/directory-or-file
+         ls -ltr dist/portfolio  
