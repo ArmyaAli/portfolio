@@ -14,7 +14,6 @@ import { EducationComponent } from './education/education.component';
 import { ResumeComponent } from './resume/resume.component';
 import { darkLightPipe } from './dark.light.pipe';
 import { stateService } from './state.service';
-import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
