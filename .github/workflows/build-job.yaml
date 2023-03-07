@@ -16,7 +16,7 @@ jobs:
       - run: echo "🍏 this job's status is ${{ job.status }}."
       - name: Install dependencies & Build 
         run: |
-         npm i --omit=dev 
+         npm i
          npm install -g @angular/cli
          npm run build
          ls -ltr dist
