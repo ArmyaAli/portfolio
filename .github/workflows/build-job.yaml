@@ -26,6 +26,7 @@ jobs:
       - name: Upload Artifact to Github repo 
         uses: actions/upload-artifact@v3
         with:
-          name: SPA Build 
-          path: ./PORTFOLIO-BUILD-$TIMESTAMP-$VERSION.gz
+          name: PORTFOLIO-BUILD-${{ env.TIMESTAMP }}-${{ env.VERSION }}.gz
+          path: ./PORTFOLIO-BUILD-${{ env.TIMESTAMP }}-${{ env.VERSION }}.gz
+
          
