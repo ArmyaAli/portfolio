@@ -11,7 +11,7 @@ jobs:
   Build-Create-Upload-Artifact:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo code
+      - name: Checkout
         uses: actions/checkout@v3
       - run: echo "🍏 this job's status is ${{ job.status }}."
       - name: Install dependencies & Build 
@@ -19,14 +19,15 @@ jobs:
          npm i
          npm install -g @angular/cli
          npm run build
-         TIMESTAMP=$(date +%s) >> $GITHUB_ENV
-         VERSION=$(npm pkg get version | sed 's/"//g') >> $GITHUB_ENV
+         TIMESTAMP=$(date +%s)
+         VERSION=$(npm pkg get version | sed 's/"//g')
          tar -czf PORTFOLIO-BUILD-$TIMESTAMP-$VERSION.gz dist/portfolio
          ls -ltr . 
+         echo "ARTIFACT_FILE=PORTFOLIO-BUILD-$TIMESTAMP-$VERSION.gz" >> $GITHUB_ENV
       - name: Upload Artifact to Github repo 
         uses: actions/upload-artifact@v3
         with:
-          name: PORTFOLIO-BUILD-${{ env.TIMESTAMP }}-${{ env.VERSION }}.gz
-          path: ./PORTFOLIO-BUILD-${{ env.TIMESTAMP }}-${{ env.VERSION }}.gz
+          name: ${{ env.ARTIFACT_FILE }} 
+          path: ./${{ env.ARTIFACT_FILE }} 
 
          
