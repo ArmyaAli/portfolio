@@ -19,8 +19,8 @@ jobs:
          npm i
          npm install -g @angular/cli
          npm run build
-         TIMESTAMP=$(date +%s)
-         VERSION=$(npm pkg get version | sed 's/"//g')
+         TIMESTAMP=$(date +%s) >> $GITHUB_ENV
+         VERSION=$(npm pkg get version | sed 's/"//g') >> $GITHUB_ENV
          tar -czf PORTFOLIO-BUILD-$TIMESTAMP-$VERSION.gz dist/portfolio
          ls -ltr . 
       - name: Upload Artifact to Github repo 
