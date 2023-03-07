@@ -1,4 +1,4 @@
-name: github-pages-build
+name: github-pages-deploy
 on: workflow_dispatch
 jobs:
   Download-Deploy-Latest-Artifact:
