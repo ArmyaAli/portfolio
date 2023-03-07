@@ -1,0 +1,21 @@
+name: github-pages-build
+on:
+  push:
+    branches:
+    - automation-builds
+    # Only run job on tags being pushed!
+    tags:
+      - v*.*.*
+
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo code
+        uses: actions/checkout@v3
+      - run: echo "🍏 this job's status is ${{ job.status }}."
+      - name: Install dependencies & Build 
+        run: |
+         npm i --omit=dev 
+         npm run build
+         ls -ltr dist
