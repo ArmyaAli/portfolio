@@ -3,6 +3,8 @@ on:
   push:
     tags:
       - v*.*.*
+    branches: 
+      - automation-builds 
 
 jobs:
   Build-Create-Upload-Artifact:
@@ -21,10 +23,21 @@ jobs:
          tar -czf PORTFOLIO-BUILD-$TIMESTAMP-$VERSION.gz dist/portfolio
          ls -ltr . 
          echo "ARTIFACT_FILE=PORTFOLIO-BUILD-$TIMESTAMP-$VERSION.gz" >> $GITHUB_ENV
-      - name: Upload Artifact to Github repo 
-        uses: actions/upload-artifact@v3
+      
+      - name: Upload Website Build
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: ${{ env.ARTIFACT_FILE }} 
-          path: ./${{ env.ARTIFACT_FILE }} 
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ env.ARTIFACT_FILE }}
+          asset_name: ${{ env.ARTIFACT_FILE }}
+          asset_content_type: application/gzip
 
+      - name: Publish release 
+        uses: eregon/publish-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          release_id: ${{ steps.create_release.outputs.id }} 
          
