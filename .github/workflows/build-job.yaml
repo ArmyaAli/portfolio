@@ -3,9 +3,6 @@ on:
   push:
     tags:
       - 'v*'
-    branches: 
-      - automation-builds 
-
 jobs:
   Build-Create-Upload-Artifact:
     runs-on: ubuntu-latest
