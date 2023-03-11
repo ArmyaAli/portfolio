@@ -6,7 +6,8 @@ jobs:
     steps:
 
     - name: Create dir
-      env: ${{ secrets.GITHUB_TOKEN }}
+      env: 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: | 
          mkdir artifacts
          curl -L \
