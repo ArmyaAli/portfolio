@@ -5,15 +5,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - name: Create dir
+    - name: Download latest release artifact 
       env: 
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: | 
-         mkdir artifacts
-         curl -L \
-          -H "Accept: application/vnd.github+json" \
-          -H "Authorization: Bearer $GITHUB_TOKEN "\
-          -H "X-GitHub-Api-Version: 2022-11-28" \
-          https://api.github.com/repos/armyaali/portfolio/releases/latest    
+        RESPONSE=$(curl -L \
+        -H "Accept: application/vnd.github+json" \
+        -H "Authorization: Bearer $GITHUB_TOKEN "\
+        -H "X-GitHub-Api-Version: 2022-11-28" \
+        https://api.github.com/repos/armyaali/portfolio/releases/latest)  
+        URL=$(echo RESPONSE | grep "browser_download_url -o)
+        echo URL
+
+
 
     
