@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - run: echo "🍏 this job's status is ${{ job.status }}."
+
       - name: Install dependencies & Build 
         run: |
          npm i
@@ -45,11 +45,3 @@ jobs:
           asset_path: ${{ env.ARTIFACT_FILE }}
           asset_name: ${{ env.ARTIFACT_FILE }}
           asset_content_type: application/gzip
-
-      - name: Publish release 
-        uses: eregon/publish-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          release_id: ${{ steps.create_release.outputs.id }} 
-         
