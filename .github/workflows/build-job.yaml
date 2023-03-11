@@ -2,7 +2,7 @@ name: github-pages-build
 on:
   push:
     tags:
-      - v*.*.*
+      - 'v*'
     branches: 
       - automation-builds 
 
@@ -23,7 +23,19 @@ jobs:
          tar -czf PORTFOLIO-BUILD-$TIMESTAMP-$VERSION.gz dist/portfolio
          ls -ltr . 
          echo "ARTIFACT_FILE=PORTFOLIO-BUILD-$TIMESTAMP-$VERSION.gz" >> $GITHUB_ENV
-      
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: Website build checkpoint
+          draft: false
+          prerelease: false 
+
       - name: Upload Website Build
         uses: actions/upload-release-asset@v1.0.1
         env:
