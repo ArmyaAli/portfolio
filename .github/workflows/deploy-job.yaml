@@ -4,12 +4,14 @@ jobs:
   Download-Deploy-Latest-Artifact:
     runs-on: ubuntu-latest
     steps:
-    - name: Download all artifacts 
+
+    - name: Create dir
+      run: mkdir artifacts
+
+    - name: Downloads all artifacts
       uses: actions/download-artifact@v3
-      with: 
-          path: artifacts
-    - name: Sort and get Latest
-      run: |
-          ls -l artifacts | sort -V > sorted_files 
-          LATEST=$(head -n 1 sorted_files)
-          echo $LATEST
+      with:
+        path: artifacts 
+    
+    - name: Display structure of downloaded files
+      run: ls -ltr artifacts
