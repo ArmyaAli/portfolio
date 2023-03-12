@@ -16,8 +16,8 @@ jobs:
         https://api.github.com/repos/armyaali/portfolio/releases/latest)  
         URL=$(echo $RESPONSE | json_pp | grep "browser_download_url" | grep -oP 'https:\/\/.*(?=")')
         echo $URL
-        wget -O $URL gh-pages.gz
-        ls -l
+        wget $URL
+        mv *.gz gh-pages.gz
     
     - name: Upload artifact
       uses: actions/upload-artifact@main
