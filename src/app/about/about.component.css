@@ -31,7 +31,7 @@
 }
 
 .example-header-image {
-  background-image: url('https://media.licdn.com/dms/image/C4E03AQHnkmv7galXQg/profile-displayphoto-shrink_400_400/0/1640311449323?e=1683158400&v=beta&t=UvEY4v7FIpE7J0Efdo75Y_jNLpCpfwoQ91OVUO4ZWoo');
+  background-image: url('/assets/profile_pic.jpg');
   background-size: cover;
 }
 
