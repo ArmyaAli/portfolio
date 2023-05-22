@@ -11,21 +11,26 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.base-content-container {
+a {
+  text-decoration: inherit;
+  color: inherit;
+  cursor: auto;
 }
+
+.base-content-container {}
 
 .dark {
   background-color: black !important;
   color: white !important;
-  border-color: darkgrey !important; 
-  border-top-color: white; 
+  border-color: darkgrey !important;
+  border-top-color: white;
 }
 
 .light {
   background-color: lightgray !important;
   color: black !important;
-  border-color: black !important; 
-  border-top-color: black; 
+  border-color: black !important;
+  border-top-color: black;
 }
 
 .vertical-line-dark {
@@ -35,4 +40,3 @@ body {
 .vertical-line-light {
   background-color: black !important;
 }
-
