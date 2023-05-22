@@ -1,9 +1,10 @@
 <div class="{{ 'footer-container'| darkLightPipe | async }}">
   <div class="top">
-    <button mat-icon-button><mat-icon>email</mat-icon></button>
-    <button mat-icon-button><mat-icon>email</mat-icon></button>
-    <button mat-icon-button><mat-icon>email</mat-icon></button>
-    <button mat-icon-button><mat-icon>email</mat-icon></button>
+    <!-- discord, linkedin, github, twitter -->
+    <a href="{{ socials.discord }}"><button mat-icon-button><mat-icon>discord</mat-icon></button></a>
+    <a href="{{ socials.linkedin }}"><button mat-icon-button><mat-icon svgIcon="linkedin"></mat-icon></button></a>
+    <a href="{{socials.github}}"><button mat-icon-button><mat-icon svgIcon="github"></mat-icon></button></a>
+    <a href="{{socials.twitter}}"><button mat-icon-button><mat-icon svgIcon="twitter"></mat-icon></button></a>
   </div>
   <div class="h-line">
   </div>

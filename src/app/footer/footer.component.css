@@ -10,7 +10,7 @@
 }
 
 .top {
-  margin: 8px auto;
+  margin: 32px auto;
 }
 
 .h-line {
@@ -21,6 +21,6 @@
 }
 
 .bottom {
-  margin: 8px auto;
+  margin: 32px auto;
   text-align: center;
 }

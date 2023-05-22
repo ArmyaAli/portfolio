@@ -8,6 +8,7 @@ import data from '../../assets/data.json';
 })
 export class AboutComponent {
   data = data.about;
+  socials = data.socials
   aboutText = "";
   interests: any = []
   skills: any = []
