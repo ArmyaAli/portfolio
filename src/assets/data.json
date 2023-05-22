@@ -44,12 +44,7 @@
       "System design",
       "Software Architecture",
       "Vim"
-    ],
-    "socials": {
-      "discord": "https://discord.gg/Eh5Z6qjZ",
-      "linkedin": "https://www.linkedin.com/in/aliumardev/",
-      "github": "https://github.com/ArmyaAli"
-    }
+    ]
   },
   "career": [
     {
@@ -114,8 +109,14 @@
         "PRG650: Advanced Programming Concepts",
         "ETD555: Engineering Technology & Design",
         "SEC555: Cyber Security",
-        "TEC400: Technical Communications" 
+        "TEC400: Technical Communications"
       ]
     }
-  ]
+  ],
+  "socials": {
+    "discord": "https://discord.gg/Eh5Z6qjZ",
+    "linkedin": "https://www.linkedin.com/in/aliumardev/",
+    "github": "https://github.com/ArmyaAli",
+    "twitter": "https://twitter.com/alilikestech"
+  }
 }
