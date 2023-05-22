@@ -15,6 +15,8 @@ import { ResumeComponent } from './resume/resume.component';
 import { darkLightPipe } from './dark.light.pipe';
 import { stateService } from './state.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from "@angular/common/http";
+
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MaterialModule,
     MatExpansionModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule 
   ],
   providers: [
     sharedMenuState, 
