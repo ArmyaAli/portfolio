@@ -11,9 +11,9 @@
           <p>{{ aboutText }}<mat-icon style="position: relative; right: -2px; top: 6px;">tag_faces</mat-icon></p>
         </mat-card-content>
         <mat-card-actions class="{{ '' | darkLightPipe | async }}">
-          <button mat-button>Discord</button>
-          <button mat-button>LinkedIn</button>
-          <button mat-button>Github</button>
+          <a mat-menu href="{{ data.socials.discord }}"><button mat-button>Discord</button></a>
+          <a mat-menu href="{{ data.socials.linkedin }}"><button mat-button>LinkedIn</button></a>
+          <a mat-menu href="{{ data.socials.github }}"><button mat-button>Github</button></a>
         </mat-card-actions>
       </mat-card>
       <mat-card class="{{ 'skill-card' | darkLightPipe | async}} ">
