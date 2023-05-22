@@ -1,11 +1,10 @@
 # Simple workflow for deploying static content to GitHub Pages
-name: publish website
+name: Publish site to Github Pages
 
 on:
-  # Runs on pushes targeting the default branch
+  # Main can be "release" branch
   push:
     branches: ["main"]
-
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -22,8 +21,14 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
-  deploy:
+  # Single job to publish
+  # Checks out code
+  # Builds Angular app
+  # creates dummy 404 page to be index.html page since we cannot configure server to loopback to index.html
+  # Uploads build artifact
+  # Deploys artifact right away
+
+  publish:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
