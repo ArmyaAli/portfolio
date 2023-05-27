@@ -48,34 +48,34 @@
   },
   "career": [
     {
-      "title": "System Integrator",
+      "title": "Senior Programmer Analyst",
       "start_date": "2023-09-01",
-      "end_date": "present",
+      "end_date": "Present",
       "employer": "Ministry of Children, Youth & Social Services (MCCSS)",
-      "location": "5700 Yonge Street, Toronto, Ontario, Canada",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque aliquam fringilla placerat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent luctus velit ac orci sollicitudin, ut ullamcorper sapien posuere. Quisque sit amet felis aliquam, ornare nulla in, convallis dui. Suspendisse porta, turpis a ultrices rutrum, lectus dui dapibus nisi, ac vulputate nulla justo at elit. Morbi ut elit id ligula interdum aliquet. Suspendisse potenti. Pellentesque accumsan lacinia mi, eu pretium odio semper id. Maecenas varius ultricies augue vel vehicula. Suspendisse convallis ante tellus, non bibendum purus ornare sed. Cras consequat finibus eros at gravida."
+      "location": "5700 Yonge Street",
+      "description": ""
     },
     {
       "title": "Software Developer Co-op",
       "start_date": "2022-05-01",
-      "end_date": "2022-08-30",
+      "end_date": "2023-08-31",
       "employer": "Ministry of Children, Youth & Social Services (MCCSS)",
-      "location": "5700 Yonge Street, Toronto, Ontario, Canada",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque aliquam fringilla placerat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent luctus velit ac orci sollicitudin, ut ullamcorper sapien posuere. Quisque sit amet felis aliquam, ornare nulla in, convallis dui. Suspendisse porta, turpis a ultrices rutrum, lectus dui dapibus nisi, ac vulputate nulla justo at elit. Morbi ut elit id ligula interdum aliquet. Suspendisse potenti. Pellentesque accumsan lacinia mi, eu pretium odio semper id. Maecenas varius ultricies augue vel vehicula. Suspendisse convallis ante tellus, non bibendum purus ornare sed. Cras consequat finibus eros at gravida."
+      "location": "5700 Yonge Street",
+      "description": ""
     },
     {
       "title": "Software Developer Co-op",
       "start_date": "2020-01-01",
       "end_date": "2020-08-30",
       "employer": "Ministry of Government & Consumer Services (MGCS)",
-      "location": "222 Jarvis Street, Toronto, Ontario, Canada",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque aliquam fringilla placerat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent luctus velit ac orci sollicitudin, ut ullamcorper sapien posuere. Quisque sit amet felis aliquam, ornare nulla in, convallis dui. Suspendisse porta, turpis a ultrices rutrum, lectus dui dapibus nisi, ac vulputate nulla justo at elit. Morbi ut elit id ligula interdum aliquet. Suspendisse potenti. Pellentesque accumsan lacinia mi, eu pretium odio semper id. Maecenas varius ultricies augue vel vehicula. Suspendisse convallis ante tellus, non bibendum purus ornare sed. Cras consequat finibus eros at gravida."
+      "location": "222 Jarvis Street",
+      "description": ""
     }
   ],
   "education": [
     {
       "school": "York University",
-      "credentuial": "Honours Bachelor Of Science - BSc, Computer Science",
+      "credential": "Honours Bachelor Of Science - BSc, Computer Science",
       "start_year": "2021",
       "end_year": "2024",
       "location": "Toronto, Ontario, Canada",
@@ -88,7 +88,7 @@
     },
     {
       "school": "Seneca College",
-      "credentuial": "Ontario College Advanced Diploma, Computer Engineering Technology",
+      "credential": "Ontario College Advanced Diploma, Computer Engineering Technology",
       "start_year": "2019",
       "end_year": "2021",
       "location": "Toronto, Ontario, Canada",
