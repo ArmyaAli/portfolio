@@ -31,14 +31,28 @@
 }
 
 .content-container {
- display: flex; 
- justify-content: center;
- min-height: 256px;
- margin: 8px 0;
- border: 1px solid black;
- padding: 16px;
+  display: flex;
+  justify-content: center;
+  min-height: 256px;
+  margin: 8px 0;
+  border: 1px solid black;
+  padding: 16px;
 }
 
 .content {
   width: 80%;
 }
+
+.job-title {
+  font-size: 18px;
+}
+
+
+.job-period {
+}
+
+.job-employer {}
+
+.job-loc {}
+
+.job-desc {}

@@ -5,11 +5,17 @@
   </div>
   <div class="content">
     <div class="container-header">
-      <span>{{ job.title }}</span>
-      <span>{{ job.start_date }} - {{job.end_date }}</span>
+      <div>
+        <span class="job-title">{{ job.title }}</span>
+      </div>
+      <div>
+        <span class="job-period">{{ job.start_date }} - {{job.end_date }}</span>
+      </div>
     </div>
-    <div><span>{{ job.employer }}</span></div>
-    <div><span>{{ job.location }}</span></div>
-    <div><span>{{ job.description }}</span></div>
+      <br />
+    <div><span class="job-employer">{{ job.employer }}</span></div>
+    <div><span class="job-loc">{{ job.location }}</span></div>
+      <br />
+    <div><span class="job-desc">{{ job.description }}</span></div>
   </div>
 </div>

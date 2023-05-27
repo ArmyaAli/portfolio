@@ -1,0 +1,15 @@
+<div *ngFor="let entry of data" class="{{ 'content-container' | darkLightPipe | async }}">
+  <div class="left-column">
+    <mat-icon class="icon-class">radio_button_checked</mat-icon>
+    <div class="{{ 'vertical-line' | darkLightPipe | async }}"></div>
+  </div>
+  <div class="content">
+    <div class="container-header">
+      <div>
+        <span class="school-title">{{ entry.school }}</span>
+        <br />
+        <span class="credential">{{ entry.credential }}</span>
+      </div>
+    </div>
+  </div>
+</div>
