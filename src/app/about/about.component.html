@@ -1,4 +1,5 @@
-<mat-tab-group dynamicHeight fitInkBarToContent class="{{ 'tab' | darkLightPipe | async }}">
+<mat-tab-group *ngIf="['XSmall', 'Small'].includes(currentScreenSize)" dynamicHeight fitInkBarToContent
+  class="{{ 'tab' | darkLightPipe | async }}">
   <mat-tab label="About">
     <br />
     <div class="content-container-about">
@@ -64,3 +65,78 @@
     </mat-card>
   </mat-tab>
 </mat-tab-group>
+
+<div *ngIf="!['XSmall', 'Small'].includes(currentScreenSize)" class="{{ 'tab' | darkLightPipe | async }}">
+  <div class="content-container-large">
+    <div class="about-content-grid">
+      <div class="content-container-about">
+        <div class="about-title">
+          <span>About</span>
+        </div>
+        <br />
+        <mat-card class="{{ 'about-card' | darkLightPipe | async }}">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title class="{{ '' | darkLightPipe | async }}">{{ data.name }}</mat-card-title>
+            <mat-card-subtitle class="{{ '' | darkLightPipe | async }}">{{ data.occupation }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ aboutText }}<mat-icon style="position: relative; right: -2px; top: 6px;">tag_faces</mat-icon></p>
+          </mat-card-content>
+          <mat-card-actions class="{{ '' | darkLightPipe | async }}">
+            <a mat-menu href="{{ socials.discord }}"><button mat-button>Discord</button></a>
+            <a mat-menu href="{{ socials.linkedin }}"><button mat-button>LinkedIn</button></a>
+            <a mat-menu href="{{ socials.github }}"><button mat-button>Github</button></a>
+            <a mat-menu href="{{ socials.twitter }}"><button mat-button>Twitter</button></a>
+          </mat-card-actions>
+        </mat-card>
+        <mat-card class="{{ 'skill-card' | darkLightPipe | async}} ">
+          <mat-card-header>
+            <mat-card-title>Skills</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <ul>
+              <li *ngFor="let item of skills">{{item}}</li>
+            </ul>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="{{ 'interests-card' | darkLightPipe | async }}">
+          <mat-card-header>
+            <mat-card-title>Interests</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <ul>
+              <li *ngFor="let item of interests">{{item}}</li>
+            </ul>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <div class="content-container-tools">
+      <div class="tools-title">
+        <span>Tools & Technologies</span>
+      </div>
+      <br />
+      <mat-card class="{{ 'technologies-card' | darkLightPipe | async }}">
+        <mat-card-header>
+          <mat-card-title>Technologies</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <ul>
+            <li *ngFor="let item of data.technologies">{{item}}</li>
+          </ul>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="{{ 'languages-card' | darkLightPipe | async }}">
+        <mat-card-header>
+          <mat-card-title>Programming Languages</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <ul>
+            <li *ngFor="let item of data.languages">{{item}}</li>
+          </ul>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div>

@@ -39,20 +39,25 @@
   padding: 16px;
 }
 
-@media (min-width: 800px) {
+.content-container-large {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.content-container-about {
+  margin: 0 8px;
+}
+
+.content-container-tools {
+  margin: 0 8px;
+}
+/* @media (min-width: 1200px) {
   .content-container-about {
-    display: flex;
+    display: grid;
     justify-content: space-evenly;
   }
 
   .about-card {
     max-width: 600px;
   }
-}
-
-@media (min-height: 1080px) {
-  .content-container-about {
-    justify-content: space-evenly;
-    height: 900px;; 
-  }
-}
+} */

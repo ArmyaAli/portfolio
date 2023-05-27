@@ -1,5 +1,7 @@
 import { Component, EventEmitter } from '@angular/core';
 import data from '../../assets/data.json';
+import { Subject, takeUntil } from 'rxjs';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-about',
@@ -24,7 +26,41 @@ export class AboutComponent {
   aboutSkillsTimerId: any;
   aboutInterestsTimerId: any;
 
+  gridLayout = false;
+  destroyed = new Subject<void>();
+  currentScreenSize: string = '';
+
+  // Create a map to display breakpoint names for demonstration purposes.
+  displayNameMap = new Map([
+    [Breakpoints.XSmall, 'XSmall'],
+    [Breakpoints.Small, 'Small'],
+    [Breakpoints.Medium, 'Medium'],
+    [Breakpoints.Large, 'Large'],
+    [Breakpoints.XLarge, 'XLarge'],
+  ]);
+
+  constructor(breakpointObserver: BreakpointObserver) {
+    breakpointObserver
+      .observe([
+        Breakpoints.XSmall,
+        Breakpoints.Small,
+        Breakpoints.Medium,
+        Breakpoints.Large,
+        Breakpoints.XLarge,
+      ])
+      .pipe(takeUntil(this.destroyed))
+      .subscribe(result => {
+        for (const query of Object.keys(result.breakpoints)) {
+          if (result.breakpoints[query]) {
+            this.currentScreenSize = this.displayNameMap.get(query) ?? 'Unknown';
+            console.log(this.currentScreenSize)
+          }
+        }
+      });
+  }
+
   ngOnInit() {
+
     this.aboutTextTimerId = setInterval(() => {
       this.aboutText += this.data.description[this.animatedAboutTextIndex++]
       if (this.animatedAboutTextIndex === this.data.description.length) { this.EventEndOfAboutText.emit(); }
