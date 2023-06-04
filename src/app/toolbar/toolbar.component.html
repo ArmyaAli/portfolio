@@ -1,6 +1,6 @@
 <mat-toolbar class="{{ '' | darkLightPipe | async }}">
   <span class="{{ '' | darkLightPipe | async }}">{{ nameText }}</span>
-  <span class="example-spacer"></span>
+  <span class="example-spacer">Just a Programmer</span>
   <mat-slide-toggle class="{{ 'toggle-text' | darkLightPipe | async }}" (change)="toggle($event)">{{ switch ? 'Dark mode' : 'Light mode' }}</mat-slide-toggle>
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
     (click)="openBottomSheet()">
