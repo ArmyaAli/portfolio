@@ -1,3 +1,13 @@
+:Host {
+  height: 100%;
+}
+
+.tab {
+  padding: 16px;
+  height: calc(100% - 32px);
+  font-size: 18px;
+}
+
 .about-card {
   color: white;
   margin: 8px 0;
@@ -19,13 +29,13 @@
 
 .technologies-card {
   color: white;
-  margin: 8px 0;
+  margin: 8px 8px;
   border: 0.5px solid white;
 }
 
 .languages-card {
   color: white;
-  margin: 8px 0;
+  margin: 8px 8px;
   margin-bottom: 0;
   border: 0.5px solid white;
 }
@@ -35,9 +45,6 @@
   background-size: cover;
 }
 
-.tab {
-  padding: 16px;
-}
 
 .content-container-large {
   display: flex;
@@ -49,8 +56,23 @@
 }
 
 .content-container-tools {
-  margin: 0 8px;
+  min-width: 55%;
 }
+
+.about-title,
+.tools-title {
+  margin: 16px 8px;
+  margin-bottom: 0;
+  color: #7b1fa2;
+  font-size: 48px;
+
+}
+
+.about-title>span:hover,
+.tools-title>span:hover {
+  cursor: default;
+}
+
 /* @media (min-width: 1200px) {
   .content-container-about {
     display: grid;
