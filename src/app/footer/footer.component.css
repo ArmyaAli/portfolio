@@ -23,4 +23,25 @@
 .bottom {
   margin: 32px auto;
   text-align: center;
+  font-size: 18px;
 }
+
+.icon-container {
+  margin: 32px;
+}
+
+
+.icon {
+  transform: scale(2)
+}
+
+a:hover {
+  color: darkgray;
+}
+
+@media only screen and (max-width: 800px) {
+  .icon-container {
+    margin: 16px;
+  }
+}
+  
