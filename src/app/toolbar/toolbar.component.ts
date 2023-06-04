@@ -5,6 +5,7 @@ import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-shee
 import { Router } from '@angular/router';
 import { stateService } from '../state.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-toolbar',
@@ -23,6 +24,7 @@ export class ToolbarComponent {
   lastCharacterFlag = false;
   directionFlag = false;
   i = 0;
+
   constructor(private _bottomSheet: MatBottomSheet, public router: Router, public sharedState: sharedMenuState, private stateService: stateService, private _snackBar: MatSnackBar) {
   }
 
@@ -42,6 +44,7 @@ export class ToolbarComponent {
       }
       if (!this.lastCharacterFlag) this.nameText += this.name[this.nameIndex++];
     }, 500);
+
   }
 
   openBottomSheet(): void {

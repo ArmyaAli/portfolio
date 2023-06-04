@@ -40,7 +40,7 @@ jobs:
         run: |
           npm i
           npm run build
-          mv ./dist/portfolio/index.html ./dist/portfolio/404.html # for SPA on github actions lol
+          cp ./dist/portfolio/index.html ./dist/portfolio/404.html # for SPA on github actions lol
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact

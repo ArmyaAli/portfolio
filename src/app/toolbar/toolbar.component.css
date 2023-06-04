@@ -3,4 +3,9 @@
   text-align: center;
 }
 
+@media only screen and (max-width: 600px) {
+  .example-spacer {
+    font-size: 12px;
+  }
+} 
 
