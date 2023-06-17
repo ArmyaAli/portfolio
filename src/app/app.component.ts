@@ -17,11 +17,10 @@ export class AppComponent {
       .addSvgIcon('twitter', this.domSanitizer.bypassSecurityTrustResourceUrl("assets/twitter.svg"))
 
     // loopback to known routes if unknown url
-    this.route.url.subscribe((route) => {
+    this.route.url.subscribe((urlCtxPath) => {
       const url = window.location.pathname;
       let match = false;
       ['career', 'education', 'home', 'resume', 'contact'].forEach((path) => {
-        console.log(path)
         if (url.includes(path)) match = true;
       });
       if(!match) window.location.pathname = '/home';
