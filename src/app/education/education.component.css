@@ -1,3 +1,9 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .icon-class {
   position: relative;
   width: 25px;
@@ -37,6 +43,12 @@
   margin: 8px 0;
   border: 1px solid black;
   padding: 16px;
+  flex: 1 1 auto;
+}
+
+
+.content-container:first-child {
+  margin-bottom: 0;
 }
 
 .content {
@@ -48,8 +60,7 @@
 }
 
 
-.job-period {
-}
+.job-period {}
 
 .job-employer {}
 

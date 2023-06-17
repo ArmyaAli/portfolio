@@ -16,6 +16,7 @@ import { darkLightPipe } from './dark.light.pipe';
 import { stateService } from './state.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
+import { PdfViewerModule } from "ng2-pdf-viewer";
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { HttpClientModule } from "@angular/common/http";
     MaterialModule,
     MatExpansionModule,
     ReactiveFormsModule,
-    HttpClientModule 
+    HttpClientModule,
+    PdfViewerModule
   ],
   providers: [
     sharedMenuState, 
