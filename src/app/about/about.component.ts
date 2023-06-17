@@ -1,5 +1,5 @@
-import data from '../../assets/data.json';
 import { Component, EventEmitter } from '@angular/core';
+import data from '../../assets/data.json';
 import { Subject, takeUntil } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
@@ -39,29 +39,27 @@ export class AboutComponent {
     [Breakpoints.XLarge, 'XLarge'],
   ]);
 
-  constructor(private breakpointObserver: BreakpointObserver) {
-
+  constructor(breakpointObserver: BreakpointObserver) {
+    breakpointObserver
+      .observe([
+        Breakpoints.XSmall,
+        Breakpoints.Small,
+        Breakpoints.Medium,
+        Breakpoints.Large,
+        Breakpoints.XLarge,
+      ])
+      .pipe(takeUntil(this.destroyed))
+      .subscribe(result => {
+        for (const query of Object.keys(result.breakpoints)) {
+          if (result.breakpoints[query]) {
+            this.currentScreenSize = this.displayNameMap.get(query) ?? 'Unknown';
+            console.log(this.currentScreenSize)
+          }
+        }
+      });
   }
 
   ngOnInit() {
-
-  this.breakpointObserver
-    .observe([
-      Breakpoints.XSmall,
-      Breakpoints.Small,
-      Breakpoints.Medium,
-      Breakpoints.Large,
-      Breakpoints.XLarge,
-    ])
-    .pipe(takeUntil(this.destroyed))
-    .subscribe(result => {
-      for (const query of Object.keys(result.breakpoints)) {
-        if (result.breakpoints[query]) {
-          this.currentScreenSize = this.displayNameMap.get(query) ?? 'Unknown';
-          console.log(this.currentScreenSize)
-        }
-      }
-    });
 
     this.aboutTextTimerId = setInterval(() => {
       this.aboutText += this.data.description[this.animatedAboutTextIndex++]

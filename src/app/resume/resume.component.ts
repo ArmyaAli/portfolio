@@ -6,5 +6,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./resume.component.css']
 })
 export class ResumeComponent {
-  pdfSrc = "assets/resume.pdf"
 }

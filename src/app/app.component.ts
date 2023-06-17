@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from "@angular/platform-browser";
 import { ActivatedRoute } from '@angular/router';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,11 +17,14 @@ export class AppComponent {
       .addSvgIcon('twitter', this.domSanitizer.bypassSecurityTrustResourceUrl("assets/twitter.svg"))
 
     // loopback to known routes if unknown url
-    this.route.url.subscribe(() => {
-      const route = window.location.pathname;
+    this.route.url.subscribe((route) => {
+      const url = window.location.pathname;
       let match = false;
-      ['career', 'education', 'home', 'resume', 'contact'].forEach((path) => { if (route.includes(path)) match = true; });
-      if (!match) window.location.pathname = '/home';
+      ['career', 'education', 'home', 'resume', 'contact'].forEach((path) => {
+        console.log(path)
+        if (url.includes(path)) match = true;
+      });
+      if(!match) window.location.pathname = '/home';
     })
   }
 
