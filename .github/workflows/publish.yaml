@@ -23,8 +23,7 @@ concurrency:
 jobs:
   # Single job to publish
   # Checks out code
-  # Builds Angular app
-  # creates dummy 404 page to be index.html page since we cannot configure server to loopback to index.html
+  # Builds website
   # Uploads build artifact
   # Deploys artifact right away
 
@@ -38,15 +37,14 @@ jobs:
         uses: actions/checkout@v3
       - name: create build
         run: |
-          npm i
-          npm run build
-          cp ./dist/portfolio/index.html ./dist/portfolio/404.html # for SPA on github actions lol
+          npm i --omit=dev # install all dependencies except dev
+          npm run build # build dir is dist
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: './dist/portfolio/'
+          path: './dist'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
