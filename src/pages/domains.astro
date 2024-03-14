@@ -1,0 +1,25 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { domains } from "../data/domains";
+---
+
+<BaseLayout sideBarActiveItemID="home">
+    <div class="pb-12 mt-5">
+        <div class="text-5xl font-bold">
+            I currently own the following domains...
+        </div>
+    </div>
+
+    <div class="pb-12 mt-5">
+        {
+            domains.map((entry) => (
+                <p class="text-3xl">
+                    <a href={`https://${entry.url}`}>
+                        {entry.url} -{" "}
+                        <b>{entry.active ? "active" : "in-active"}</b>
+                    </a>
+                </p>
+            ))
+        }
+    </div>
+</BaseLayout>

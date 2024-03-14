@@ -1,0 +1,70 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TimeLineElement from "../components/resume/TimeLine.astro";
+import { resume } from "../data/resume";
+---
+
+<BaseLayout title="Resume" sideBarActiveItemID="cv">
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Profile</div>
+  </div>
+
+  <div class="mb-10 text-justify">{resume.Profile}</div>
+  <div class="mb-5"><div class="text-3xl w-full font-bold">Education</div></div>
+
+  <div class="time-line-container grid gap-4 mb-10">
+    {
+      resume.Education.map((entry) => (
+        <TimeLineElement
+          title={entry.credential}
+          subtitle={entry.credspec}
+          subsubtitle={`${entry.school} - ${entry.location} - ${entry.start} to ${entry.end}`}
+        />
+      ))
+    }
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Relevant Experience</div>
+  </div>
+
+  <div class="time-line-container mb-10">
+    {
+      resume.Experience.map((entry) => (
+        <TimeLineElement
+          title={entry.position}
+          subtitle={`${entry.start} - ${entry.end}`}
+          subsubtitle={`${entry.location}`}
+          points={entry.work_items}
+        />
+      ))
+    }
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Certifications</div>
+  </div>
+
+  <ul class="list-disc mx-6 mb-10 grid gap-2">
+    {
+      resume.Certifications.map((entry) => {
+        return (
+          <li class="list-disc">
+            <a href={entry.link} target="_blank">
+              <span>{`${entry.title}`}</span>
+              <div>{`Issued on: ${entry.date}`}</div>
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Technical Skills</div>
+  </div>
+
+  <ul class="list-disc md:columns-1 columns-1 mx-6">
+    {resume.Skills.map((entry) => <li>{entry}</li>)}
+  </ul>
+</BaseLayout>
