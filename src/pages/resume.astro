@@ -5,8 +5,15 @@ import { resume } from "../data/resume";
 ---
 
 <BaseLayout title="Resume" sideBarActiveItemID="cv">
-  <div class="mb-5">
+  <div class="mb-5 flex justify-between content-center">
     <div class="text-3xl w-full font-bold">Profile</div>
+    <div>
+      <a
+        class="btn btn-outline"
+        href="../resume.pdf"
+        target="_blank">Download</a
+      >
+    </div>
   </div>
 
   <div class="mb-10 text-justify">{resume.Profile}</div>
