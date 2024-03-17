@@ -1,4 +1,5 @@
 ---
+import ContactForm from "../components/form/ContactForm.astro";
 const { sideBarActiveItemID } = Astro.props;
 const activeClass = "bg-gray-700"; // For primary color replace with `active` class
 ---
@@ -15,8 +16,18 @@ const activeClass = "bg-gray-700"; // For primary color replace with `active` cl
             referrerpolicy="no-referrer-when-downgrade">Email me!</a
         >
     </li>
+    <div>
+        <div class="text-3xl w-full font-bold text-center my-4">Contact</div>
+        <ContactForm />
+    </div>
 </ul>
-<script define:vars={{ sideBarActiveItemID: sideBarActiveItemID, activeClass: activeClass }}>
-const activeItemElem = document.getElementById(sideBarActiveItemID);
-activeItemElem && activeItemElem.classList.add(activeClass);
+
+<script
+    define:vars={{
+        sideBarActiveItemID: sideBarActiveItemID,
+        activeClass: activeClass,
+    }}
+>
+    const activeItemElem = document.getElementById(sideBarActiveItemID);
+    activeItemElem && activeItemElem.classList.add(activeClass);
 </script>

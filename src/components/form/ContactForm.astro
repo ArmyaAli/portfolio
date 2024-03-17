@@ -1,0 +1,38 @@
+---
+---
+
+<form
+    action="https://formspree.io/f/mvovjjvo"
+    method="POST"
+    class="text-center"
+>
+    {
+        ["Name", "Email", "Message"].map((ph) => {
+            if (ph === "Message")
+                return (
+                    <label for="">
+                        <textarea
+                            placeholder={ph}
+                            class="input input-bordered input-md w-full max-w-xs my-2 h-64"
+                            rows="4"
+                            name={ph}
+                            required
+                        />
+                    </label>
+                );
+            else
+                return (
+                    <label for="">
+                        <input
+                            type="text"
+                            placeholder={ph}
+                            class="input input-bordered input-md w-full max-w-xs my-2"
+                            name={ph}
+                            required
+                        />
+                    </label>
+                );
+        })
+    }
+    <button class="btn btn-outline w-32" type="submit">Submit</button>
+</form>
