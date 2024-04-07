@@ -1,5 +1,5 @@
 # Simple workflow for deploying static content to GitHub Pages
-name: Publish site to Github Pages
+name: Deploy aliumar.dev
 
 on:
   # Main can be "release" branch
@@ -28,15 +28,11 @@ jobs:
   # Single job to publish
   # Checks out code
   # Builds website
-  # Uploads build artifact
-  # Deploys artifact right away
-
-  runs-on: [self-hosted, Linux, AMD64]
+  # Deploys site to ali's website server
   publish:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+    runs-on: 
+      - self-hosted
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -44,12 +40,6 @@ jobs:
         run: |
           npm i --omit=dev # install all dependencies except dev
           npm run build # build dir is dist
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: './dist'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+      - name: deploy build
+        run: |
+          rsync dist/* actions@192.168.50.47:/var/www/portfolio/ --recursive --delete
