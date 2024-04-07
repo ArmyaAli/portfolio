@@ -44,12 +44,6 @@ jobs:
         run: |
           npm i --omit=dev # install all dependencies except dev
           npm run build # build dir is dist
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: './dist'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+      - name: deploy build
+        run: |
+          rsync dist/* actions@192.168.50.47:/var/www/portfolio/ --delete
