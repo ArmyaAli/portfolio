@@ -31,6 +31,7 @@ jobs:
   # Uploads build artifact
   # Deploys artifact right away
 
+  runs-on: [self-hosted, Linux, AMD64]
   publish:
     environment:
       name: github-pages
