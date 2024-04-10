@@ -42,4 +42,4 @@ jobs:
           npm run build # build dir is dist
       - name: deploy build
         run: |
-          rsync dist/* actions@192.168.50.65:/var/www/portfolio/ --recursive --delete
+          rsync dist/* portfolio@192.168.50.65:/var/www/portfolio/ --recursive --delete
