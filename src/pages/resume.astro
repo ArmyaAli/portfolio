@@ -20,31 +20,28 @@ import { resume } from "../data/resume";
 <script is:inline type="module">
   const url = '../resume.pdf';
   const { pdfjsLib } = globalThis;
+  document.addEventListener("astro:page-load", () => {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = '../pdf.worker.mjs';
+    // Asynchronously download the PDF
+    pdfjsLib.getDocument(url).promise.then(function(pdf) {
+        // Fetch the first page
+        pdf.getPage(1).then(function(page) {
+            var scale = 2.5;
+            var viewport = page.getViewport({scale: scale});
 
-  while((pdfjsLib == null)) {
-     pdfjsLib = globalThis;
-  }
-  pdfjsLib.GlobalWorkerOptions.workerSrc = '../pdf.worker.mjs';
+            // Prepare canvas using PDF page dimensions
+            var canvas = document.getElementById('pdf-canvas');
+            var context = canvas.getContext('2d');
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
 
-  // Asynchronously download the PDF
-  pdfjsLib.getDocument(url).promise.then(function(pdf) {
-      // Fetch the first page
-      pdf.getPage(1).then(function(page) {
-          var scale = 2.5;
-          var viewport = page.getViewport({scale: scale});
-
-          // Prepare canvas using PDF page dimensions
-          var canvas = document.getElementById('pdf-canvas');
-          var context = canvas.getContext('2d');
-          canvas.height = viewport.height;
-          canvas.width = viewport.width;
-
-          // Render PDF page into canvas context
-          var renderContext = {
-              canvasContext: context,
-              viewport: viewport
-          };
-          page.render(renderContext);
-      });
-  });
+            // Render PDF page into canvas context
+            var renderContext = {
+                canvasContext: context,
+                viewport: viewport
+            };
+            page.render(renderContext);
+        });
+    });
+  }, {once:true});
 </script>
