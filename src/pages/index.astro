@@ -58,6 +58,7 @@ import { projects } from "../data/projects";
     }
   </div>
 </BaseLayout>
+<script is:inline src="../../lib/pdf.js/pdf.mjs" type="module"></script>
 <script>
   // This piece of code animates "Ali Umar" by adding chars to DynamicName.text
   // When one complete cycle is reached, we only cycle Ali Uma + r repeatedly
@@ -91,4 +92,6 @@ import { projects } from "../data/projects";
   }
 
   customElements.define("dynamic-name", DynamicName);
+  // On the client side let's also parse the resume we have sitting in our public folder
 </script>
+
