@@ -5,73 +5,42 @@ import { resume } from "../data/resume";
 ---
 
 <BaseLayout title="Resume" sideBarActiveItemID="resume">
-  <div class="mb-5 flex justify-between content-center">
-    <div class="text-3xl w-full font-bold">Profile</div>
-    <div>
-      <a
-        class="btn btn-outline"
-        href="../resume.pdf"
-        target="_blank">Download</a
-      >
-    </div>
-  </div>
-
-  <div class="mb-10 text-justify">{resume.Profile}</div>
-  <div class="mb-5"><div class="text-3xl w-full font-bold">Education</div></div>
-
-  <div class="time-line-container grid gap-4 mb-10">
-    {
-      resume.Education.map((entry) => (
-        <TimeLineElement
-          title={entry.credential}
-          subtitle={entry.credspec}
-          subsubtitle={`${entry.school} - ${entry.location} - ${entry.start} to ${entry.end}`}
-        />
-      ))
-    }
-  </div>
-
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Relevant Experience</div>
-  </div>
-
-  <div class="time-line-container mb-10">
-    {
-      resume.Experience.map((entry) => (
-        <TimeLineElement
-          title={entry.position}
-          subtitle={`${entry.start} - ${entry.end}`}
-          subsubtitle={`${entry.location}`}
-          points={entry.work_items}
-        />
-      ))
-    }
-  </div>
-
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Certifications</div>
-  </div>
-
-  <ul class="list-disc mx-6 mb-10 grid gap-2">
-    {
-      resume.Certifications.map((entry) => {
-        return (
-          <li class="list-disc">
-            <a href={entry.link} target="_blank">
-              <span>{`${entry.title}`}</span>
-              <div>{`Issued on: ${entry.date}`}</div>
-            </a>
-          </li>
-        );
-      })
-    }
-  </ul>
-
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Technical Skills</div>
-  </div>
-
-  <ul class="list-disc md:columns-1 columns-1 mx-6">
-    {resume.Skills.map((entry) => <li>{entry}</li>)}
-  </ul>
+  <canvas id="pdf-canvas" class="pdf-canvas"></canvas> 
 </BaseLayout>
+<style>
+  .pdf-canvas {
+    width: 100%;
+    height: 100%;
+
+  }
+
+</style>
+<script is:inline src="../../lib/pdf.js/pdf.mjs" type="module"></script>
+<script is:inline type="module">
+  const url = 'resume.pdf';
+  const { pdfjsLib } = globalThis;
+
+    pdfjsLib.GlobalWorkerOptions.workerSrc = '../lib/pdf.js/pdf.worker.mjs';
+
+  // Asynchronously download the PDF
+    pdfjsLib.getDocument(url).promise.then(function(pdf) {
+        // Fetch the first page
+        pdf.getPage(1).then(function(page) {
+            var scale = 2.5;
+            var viewport = page.getViewport({scale: scale});
+
+            // Prepare canvas using PDF page dimensions
+            var canvas = document.getElementById('pdf-canvas');
+            var context = canvas.getContext('2d');
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+
+            // Render PDF page into canvas context
+            var renderContext = {
+                canvasContext: context,
+                viewport: viewport
+            };
+            page.render(renderContext);
+        });
+    });
+</script>
