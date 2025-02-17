@@ -15,12 +15,12 @@ import { resume } from "../data/resume";
   }
 
 </style>
-<script is:inline src="../../lib/pdf.js/pdf.mjs" type="module"></script>
+<script is:inline src="pdf.mjs" type="module"></script>
 <script is:inline type="module">
   const url = 'resume.pdf';
   const { pdfjsLib } = globalThis;
 
-    pdfjsLib.GlobalWorkerOptions.workerSrc = '../lib/pdf.js/pdf.worker.mjs';
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdf.worker.mjs';
 
   // Asynchronously download the PDF
     pdfjsLib.getDocument(url).promise.then(function(pdf) {
