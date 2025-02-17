@@ -40,6 +40,7 @@ jobs:
         run: |
           npm i --omit=dev # install all dependencies except dev
           npm run build # build dir is dist
+          mv lib dist
       - name: deploy build
         run: |
           rsync dist/* portfolio@192.168.50.65:/var/www/portfolio/ --recursive --delete
