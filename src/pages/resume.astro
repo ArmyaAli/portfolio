@@ -19,7 +19,7 @@ import { resume } from "../data/resume";
 <script is:inline src="../pdf.mjs" type="module"></script>
 <script is:inline type="module">
   const url = '../resume.pdf';
-  const { pdfjsLib } = globalThis;
+  let { pdfjsLib } = globalThis;
   document.addEventListener("astro:page-load", () => {
     pdfjsLib.GlobalWorkerOptions.workerSrc = '../pdf.worker.mjs';
     // Asynchronously download the PDF
