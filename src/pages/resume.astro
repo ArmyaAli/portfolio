@@ -42,6 +42,6 @@ import { resume } from "../data/resume";
             };
             page.render(renderContext);
         });
-    });
+    }, (reason) => console.log(reason));
   }, {once:true});
 </script>
