@@ -1,7 +1,5 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import TimeLineElement from "../components/resume/TimeLine.astro";
-import { resume } from "../data/resume";
 ---
 
 <BaseLayout title="Resume" sideBarActiveItemID="resume">
@@ -18,30 +16,28 @@ import { resume } from "../data/resume";
 </style>
 <script is:inline src="/pdfjs-5.2.133-dist/build/pdf.mjs" type="module"></script>
 <script is:inline type="module">
-  const url = '/resume.pdf';
   let { pdfjsLib } = globalThis;
-  document.addEventListener("astro:page-load", () => {
-    pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdfjs-5.2.133-dist/build/pdf.worker.mjs';
-    // Asynchronously download the PDF
-    pdfjsLib.getDocument(url).promise.then(function(pdf) {
-        // Fetch the first page
-        pdf.getPage(1).then(function(page) {
-            var scale = 2.5;
-            var viewport = page.getViewport({scale: scale});
+  const url = 'resume.pdf';
+  pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdfjs-5.2.133-dist/build/pdf.worker.mjs';
+  // Asynchronously download the PDF
+  pdfjsLib.getDocument(url).promise.then(function(pdf) {
+    // Fetch the first page
+    pdf.getPage(1).then(function(page) {
+        var scale = 2.5;
+        var viewport = page.getViewport({scale: scale});
 
-            // Prepare canvas using PDF page dimensions
-            var canvas = document.getElementById('pdf-canvas');
-            var context = canvas.getContext('2d');
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
+        // Prepare canvas using PDF page dimensions
+        var canvas = document.getElementById('pdf-canvas');
+        var context = canvas.getContext('2d');
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
 
-            // Render PDF page into canvas context
-            var renderContext = {
-                canvasContext: context,
-                viewport: viewport
-            };
-            page.render(renderContext);
-        });
-    }, (reason) => console.log(reason));
-  }, {once:true});
+        // Render PDF page into canvas context
+        var renderContext = {
+            canvasContext: context,
+            viewport: viewport
+        };
+        page.render(renderContext);
+    });
+  }, (reason) => console.log(reason));
 </script>
