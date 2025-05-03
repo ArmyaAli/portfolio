@@ -1,0 +1,33 @@
+
+<canvas id="pdf-canvas" class="pdf-canvas"></canvas> 
+<script is:inline src="/pdfjs-5.2.133-dist/build/pdf.mjs" type="module"></script>
+<script is:inline type="module">
+  import * as pdfjsLib from '/pdfjs-5.2.133-dist/build/pdf.mjs';
+  document.addEventListener("astro:page-load", () => {
+    const url = '../resume.pdf';
+    pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdfjs-5.2.133-dist/build/pdf.worker.mjs';
+    // Asynchronously download the PDF
+    pdfjsLib.getDocument(url).promise.then(function(pdf) {
+      // Fetch the first page
+      pdf.getPage(1).then(function(page) {
+          let scale = 2.5;
+          let viewport = page.getViewport({scale: scale});
+
+          // Prepare canvas using PDF page dimensions
+          let canvas = document.getElementById('pdf-canvas');
+          if(canvas !== undefined) {
+            let context = canvas.getContext('2d');
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+
+            // Render PDF page into canvas context
+            let renderContext = {
+                canvasContext: context,
+                viewport: viewport
+            };
+            page.render(renderContext);
+          }
+      });
+    }, (reason) => console.log(reason));
+  });
+</script>

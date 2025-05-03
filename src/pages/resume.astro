@@ -1,10 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import PDFViewer from "../components/PDFViewer.astro";
 ---
 
 <BaseLayout title="Resume" sideBarActiveItemID="resume">
   <div class="flex flex-col">
-    <canvas id="pdf-canvas" class="pdf-canvas"></canvas> 
+    <PDFViewer />
     <a href="../resume.pdf" target="_blank" class="btn btn-outline my-4" >Download</a>
   </div>
 </BaseLayout>
@@ -14,30 +15,3 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     height: 100%;
   }
 </style>
-<script is:inline src="/pdfjs-5.2.133-dist/build/pdf.mjs" type="module"></script>
-<script is:inline type="module">
-  import * as pdfjsLib from '/pdfjs-5.2.133-dist/build/pdf.mjs';
-  const url = '../resume.pdf';
-  pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdfjs-5.2.133-dist/build/pdf.worker.mjs';
-  // Asynchronously download the PDF
-  pdfjsLib.getDocument(url).promise.then(function(pdf) {
-    // Fetch the first page
-    pdf.getPage(1).then(function(page) {
-        var scale = 2.5;
-        var viewport = page.getViewport({scale: scale});
-
-        // Prepare canvas using PDF page dimensions
-        var canvas = document.getElementById('pdf-canvas');
-        var context = canvas.getContext('2d');
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
-
-        // Render PDF page into canvas context
-        var renderContext = {
-            canvasContext: context,
-            viewport: viewport
-        };
-        page.render(renderContext);
-    });
-  }, (reason) => console.log(reason));
-</script>
