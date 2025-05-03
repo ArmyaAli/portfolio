@@ -18,7 +18,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 <script is:inline type="module">
   let { pdfjsLib } = globalThis;
   const url = 'resume.pdf';
-  pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdfjs-5.2.133-dist/build/pdf.worker.mjs';
+  pdfjsLib.GlobalWorkerOptions.workerSrc = '//pdfjs-5.2.133-dist/build/pdf.worker.mjs';
   // Asynchronously download the PDF
   pdfjsLib.getDocument(url).promise.then(function(pdf) {
     // Fetch the first page
