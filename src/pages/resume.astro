@@ -16,12 +16,12 @@ import { resume } from "../data/resume";
     height: 100%;
   }
 </style>
-<script is:inline src="/pdf.mjs" type="module"></script>
+<script is:inline src="/pdfjs-5.2.133-dist/build/pdf.mjs" type="module"></script>
 <script is:inline type="module">
   const url = '../resume.pdf';
   let { pdfjsLib } = globalThis;
   document.addEventListener("astro:page-load", () => {
-    pdfjsLib.GlobalWorkerOptions.workerSrc = '../pdf.worker.mjs';
+    pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdfjs-5.2.133-dist/build/pdf.worker.mjs';
     // Asynchronously download the PDF
     pdfjsLib.getDocument(url).promise.then(function(pdf) {
         // Fetch the first page
