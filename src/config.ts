@@ -4,4 +4,3 @@
 export const SITE_TITLE = 'Ali\'s Portfolio';
 export const SITE_DESCRIPTION = 'Ali Umar is a Software Engineer. This is his website :)';
 export const GENERATE_SLUG_FROM_TITLE = true
-export const TRANSITION_API = true
