@@ -20,6 +20,15 @@ const {
 <!doctype html>
 <html lang="en" data-theme="forest">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-46BJ23EE46"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-46BJ23EE46');
+    </script>
     <BaseHead title={title} description={description} image={image} , ogType={ogType} />
     <ClientRouter />
   </head>
