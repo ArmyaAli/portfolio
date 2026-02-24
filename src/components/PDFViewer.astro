@@ -1,32 +1,65 @@
-<canvas id="pdf-canvas" class="pdf-canvas"></canvas> 
-<script is:inline src="/pdfjs-5.2.133-dist/build/pdf.mjs" type="module"></script>
-<script is:inline type="module">
-  import * as pdfjsLib from '/pdfjs-5.2.133-dist/build/pdf.mjs';
-  document.addEventListener("astro:page-load", () => {
-    const url = '../resume.pdf';
-    pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdfjs-5.2.133-dist/build/pdf.worker.mjs';
-    // Asynchronously download the PDF
-    pdfjsLib.getDocument(url).promise.then(function(pdf) {
-      // Fetch the first page
-      pdf.getPage(1).then(function(page) {
-          let scale = 2.5;
-          let viewport = page.getViewport({scale: scale});
+<div class="resume-frame">
+  <iframe
+    src="/resume.pdf#page=1&zoom=page-fit&view=Fit&toolbar=0&navpanes=0&scrollbar=0&pagemode=none"
+    title="Resume PDF"
+    loading="lazy"
+    class="resume-iframe"
+  ></iframe>
+</div>
 
-          // Prepare canvas using PDF page dimensions
-          let canvas = document.getElementById('pdf-canvas');
-          if(canvas !== undefined) {
-            let context = canvas.getContext('2d');
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
+<style>
+  .resume-frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+    border: 1px solid hsl(var(--bc) / 0.18);
+    box-shadow:
+      0 28px 60px -28px hsl(var(--bc) / 0.55),
+      0 0 0 1px hsl(var(--bc) / 0.08) inset;
+    transform-origin: center top;
+    animation: resume-enter 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
 
-            // Render PDF page into canvas context
-            let renderContext = {
-                canvasContext: context,
-                viewport: viewport
-            };
-            page.render(renderContext);
-          }
-      });
-    }, (reason) => console.log(reason));
-  });
-</script>
+  .resume-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      hsl(var(--bc) / 0.06) 44%,
+      transparent 68%
+    );
+    transform: translateX(-120%);
+    animation: resume-shine 2200ms ease 650ms 1 both;
+  }
+
+  .resume-iframe {
+    display: block;
+    width: 100%;
+    height: clamp(520px, calc(100dvh - 12rem), 1200px);
+    border: 0;
+    background: hsl(var(--b1));
+  }
+
+  @keyframes resume-enter {
+    from {
+      opacity: 0;
+      transform: translateY(22px) scale(0.985);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes resume-shine {
+    from {
+      transform: translateX(-120%);
+    }
+    to {
+      transform: translateX(120%);
+    }
+  }
+</style>
