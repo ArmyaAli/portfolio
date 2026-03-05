@@ -12,12 +12,10 @@ const { sideBarActiveItemID } = Astro.props;
   >
     <div class="w-fit mx-auto mt-5 mb-6">
       <a href="/">
-        <div
-          class="avatar transition ease-in-out hover:scale-[102%] block m-auto"
-        >
-          <div class="w-[8.5rem]">
+        <div class="avatar profile-avatar block m-auto">
+          <div class="w-[8.5rem] profile-avatar-frame">
             <Image
-              class="mask mask-circle"
+              class="mask mask-circle profile-avatar-image"
               format="webp"
               width={300}
               height={300}
@@ -32,3 +30,43 @@ const { sideBarActiveItemID } = Astro.props;
     <SideBarFooter />
   </aside>
 </div>
+
+<style>
+  .profile-avatar {
+    perspective: 1100px;
+  }
+
+  .profile-avatar-frame {
+    transform: translateZ(0);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    will-change: transform;
+  }
+
+  .profile-avatar-image {
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+
+  .profile-avatar:hover .profile-avatar-frame {
+    animation: profile-avatar-spin-depth 620ms cubic-bezier(0.25, 0.9, 0.3, 1);
+  }
+
+  @keyframes profile-avatar-spin-depth {
+    0% {
+      transform: translate3d(0, 0, 0) rotateY(0deg) scale(1);
+    }
+
+    22% {
+      transform: translate3d(0, 0, 22px) rotateY(82deg) scale(1.02);
+    }
+
+    42% {
+      transform: translate3d(0, 0, 12px) rotateY(286deg) scale(1);
+    }
+
+    100% {
+      transform: translate3d(0, 0, 0) rotateY(360deg) scale(1);
+    }
+  }
+</style>
