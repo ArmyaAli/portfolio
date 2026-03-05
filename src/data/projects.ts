@@ -1,5 +1,12 @@
 export const projects = [
     {
+        title: "gratitude.forum",
+        description: "A warm little realtime gratitude journal where people can post short heartfelt notes, watch them drift across a live canvas, and share the room together.",
+        technologies: "TypeScript, Realtime Web App",
+        link: "https://gratitude.forum",
+        type: "Realtime Social App"
+    },
+    {
         title: "Shroom.io",
         description: "Browser based io game. Realtime multiplayer. Utilziing Websockets and hopefully I can start using a UDP based browser API like QUIC... and wire it up to the Go backend. This is more of a long-term project. The goal is to build a polished product and actually have users.. need to figure out the hosting. These will be persistant connections with full duplex low latency data transfer... will require beefy servers..",
         technologies: "JavaScript, Tailwind, Pocketbase, SQLLite",

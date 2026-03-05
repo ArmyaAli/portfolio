@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { domains } from "../data/domains";
-import { fade } from "astro:transitions";
 ---
 
 <BaseLayout sideBarActiveItemID="domains">
@@ -11,7 +10,7 @@ import { fade } from "astro:transitions";
         </div>
     </div>
 
-    <div class="pb-12 mt-5" transition:animate={fade({ duration: "0.8s" })}>
+    <div class="pb-12 mt-5">
         {
             domains.map((entry) => (
                 <p class="text-3xl">
