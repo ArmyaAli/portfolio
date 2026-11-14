@@ -1,6 +1,6 @@
 id: 12
 title: Fix Three.js curve crash and stale Vite dep cache in dev
-status: in_progress
+status: done
 tags:
   - 3d
   - dev
@@ -23,9 +23,13 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T17:15:41"
 startedAt: "2026-11-14T17:15:48"
-updatedAt: "2026-11-14T17:15:48"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T17:16:27"
+completedAt: "2026-11-14T17:16:27"
+commit: 9f01163596eef951483a89eaef482c286fef1eda
+outcome: >-
+  The decorative path traveler can no longer blank the scene when a curve sample is invalid, edge
+  labels stay inside the viewport, and the Vite cache reset is documented.
+verification: >-
+  Clean dev restart, 5s interaction run, no page errors or 504; npm run check/build pass;
+  screenshots show the projects station and clamped label.
+release: 1.0.0
