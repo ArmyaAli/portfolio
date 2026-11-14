@@ -1,6 +1,6 @@
 id: 1
 title: Set up Roadmapped backlog for the interactive resume
-status: in_progress
+status: done
 tags:
   - roadmapped
   - tooling
@@ -17,9 +17,13 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T16:22:56"
 startedAt: "2026-11-14T16:25:53"
-updatedAt: "2026-11-14T16:25:53"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T16:27:37"
+completedAt: "2026-11-14T16:27:37"
+commit: f24386604e479de732a83651a6894dd22587d97c
+outcome: >-
+  Roadmapped is installed and pinned, the interactive 3D resume spec is written, and nine
+  dependency-linked tasks are seeded.
+verification: >-
+  npx roadmapped validate passed; nix build passed with the updated npmDepsHash; commit-msg rule
+  rejects taskless and unknown-task messages.
+release: 1.0.0
