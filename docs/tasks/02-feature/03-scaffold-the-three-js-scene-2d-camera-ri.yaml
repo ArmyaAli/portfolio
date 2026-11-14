@@ -1,6 +1,6 @@
 id: 5
 title: Scaffold the Three.js scene, 2D camera rig, and movement
-status: todo
+status: in_progress
 tags:
   - 3d
   - threejs
@@ -22,7 +22,8 @@ dependsOn:
 epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T16:23:38"
-updatedAt: "2026-11-14T16:25:33"
+startedAt: "2026-11-14T16:49:29"
+updatedAt: "2026-11-14T16:49:29"
 completedAt: null
 commit: null
 outcome: null

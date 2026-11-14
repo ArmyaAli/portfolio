@@ -1,0 +1,26 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import { site } from "../config";
+import "../styles/global.css";
+import "../styles/experience.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = site.title,
+  description = site.description,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+  <body class="experience-body">
+    <slot />
+  </body>
+</html>
