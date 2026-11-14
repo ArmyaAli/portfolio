@@ -254,9 +254,20 @@ Rendering:
   station, keyboard-only traversal, mobile viewport, no-WebGL fallback.
 - Deploy via the existing `.github/workflows/deploy.yml`.
 
-## Open decisions
+## Locked decisions
 
-- Replace `/` with the experience (recommended) vs. launch at `/experience` first.
-- Free 2D camera (recommended) vs. guided path.
-- Dark mycelium direction (recommended) vs. light paper direction.
-- Whether to expose the phone number from the PDF on the public site.
+- `/` becomes the experience. `/resume` remains the static, accessible fallback.
+- The camera moves freely on X/Y at a fixed Z. No rail, orbit, or rotation.
+- Dark mycelium art direction: ink green-black, off-white type, amber/rust accents.
+- Vanilla Three.js. No React or R3F.
+- The parser and PDF remain build-time inputs. No client-side PDF parsing.
+- `public/resume.pdf` is the updated two-page general resume.
+- The static resume includes the phone number because it comes from the PDF.
+  The 3D contact station uses email, GitHub, LinkedIn, and the PDF download, and
+  does not display the phone number.
+- Site social links come from `src/config.ts`, not from parsed PDF URLs.
+- Desktop uses a side dialog; mobile uses a bottom-sheet dialog.
+- The intro requires a first movement input; there is no autoplay cinematic.
+- No analytics.
+- Zero-WebGL and no-JS users get the static resume immediately.
+

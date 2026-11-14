@@ -1,6 +1,6 @@
 id: 2
 title: Lock the 3D resume interaction model and art direction
-status: todo
+status: in_progress
 tags:
   - 3d
   - resume
@@ -19,7 +19,8 @@ dependsOn:
 epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T16:23:37"
-updatedAt: "2026-11-14T16:23:37"
+startedAt: "2026-11-14T16:38:22"
+updatedAt: "2026-11-14T16:38:22"
 completedAt: null
 commit: null
 outcome: null
