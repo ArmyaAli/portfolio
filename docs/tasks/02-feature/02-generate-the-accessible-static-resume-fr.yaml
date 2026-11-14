@@ -1,6 +1,6 @@
 id: 4
 title: Generate the accessible static resume from parsed data
-status: in_progress
+status: done
 tags:
   - resume
   - accessibility
@@ -22,9 +22,11 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T16:23:38"
 startedAt: "2026-11-14T16:45:25"
-updatedAt: "2026-11-14T16:45:25"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T16:48:19"
+completedAt: "2026-11-14T16:48:19"
+commit: a1566678264c51f1892ff56c10bdc90ef8b99d2d
+outcome: The /resume page is now a semantic, printable resume generated from the parsed PDF data.
+verification: >-
+  Desktop light/dark screenshots reviewed; npm run check/build pass; all sections render from
+  generated JSON.
+release: 1.0.0
