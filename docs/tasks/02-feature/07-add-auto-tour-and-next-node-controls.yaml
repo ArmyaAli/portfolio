@@ -1,6 +1,6 @@
 id: 17
 title: Add auto tour and next-node controls
-status: in_progress
+status: done
 tags:
   - 3d
   - navigation
@@ -26,9 +26,13 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T17:53:35"
 startedAt: "2026-11-14T17:53:49"
-updatedAt: "2026-11-14T17:53:49"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T17:55:25"
+completedAt: "2026-11-14T17:55:25"
+commit: dfa8b4e0e56ad56ca926d047ae46b24d433d9ebc
+outcome: >-
+  The experience now has an Auto tour and a persistent Next node control with manual-input
+  cancellation.
+verification: >-
+  Auto advanced origin→experience after 5.4s, Next advanced to projects, manual wheel stopped auto;
+  desktop/mobile controls reviewed; no page errors; check/build pass.
+release: 1.0.0
