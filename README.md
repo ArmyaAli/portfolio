@@ -43,6 +43,15 @@ npm run build        # static build
 nix build            # reproducible build, output in result/
 ```
 
+If Vite reports `504 (Outdated Optimize Dep)` after a dependency change, reset
+the dev cache:
+
+```sh
+npx astro dev stop
+rm -rf node_modules/.vite .astro
+npm run dev
+```
+
 `npm run dev` and `npm run build` regenerate `src/data/resume.generated.json`
 from the PDF before Astro starts. To regenerate it manually:
 

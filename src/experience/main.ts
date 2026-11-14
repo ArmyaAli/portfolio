@@ -58,7 +58,9 @@ function updateLabels() {
     const x = (projected.x * 0.5 + 0.5) * width;
     const y = (-projected.y * 0.5 + 0.5) * height;
 
-    label.style.transform = `translate(-50%, -50%) translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
+    const padding = width < 600 ? 52 : 84;
+    const labelX = Math.min(Math.max(x, padding), width - padding);
+    label.style.transform = `translate(-50%, -50%) translate(${labelX.toFixed(1)}px, ${y.toFixed(1)}px)`;
     label.style.opacity = visible ? "1" : "0";
     label.style.pointerEvents = visible ? "auto" : "none";
     label.tabIndex = visible ? 0 : -1;

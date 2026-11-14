@@ -309,9 +309,14 @@ export class ResumeWorld {
     if (this.pathCurve && this.traveler) {
       const travel = (time * 0.035) % 1;
 
-      if (Number.isFinite(travel)) {
-        this.pathCurve.getPointAt(travel, this.traveler.position);
-        this.traveler.scale.setScalar(1 + Math.sin(time * 4) * 0.22);
+      if (this.pathCurve.points.length > 3 && Number.isFinite(travel)) {
+        try {
+          this.pathCurve.getPoint(travel, this.traveler.position);
+          this.traveler.scale.setScalar(1 + Math.sin(time * 4) * 0.22);
+        } catch {
+          // Decorative only: keep the scene alive if a curve sample is invalid.
+          this.traveler.visible = false;
+        }
       }
     }
   }

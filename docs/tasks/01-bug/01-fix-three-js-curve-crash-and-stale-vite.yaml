@@ -1,0 +1,31 @@
+id: 12
+title: Fix Three.js curve crash and stale Vite dep cache in dev
+status: in_progress
+tags:
+  - 3d
+  - dev
+  - vite
+  - threejs
+heat: 90
+detail: >-
+  The interactive scene could crash in ResumeWorld.update with CatmullRomCurve3.getPoint reading x
+  of undefined, and dev showed a 504 Outdated Optimize Dep. Switch the traveler to direct curve
+  sampling, guard the decorative animation, clamp edge labels, remove debug instrumentation, and
+  document the Vite cache reset. Acceptance: clean dev restart shows no 504/page errors; scene
+  renders and moves; npm run check/build and nix build pass.
+refs:
+  - src/experience/world.ts
+  - src/experience/main.ts
+  - README.md
+links: []
+dependsOn: []
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T17:15:41"
+startedAt: "2026-11-14T17:15:48"
+updatedAt: "2026-11-14T17:15:48"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null
