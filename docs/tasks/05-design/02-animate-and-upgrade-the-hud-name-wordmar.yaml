@@ -1,6 +1,6 @@
 id: 16
 title: Animate and upgrade the HUD name wordmark
-status: in_progress
+status: done
 tags:
   - hud
   - wordmark
@@ -23,9 +23,13 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T17:43:44"
 startedAt: "2026-11-14T17:43:50"
-updatedAt: "2026-11-14T17:43:50"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T17:47:40"
+completedAt: "2026-11-14T17:47:40"
+commit: cf3d52fa20473dd54d45f3275b04c163c46fcba9
+outcome: >-
+  The HUD now has an animated letter-wave wordmark, pulsing spore dot, and role/location subtitle;
+  only the nearest resume panel is shown.
+verification: >-
+  Desktop/mobile screenshots reviewed; reduced-motion and intro-frost fixes verified; no page
+  errors; frame timing 18.7ms with content panels.
+release: 1.0.0
