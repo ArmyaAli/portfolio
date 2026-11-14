@@ -1,6 +1,6 @@
 id: 15
 title: Run the mobile device and touch test matrix
-status: todo
+status: done
 tags:
   - mobile
   - qa
@@ -23,9 +23,16 @@ dependsOn:
 epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T17:37:39"
-updatedAt: "2026-11-14T17:37:39"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+startedAt: "2026-11-14T17:47:48"
+updatedAt: "2026-11-14T17:49:06"
+completedAt: "2026-11-14T17:49:06"
+commit: d90f3b55f878ea30f1f0eb33c5c5b6625d0d1420
+outcome: >-
+  Mobile verification passed across Chromium phone portrait, large phone, landscape, and WebKit
+  Safari-proxy rendering.
+verification: >-
+  390x844, 430x932, 844x390, and WebKit 390x844: no horizontal overflow or page errors; touch drag
+  and station opening work; contact sheet scrolls with the Formspree action intact; close/next/map
+  targets are 44px; 16.49ms average frame time on mobile. Physical hardware not available;
+  WebKit/Chromium engines used as proxies.
+release: 1.0.0

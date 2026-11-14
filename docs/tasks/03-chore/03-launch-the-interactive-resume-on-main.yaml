@@ -20,11 +20,12 @@ dependsOn:
   - 8
   - 14
   - 15
+  - 16
 epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T16:23:39"
 startedAt: "2026-11-14T17:08:46"
-updatedAt: "2026-11-14T17:37:40"
+updatedAt: "2026-11-14T17:49:05"
 completedAt: null
 commit: null
 outcome: null
