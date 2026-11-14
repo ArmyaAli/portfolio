@@ -1,6 +1,6 @@
 id: 3
 title: Build the PDF resume parser and generated resume data
-status: todo
+status: in_progress
 tags:
   - resume
   - parser
@@ -24,7 +24,8 @@ dependsOn:
 epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T16:23:37"
-updatedAt: "2026-11-14T16:23:37"
+startedAt: "2026-11-14T16:38:48"
+updatedAt: "2026-11-14T16:38:48"
 completedAt: null
 commit: null
 outcome: null

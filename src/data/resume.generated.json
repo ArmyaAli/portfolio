@@ -1,0 +1,184 @@
+{
+  "contact": {
+    "name": "Ali Umar",
+    "email": "ali.umar.work@gmail.com",
+    "phone": "647-464-4701",
+    "website": "aliumar.dev",
+    "linkedin": "linkedin.com/in/aliumardev1",
+    "github": "github.com/ArmyaAli"
+  },
+  "summary": "Software Developer with 4 years of experience building, modernizing, and supporting enterprise applications across Angular, Java, Oracle Database, and Red Hat Linux environments. Demonstrated impact leading cross-functional initiatives that improve software delivery, infrastructure efficiency, and operational reliability. Strong foundation in computer science, system design, and low-level programming, with experience mentoring technical staff, contributing to solution design, coordinating releases, supporting production environments, and creating technical documentation such as system design artifacts and operational runbooks. Active learning in Kubernetes and cloud platforms.",
+  "experience": [
+    {
+      "title": "Sr. Software Developer / Sr. Programmer Analyst",
+      "organization": "Ministry of Children, Youth & Social Services",
+      "date": "Sep 2023 – Present",
+      "bullets": [
+        "Lead the design and implementation of a multi-department infrastructure optimization project migrating a vendor product to an internally operated platform using a reverse proxy, with estimated annual hosting-cost savings of $180,000, and led containerization of legacy workloads including Oracle WebLogic, with an additional estimated $100,000 in savings.",
+        "Retired a legacy application environment, saving $80,000 while successfully migrating clients to an alternative on schedule.",
+        "Led the migration of internal team tooling from Jira, GitLab, Jenkins & Nexus Repository to Microsoft Azure DevOps, moving issues, pipelines, and artifacts for multiple applications.",
+        "Coordinate release management activities with stakeholders, clients, and external technical teams while following organizational change management processes.",
+        "Provide customer-facing incident response for users and clients, including troubleshooting advice and customer service within service-level expectations.",
+        "Designed and implemented CI/CD pipelines from development to production for two Java services and one Angular web application using Jenkins; these workflows were later migrated to Azure Pipelines.",
+        "Configure, maintain, and troubleshoot 24 Red Hat Enterprise Linux (RHEL) on-premises servers across application environments.",
+        "Prepare technical diagrams and documentation for cross-team system integration, privacy and risk compliance, penetration testing, and load testing.",
+        "Explain system architecture, integration issues, automation logic, and operational trade-offs in clear, concise language tailored to business stakeholders, management, developers, and infrastructure teams.",
+        "Contributing to an AI proof of concept using GitHub Copilot to generate software estimates for modernizing a legacy Java 8 desktop application into a browser-based web application, following a three-week Microsoft enablement engagement.",
+        "Develop and maintain enhancements for a legacy Java 8 monolithic desktop application."
+      ],
+      "location": "Toronto, Ontario"
+    },
+    {
+      "title": "Software Developer Co-op",
+      "organization": "Ministry of Children, Youth & Social Services",
+      "date": "May 2022 – Aug 2023",
+      "bullets": [
+        "Integrated an Angular SPA with Oracle IAM using OAuth2, set up Jenkins CI for application builds and deployments, and wrote SQL scripts for enhancements to a legacy Java 8 case management system backed by Oracle Database."
+      ],
+      "location": "Toronto, Ontario"
+    },
+    {
+      "title": "Software Developer Co-op",
+      "organization": "Ministry of Government & Consumer Services",
+      "date": "Jan 2020 – Aug 2020",
+      "bullets": [
+        "Developed a server monitoring dashboard for the Ministry of Health using Angular."
+      ],
+      "location": "Toronto, Ontario"
+    }
+  ],
+  "education": [
+    {
+      "credential": "BS. Computer Science",
+      "institution": "Honours Bachelor of Science, York University",
+      "location": "Toronto, Ontario",
+      "date": "April 2026"
+    },
+    {
+      "credential": "Diploma. Computer Engineering Technology",
+      "institution": "Advanced Ontario Diploma, Seneca College",
+      "location": "Toronto, Ontario",
+      "date": "August 2021"
+    }
+  ],
+  "projects": [
+    {
+      "title": "Gratitude.forum",
+      "technologies": [
+        "Go",
+        "PocketBase",
+        "JavaScript"
+      ],
+      "date": "December 2025",
+      "bullets": [
+        "Built a real-time word-cloud style web application for sharing what users are grateful for, including lobbies, chat, user management, moderation, presentation mode, animations, and self-hosted deployment."
+      ]
+    },
+    {
+      "title": "Compiler - Bminor Language",
+      "technologies": [
+        "C",
+        "LLVM tools"
+      ],
+      "date": "September 2024",
+      "bullets": [
+        "Built a compiler pipeline following traditional compiler design, including scanning, parsing, AST generation, symbol table construction, semantic analysis, and assembler code generation."
+      ]
+    },
+    {
+      "title": "Homelab - Dell PowerEdge R730",
+      "technologies": [
+        "Proxmox",
+        "Ubuntu Server"
+      ],
+      "date": "September 2023",
+      "bullets": [
+        "Dell PowerEdge R730 / x4 1TB HDD / 128GB RAM / x2 E5-2640 V3 2.60GHz"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "label": "Fundamentals",
+      "items": [
+        "application programming patterns",
+        "software design patterns",
+        "system architecture",
+        "computer networking",
+        "automation",
+        "observability & telemetry tools",
+        "code version control",
+        "databases",
+        "data structures & algorithms",
+        "foundational",
+        "math",
+        "project management",
+        "leadership and communication skills",
+        "initiative"
+      ]
+    },
+    {
+      "label": "Tools",
+      "items": [
+        "C",
+        "C++",
+        "Java",
+        "JavaScript",
+        "TypeScript",
+        "Node",
+        "Python",
+        "C#",
+        "Lua",
+        "Go",
+        "Git",
+        "Shell",
+        "SQL",
+        "Jenkins",
+        "GitHub Actions",
+        "Ansible",
+        "Docker",
+        "GNU Make",
+        "Vagrant",
+        "Angular",
+        "Java Spring Boot"
+      ]
+    },
+    {
+      "label": "Familiarity with",
+      "items": [
+        "caches",
+        "CDNs",
+        "firewalls",
+        "load balancers",
+        "web servers",
+        "proxies",
+        "data and event buses"
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "name": "AI-900: Azure AI Fundamentals",
+      "date": "August 2025"
+    },
+    {
+      "name": "AZ-900: Microsoft Azure Fundamentals",
+      "date": "June 2021"
+    }
+  ],
+  "interests": [
+    "3D printing",
+    "Volleyball",
+    "Programming",
+    "Technology",
+    "Custom PC Builds",
+    "Servers",
+    "Networking"
+  ],
+  "meta": {
+    "source": "resume.pdf",
+    "sourceSha256": "624ee90a561e147b193cb6a21b20998f88bf643c173fdc42c036bd6d2243812d",
+    "pages": 2,
+    "warnings": []
+  }
+}

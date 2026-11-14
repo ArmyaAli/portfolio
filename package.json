@@ -11,7 +11,12 @@
     "format": "prettier --write .",
     "astro": "astro",
     "check": "astro check",
-    "prepare": "node scripts/install-hooks.mjs"
+    "prepare": "node scripts/install-hooks.mjs",
+    "resume:parse": "tsx scripts/generate-resume.ts",
+    "predev": "npm run resume:parse",
+    "prebuild": "npm run resume:parse",
+    "test:resume": "tsx --test src/lib/resume/parse.test.ts",
+    "test": "npm run test:resume"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.5",
@@ -19,9 +24,11 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
+    "pdfjs-dist": "^6.5.438",
     "prettier": "^3.10.1",
     "prettier-plugin-astro": "^1.1.2",
     "roadmapped": "0.3.1",
+    "tsx": "^4.23.15",
     "typescript": "^6.0.3"
   }
 }
