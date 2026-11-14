@@ -1,0 +1,172 @@
+---
+import ContactForm from "../ContactForm.astro";
+import { site } from "../../config";
+import type { ResumeDocument } from "../../lib/resume/types";
+
+interface Props {
+  resume: ResumeDocument;
+}
+
+const { resume } = Astro.props;
+---
+
+<dialog
+  class="station-dialog"
+  data-station-dialog
+  aria-labelledby="station-dialog-title"
+>
+  <div class="station-dialog-shell">
+    <header class="station-dialog-head">
+      <div>
+        <p class="station-dialog-kicker" data-dialog-kicker></p>
+        <h2 id="station-dialog-title" data-dialog-title tabindex="-1"></h2>
+      </div>
+      <button class="station-dialog-close" type="button" data-dialog-close>
+        Close <span aria-hidden="true">×</span>
+      </button>
+    </header>
+
+    <div class="station-dialog-body" data-dialog-body>
+      <article data-station-article="origin" hidden>
+        <p class="station-lede">{resume.summary}</p>
+        <dl class="station-facts">
+          <div>
+            <dt>Based in</dt>
+            <dd>{resume.experience[0]?.location ?? "Toronto, Ontario"}</dd>
+          </div>
+          <div>
+            <dt>Currently</dt>
+            <dd>{resume.experience[0]?.title}</dd>
+          </div>
+          <div>
+            <dt>Studied</dt>
+            <dd>{resume.education[0]?.institution}</dd>
+          </div>
+        </dl>
+        <div class="station-actions">
+          <a class="button" href="/resume">Read the full resume</a>
+          <a class="button-ghost" href={`mailto:${resume.contact.email}`}>Email</a>
+        </div>
+      </article>
+
+      <article data-station-article="experience" hidden>
+        {
+          resume.experience.map((entry) => (
+            <section class="station-entry">
+              <header class="station-entry-head">
+                <div>
+                  <h3>{entry.title}</h3>
+                  <p>{entry.organization}{entry.location && ` · ${entry.location}`}</p>
+                </div>
+                <p class="station-date">{entry.date}</p>
+              </header>
+              <ul class="station-bullets">
+                {entry.bullets.map((bullet) => (
+                  <li>{bullet}</li>
+                ))}
+              </ul>
+            </section>
+          ))
+        }
+      </article>
+
+      <article data-station-article="projects" hidden>
+        {
+          resume.projects.map((project) => (
+            <section class="station-entry">
+              <header class="station-entry-head">
+                <div>
+                  <h3>{project.title}</h3>
+                  <p>{project.technologies.join(" · ")}</p>
+                </div>
+                <p class="station-date">{project.date}</p>
+              </header>
+              <ul class="station-bullets">
+                {project.bullets.map((bullet) => (
+                  <li>{bullet}</li>
+                ))}
+              </ul>
+            </section>
+          ))
+        }
+      </article>
+
+      <article data-station-article="skills" hidden>
+        {
+          resume.skills.map((group) => (
+            <section class="station-skill-group">
+              <h3>{group.label}</h3>
+              <ul class="station-chips">
+                {group.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </section>
+          ))
+        }
+      </article>
+
+      <article data-station-article="education" hidden>
+        {
+          resume.education.map((entry) => (
+            <section class="station-entry">
+              <header class="station-entry-head">
+                <div>
+                  <h3>{entry.credential}</h3>
+                  <p>{entry.institution}{entry.location && ` · ${entry.location}`}</p>
+                </div>
+                {entry.date && <p class="station-date">{entry.date}</p>}
+              </header>
+            </section>
+          ))
+        }
+        <section class="station-skill-group">
+          <h3>Certifications</h3>
+          <ul class="station-bullets station-certifications">
+            {
+              resume.certifications.map((certification) => (
+                <li>
+                  {certification.name} <span>{certification.date}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+        <section class="station-skill-group">
+          <h3>Interests</h3>
+          <ul class="station-chips">
+            {resume.interests.map((interest) => <li>{interest}</li>)}
+          </ul>
+        </section>
+      </article>
+
+      <article data-station-article="contact" hidden>
+        <p class="station-lede">
+          Have a project, a question, or a good link? Send a note or find me
+          elsewhere.
+        </p>
+        <div class="station-contact-links">
+          <a href={`mailto:${resume.contact.email}`}>{resume.contact.email}</a>
+          <a href={site.links.linkedin} target="_blank" rel="noopener noreferrer">
+            LinkedIn <span aria-hidden="true">↗</span>
+          </a>
+          <a href={site.links.github} target="_blank" rel="noopener noreferrer">
+            GitHub <span aria-hidden="true">↗</span>
+          </a>
+          <a href="/resume.pdf" download>Resume PDF <span aria-hidden="true">↓</span></a>
+        </div>
+        <ContactForm />
+      </article>
+    </div>
+
+    <footer class="station-dialog-foot">
+      <button type="button" class="station-nav-button" data-dialog-prev>
+        <span aria-hidden="true">←</span> Previous
+      </button>
+      <span class="station-dialog-index" data-dialog-index></span>
+      <button type="button" class="station-nav-button" data-dialog-next>
+        Next <span aria-hidden="true">→</span>
+      </button>
+    </footer>
+  </div>
+</dialog>

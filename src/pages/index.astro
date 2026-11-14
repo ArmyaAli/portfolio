@@ -1,9 +1,12 @@
 ---
 import ExperienceLayout from "../layouts/ExperienceLayout.astro";
+import StationDialog from "../components/experience/StationDialog.astro";
 import { site } from "../config";
 import { stations } from "../experience/stations";
-import resume from "../data/resume.generated.json";
+import type { ResumeDocument } from "../lib/resume/types";
+import parsed from "../data/resume.generated.json";
 
+const resume = parsed as ResumeDocument;
 const role = resume.experience[0]?.title ?? "Software engineer";
 const total = String(stations.length - 1).padStart(2, "0");
 ---
@@ -27,6 +30,7 @@ const total = String(stations.length - 1).padStart(2, "0");
       <nav class="experience-links" aria-label="Site">
         <a href="/resume">Read as text</a>
         <a href="/domains">Domains</a>
+        <button type="button" data-open-station="contact">Contact</button>
       </nav>
     </header>
 
@@ -68,6 +72,26 @@ const total = String(stations.length - 1).padStart(2, "0");
     <div class="experience-loading" aria-live="polite">
       Growing the grove…
     </div>
+
+    <nav class="station-map" aria-label="Resume stations">
+      <span class="station-map-line" aria-hidden="true"></span>
+      {
+        stations.map((station) => (
+          <button
+            class="station-map-button"
+            type="button"
+            data-station-map={station.id}
+            aria-label={`Open ${station.label}`}
+            aria-current="false"
+          >
+            <span class="station-map-dot" aria-hidden="true"></span>
+            <span class="station-map-name">{station.label}</span>
+          </button>
+        ))
+      }
+    </nav>
+
+    <StationDialog resume={resume} />
 
     <footer class="experience-footer">
       <p class="experience-progress">

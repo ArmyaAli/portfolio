@@ -102,6 +102,26 @@
   border-color: var(--ink);
 }
 
+.experience-links button {
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+  transition:
+    color 180ms var(--ease),
+    border-color 180ms var(--ease);
+}
+
+.experience-links button:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
 .station-labels {
   position: absolute;
   inset: 0;
@@ -423,17 +443,477 @@
   }
 }
 
+/* Minimap */
+
+.station-map {
+  position: absolute;
+  top: 50%;
+  right: clamp(1rem, 3vw, 2.5rem);
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 0.5rem;
+  transform: translateY(-50%);
+}
+
+.station-map-line {
+  position: absolute;
+  top: 1.1rem;
+  bottom: 1.1rem;
+  left: 50%;
+  width: 1px;
+  background: var(--line);
+  transform: translateX(-50%);
+}
+
+.station-map-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.station-map-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border: 1px solid var(--muted);
+  border-radius: 50%;
+  background: var(--bg);
+  transition:
+    background-color 180ms var(--ease),
+    border-color 180ms var(--ease),
+    box-shadow 180ms var(--ease);
+}
+
+.station-map-button:hover,
+.station-map-button.is-active {
+  color: var(--ink);
+}
+
+.station-map-button.is-active .station-map-dot {
+  border-color: var(--accent);
+  background: var(--accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+.station-map-name {
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition:
+    max-width 220ms var(--ease),
+    opacity 220ms var(--ease),
+    transform 220ms var(--ease);
+}
+
+.station-map:hover .station-map-name,
+.station-map-button:focus-visible .station-map-name,
+.station-map-button.is-active .station-map-name {
+  max-width: 8rem;
+  opacity: 1;
+  transform: none;
+}
+
+/* Station dialog */
+
+.station-dialog {
+  position: fixed;
+  inset: 0 0 0 auto;
+  width: min(34rem, 100%);
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-left: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface) 97%, transparent);
+  color: var(--ink);
+  overflow: hidden;
+}
+
+.station-dialog[open] {
+  animation: panel-in 420ms var(--ease) both;
+}
+
+.station-dialog::backdrop {
+  background: rgb(0 0 0 / 0.58);
+  backdrop-filter: blur(7px);
+  animation: backdrop-in 320ms var(--ease) both;
+}
+
+.station-dialog-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.station-dialog-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.6rem clamp(1.25rem, 3vw, 2rem);
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+}
+
+.station-dialog-kicker {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.station-dialog-head h2 {
+  margin-top: 0.55rem;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+}
+
+.station-dialog-head h2:focus {
+  outline: none;
+}
+
+.station-dialog-close {
+  flex: none;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    color 180ms var(--ease),
+    border-color 180ms var(--ease);
+}
+
+.station-dialog-close:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.station-dialog-body {
+  flex: 1;
+  padding: 1.75rem clamp(1.25rem, 3vw, 2rem) 2rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--line) transparent;
+}
+
+.station-lede {
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.station-facts {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 2rem;
+}
+
+.station-facts div {
+  display: grid;
+  grid-template-columns: 6rem minmax(0, 1fr);
+  gap: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--line);
+}
+
+.station-facts dt {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.station-facts dd {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.station-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.station-entry + .station-entry {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+
+.station-entry-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.station-entry-head h3,
+.station-skill-group h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.station-entry-head p:not(.station-date) {
+  margin-top: 0.2rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.station-date {
+  flex: none;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.station-bullets {
+  margin-top: 1rem;
+  padding-left: 1.1rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.station-bullets li + li {
+  margin-top: 0.5rem;
+}
+
+.station-bullets li::marker {
+  color: var(--accent);
+}
+
+.station-skill-group + .station-skill-group {
+  margin-top: 1.75rem;
+}
+
+.station-skill-group h3 {
+  margin-bottom: 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.station-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0;
+  list-style: none;
+}
+
+.station-chips li {
+  padding: 0.3rem 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+}
+
+.station-certifications span {
+  margin-left: 0.5rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+}
+
+.station-contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+  margin-top: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.station-contact-links a {
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.2rem;
+  transition:
+    color 180ms var(--ease),
+    border-color 180ms var(--ease);
+}
+
+.station-contact-links a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.station-dialog .contact-form {
+  margin-top: 1.75rem;
+  padding: 1.25rem;
+  border-color: var(--line);
+  background: var(--bg);
+}
+
+.station-dialog .contact-form .button {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.station-dialog .contact-form .button:hover {
+  background: var(--ink);
+}
+
+.station-dialog-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem clamp(1.25rem, 3vw, 2rem);
+  border-top: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+}
+
+.station-nav-button {
+  padding: 0.45rem 0.65rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    color 180ms var(--ease),
+    border-color 180ms var(--ease);
+}
+
+.station-nav-button:hover {
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+.station-dialog-index {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+}
+
+@keyframes panel-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0.6;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 760px) {
+  .station-map {
+    top: auto;
+    right: 50%;
+    bottom: 4.5rem;
+    flex-direction: row;
+    gap: 0.7rem;
+    padding: 0;
+    transform: translateX(50%);
+  }
+
+  .station-map-line,
+  .station-map-name {
+    display: none;
+  }
+
+  .station-dialog {
+    inset: auto 0 0;
+    width: 100%;
+    height: min(84dvh, 46rem);
+    border-top: 1px solid var(--line);
+    border-left: 0;
+    border-radius: 18px 18px 0 0;
+  }
+
+  .station-dialog[open] {
+    animation: sheet-in 380ms var(--ease) both;
+  }
+
+  .station-dialog-head {
+    padding-top: 1.25rem;
+  }
+
+  .station-entry-head {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .station-date {
+    order: -1;
+  }
+
+  .station-dialog-foot {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+}
+
+@keyframes sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .experience-intro h1,
-  .intro-copy,
-  .intro-actions,
-  .intro-hint {
+  .station-dialog[open],
+  .station-dialog::backdrop {
     animation: none;
   }
 
-  .station-label,
-  .experience-intro,
-  .experience-loading {
+  .station-map-dot,
+  .station-map-name,
+  .station-dialog-close,
+  .station-nav-button {
     transition-duration: 0.01ms;
   }
 }

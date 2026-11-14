@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { CameraRig } from "./camera-rig";
 import { ExperienceInput } from "./input";
+import { createStationOverlay, type StationOverlay } from "./overlay";
 import { stationById, stations, type StationId } from "./stations";
 import { palette } from "./theme";
 import { ResumeWorld } from "./world";
@@ -20,6 +21,9 @@ const narrow = window.matchMedia("(max-width: 760px)").matches;
 const labels = Array.from(
   document.querySelectorAll<HTMLButtonElement>("[data-station-label]"),
 );
+const mapButtons = Array.from(
+  document.querySelectorAll<HTMLButtonElement>("[data-station-map]"),
+);
 const stationCount = document.querySelector<HTMLElement>("[data-station-count]");
 const live = document.querySelector<HTMLElement>("[data-live]");
 const projected = new THREE.Vector3();
@@ -28,6 +32,7 @@ let activeId: StationId | undefined;
 let hoveredId: StationId | undefined;
 let rig: CameraRig;
 let world: ResumeWorld;
+let overlay: StationOverlay | undefined;
 
 function setState(state: "loading" | "intro" | "exploring" | "fallback") {
   experienceRoot.dataset.state = state;
@@ -62,7 +67,14 @@ function updateLabels() {
   }
 }
 
-function selectStation(id: StationId) {
+function activateStation(
+  id: StationId,
+  {
+    openDialog = false,
+    trigger,
+    pushHistory = true,
+  }: { openDialog?: boolean; trigger?: HTMLElement; pushHistory?: boolean } = {},
+) {
   const station = stationById.get(id);
   if (!station) return;
 
@@ -75,14 +87,21 @@ function selectStation(id: StationId) {
     stationCount.textContent = `${String(station.index).padStart(2, "0")} / ${String(stations.length - 1).padStart(2, "0")}`;
   }
 
+  for (const button of mapButtons) {
+    const current = button.dataset.stationMap === id;
+    button.classList.toggle("is-active", current);
+    button.setAttribute("aria-current", current ? "true" : "false");
+  }
+
   if (live) live.textContent = `${station.label} station selected.`;
 
-  experienceRoot.dispatchEvent(
-    new CustomEvent("station:open", {
-      detail: { id },
-      bubbles: true,
-    }),
-  );
+  if (openDialog) {
+    overlay?.open(id, trigger, { pushHistory });
+  }
+}
+
+function selectStation(id: StationId, trigger?: HTMLElement) {
+  activateStation(id, { openDialog: true, trigger });
 }
 
 function start() {
@@ -108,6 +127,10 @@ function start() {
 
   resize();
   window.addEventListener("resize", resize);
+
+  overlay = createStationOverlay(experienceRoot, {
+    onNavigate: (id) => activateStation(id, { openDialog: false }),
+  });
 
   const input = new ExperienceInput(experienceCanvas, {
     onFirstInput: setExploring,
@@ -138,7 +161,23 @@ function start() {
   for (const label of labels) {
     label.addEventListener("click", () => {
       const id = label.dataset.stationLabel as StationId | undefined;
-      if (id) selectStation(id);
+      if (id) selectStation(id, label);
+    });
+  }
+
+  for (const button of mapButtons) {
+    button.addEventListener("click", () => {
+      const id = button.dataset.stationMap as StationId | undefined;
+      if (id) selectStation(id, button);
+    });
+  }
+
+  for (const button of document.querySelectorAll<HTMLButtonElement>(
+    "[data-open-station]",
+  )) {
+    button.addEventListener("click", () => {
+      const id = button.dataset.openStation as StationId | undefined;
+      if (id) selectStation(id, button);
     });
   }
 
@@ -186,6 +225,12 @@ function start() {
   document.addEventListener("visibilitychange", onVisibilityChange);
   setState("intro");
   updateLabels();
+
+  const initialId = window.location.hash.slice(1) as StationId;
+  if (stationById.has(initialId)) {
+    activateStation(initialId, { openDialog: true, pushHistory: false });
+  }
+
   frameId = requestAnimationFrame(frame);
 
   const debug = {
