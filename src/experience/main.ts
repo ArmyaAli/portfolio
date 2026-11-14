@@ -20,6 +20,7 @@ const experienceCanvas = canvas;
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const narrow = window.matchMedia("(max-width: 760px)").matches;
+const compact = window.matchMedia("(max-height: 560px)").matches;
 const labels = Array.from(
   document.querySelectorAll<HTMLButtonElement>("[data-station-label]"),
 );
@@ -120,7 +121,7 @@ function start() {
   renderer.setClearColor(palette.background, 1);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
 
-  world = new ResumeWorld(narrow, resume);
+  world = new ResumeWorld(narrow, resume, compact);
   rig = new CameraRig();
 
   const resize = () => {
@@ -210,7 +211,7 @@ function start() {
     rig.update(delta);
 
     if (!reducedMotion) {
-      world.update(elapsed, delta);
+      world.update(elapsed, delta, rig.camera.position.x, rig.camera.position.y);
     }
 
     renderer.render(world.scene, rig.camera);

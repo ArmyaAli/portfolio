@@ -2,7 +2,7 @@ import * as THREE from "three";
 import type { ResumeDocument } from "../lib/resume/types";
 import { palette } from "./theme";
 import { stations, type Station, type StationId, worldBounds } from "./stations";
-import { createStationTextTexture, textPanelSize } from "./text";
+import { createStationTextTexture, textPanelFor } from "./text";
 
 type StationVisual = {
   station: Station;
@@ -24,18 +24,22 @@ export class ResumeWorld {
   private readonly pointer = new THREE.Vector2();
   private readonly sporeLayers: THREE.Points[] = [];
   private readonly pathMaterials: THREE.MeshBasicMaterial[] = [];
+  private readonly showText: boolean;
   private pathCurve?: THREE.CatmullRomCurve3;
   private traveler?: THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial>;
   private activeId?: StationId;
 
-  constructor(narrow: boolean, resume: ResumeDocument) {
+  constructor(narrow: boolean, resume: ResumeDocument, compact = false) {
+    this.showText = !compact;
     this.scene.fog = new THREE.FogExp2(palette.background, 0.016);
     this.buildBackdrop(narrow);
     this.buildPath();
-    this.buildStations(resume);
+    this.buildStations(resume, narrow);
   }
 
-  private buildStations(resume: ResumeDocument) {
+  private buildStations(resume: ResumeDocument, narrow: boolean) {
+    const panel = textPanelFor(narrow);
+
     for (const station of stations) {
       const group = new THREE.Group();
       group.position.set(station.x, station.y, 0);
@@ -101,9 +105,9 @@ export class ResumeWorld {
       group.add(stem);
 
       const text = new THREE.Mesh(
-        new THREE.PlaneGeometry(textPanelSize.width, textPanelSize.height),
+        new THREE.PlaneGeometry(panel.width, panel.height),
         new THREE.MeshBasicMaterial({
-          map: createStationTextTexture(station, resume),
+          map: createStationTextTexture(station, resume, narrow),
           transparent: false,
           alphaTest: 0.5,
           depthWrite: true,
@@ -111,9 +115,10 @@ export class ResumeWorld {
           toneMapped: false,
         }),
       );
-      text.position.set(0, 3.0, -0.8);
+      text.position.set(0, narrow ? 4.0 : 3.0, narrow ? 1.0 : -0.8);
       text.renderOrder = 2;
       text.userData.stationId = station.id;
+      text.visible = this.showText;
       group.add(text);
       this.raycastTargets.push(text);
 
@@ -299,7 +304,7 @@ export class ResumeWorld {
     }
   }
 
-  update(time: number, delta: number) {
+  update(time: number, delta: number, cameraX: number, cameraY: number) {
     const pulse = 0.5 + Math.sin(time * 0.8) * 0.5;
 
     for (const material of this.pathMaterials) {
@@ -324,6 +329,10 @@ export class ResumeWorld {
       visual.orbit.rotation.z = time * 0.12 + index * 0.7;
       visual.halo.material.opacity =
         stationId === this.activeId ? 0.2 + pulse * 0.1 : 0.14;
+      visual.text.visible =
+        this.showText &&
+        Math.abs(visual.station.y - cameraY) < 8.5 &&
+        Math.abs(visual.station.x - cameraX) < 10.5;
       index += 1;
     }
 

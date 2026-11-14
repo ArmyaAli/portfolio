@@ -1,6 +1,6 @@
 id: 14
 title: Make the interactive resume mobile-first
-status: todo
+status: in_progress
 tags:
   - mobile
   - touch
@@ -26,7 +26,8 @@ dependsOn:
 epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T17:37:31"
-updatedAt: "2026-11-14T17:37:31"
+startedAt: "2026-11-14T17:43:18"
+updatedAt: "2026-11-14T17:43:18"
 completedAt: null
 commit: null
 outcome: null

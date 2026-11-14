@@ -49,7 +49,7 @@ export class CameraRig {
   focusStation(station: Station, narrow: boolean) {
     this.target.set(
       station.x + (narrow ? 0 : -3.4),
-      station.y + (narrow ? 2.4 : 1.8),
+      station.y + (narrow ? 3.2 : 1.8),
     );
     this.clamp();
   }
