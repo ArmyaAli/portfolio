@@ -1,6 +1,6 @@
 id: 13
 title: Add readable 3D floating text to each resume node
-status: in_progress
+status: done
 tags:
   - 3d
   - text
@@ -23,9 +23,13 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T17:25:18"
 startedAt: "2026-11-14T17:25:21"
-updatedAt: "2026-11-14T17:25:21"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T17:38:36"
+completedAt: "2026-11-14T17:38:36"
+commit: a2ebe6d0551ff9596da24a9f098e4d4dcf7e50dd
+outcome: >-
+  Each station now floats a readable panel built from the parsed resume content, with denser spores
+  and a stable viewport.
+verification: >-
+  Origin and experience panels reviewed with no page errors; click panels open stations; check/build
+  pass; frame timing 18.5ms with panels and 1,620 particles.
+release: 1.0.0
