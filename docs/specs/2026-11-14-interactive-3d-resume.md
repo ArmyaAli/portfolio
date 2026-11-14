@@ -13,6 +13,11 @@ experience and the accessible static resume.
 
 The existing Nix build and GitHub Pages deployment stay.
 
+The current source PDF (updated from the USB on 2026-11-14) is two pages and adds
+a **Professional Summary**, quantified impact bullets, updated projects, and an
+**Interests** section. The parser must handle this structure, not the older
+one-page layout.
+
 ## Hard constraints
 
 - Camera moves on X/Y only at a fixed Z. No orbit, rotation, first-person look, or
@@ -42,11 +47,11 @@ Suggested layout, top to bottom:
 
 | Node | Content | Position |
 |---|---|---|
-| 00 Origin | Name, current role, pitch, resume link | `(0, 0)` |
+| 00 Origin | Name, current role, professional summary, resume link | `(0, 0)` |
 | 01 Experience | Three roles from the PDF, dates, location, bullets | `(-6, -12)` |
-| 02 Projects | Personal projects, compiler, homelab | `(6, -24)` |
+| 02 Projects | gratitude.forum, BMinor compiler, homelab | `(6, -24)` |
 | 03 Skills | Fundamentals, tools, infrastructure familiarity | `(-5, -36)` |
-| 04 Education | York, Seneca, certifications | `(5, -48)` |
+| 04 Education | York, Seneca, certifications, interests | `(5, -48)` |
 | 05 Contact | Email, GitHub, LinkedIn, PDF download | `(0, -60)` |
 
 Camera bounds are soft-clamped around `x ±14`, `y -68…8`. A minimap shows the path,
@@ -96,11 +101,13 @@ export type ResumeDocument = {
     linkedin?: string;
     github?: string;
   };
+  summary?: string;
   education: EducationEntry[];
   experience: ExperienceEntry[];
   projects: ProjectEntry[];
   skills: SkillGroup[];
   certifications: Certification[];
+  interests?: string[];
   meta: {
     source: "resume.pdf";
     sourceSha256: string;
@@ -118,21 +125,28 @@ handlers stay private. The script wrapper reads the PDF and writes the JSON.
 
 Use `pdfjs-dist` (legacy Node build) rather than plain PDF text. The PDF has
 right-aligned dates and locations that a flat text extractor collapses into the
-left column. Reconstruct lines from text items:
+left column. Extract every page, not only page 1. Reconstruct lines from text
+items:
 
+- Iterate pages in order and keep the page number on each line.
 - Group items by rounded Y within a small tolerance.
 - Sort by X.
 - Join adjacent items with a space when their gap warrants it.
 - Keep the starting X of each line so the parser can distinguish headers,
   entries, bullets, and right-aligned dates.
+- Drop repeated page headers/contact blocks after page 1.
+- Do not treat page breaks as section boundaries; sections continue across pages.
 
 ### Parsing rules
 
 - Normalize unicode dashes, quotes, and whitespace before parsing.
 - Contact block: first line is the name; the next line is pipe-separated phone,
   email, website, LinkedIn, GitHub.
-- Section headings: `Education`, `Experience`, `Projects`, `Technical Skills`,
-  `Certifications`.
+- Section headings: `Professional Summary`, `Experience`, `Education`,
+  `Projects`, `Technical Skills`, `Certifications`, `Interests`.
+- Sections are discovered by heading, not fixed order. The current PDF puts
+  Experience before Education.
+- `Professional Summary` is paragraph text, not bullets.
 - Dates: `Mon YYYY – Present`, `Mon YYYY – Mon YYYY`, `Month YYYY`.
 - A right-aligned date marks the end of an entry header; the following line is the
   organization plus location.
@@ -142,6 +156,10 @@ left column. Reconstruct lines from text items:
 - Skills: `Label: value` with continuation lines merged.
 - Education: degree line, school line, right-aligned dates/locations.
 - Certifications: name plus right-aligned date.
+- Interests: comma-separated list, possibly wrapped.
+- Preserve source URLs and text. The current PDF prints
+  `linkedin.com/in/aliumardev1`; the site's canonical contact actions use
+  `src/config.ts` until the PDF source is corrected.
 
 Failures:
 
@@ -161,9 +179,9 @@ Failures:
   - `"test:resume": "tsx --test src/lib/resume/*.test.ts"`
 - Commit `src/data/resume.generated.json` for editor/typecheck stability; the
   prebuild step always regenerates it.
-- Add parser tests against the real PDF and a text-line fixture. Assert contact
-  links, three experience entries, project counts, skills groups, education, and
-  certifications.
+- Add parser tests against the real PDF and a text-line fixture. Assert the
+  two-page extraction, Professional Summary, three experience entries, three
+  projects, skills groups, education, certifications, and interests.
 - Update `npmDepsHash` after adding `pdfjs-dist` and `tsx`.
 
 ## Architecture

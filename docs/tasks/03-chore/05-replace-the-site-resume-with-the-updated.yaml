@@ -1,0 +1,31 @@
+id: 11
+title: Replace the site resume with the updated USB general resume
+status: in_progress
+tags:
+  - resume
+  - pdf
+  - content
+heat: 55
+detail: >-
+  Copy ali-umar-general.pdf from the USB into public/resume.pdf. The new resume is 2 pages and adds
+  Professional Summary, quantified impact, updated projects, certifications, and Interests. Update
+  the parser spec for multi-page extraction, Professional Summary, Interests, and order-independent
+  sections. Keep site social links canonical while the PDF prints linkedin.com/in/aliumardev1.
+  Acceptance: PDF hash and page count updated, spec covers the new structure, npm run check/build
+  pass.
+refs:
+  - public/resume.pdf
+  - docs/specs/2026-11-14-interactive-3d-resume.md
+links: []
+dependsOn:
+  - 1
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T16:33:41"
+startedAt: "2026-11-14T16:33:45"
+updatedAt: "2026-11-14T16:33:45"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null
