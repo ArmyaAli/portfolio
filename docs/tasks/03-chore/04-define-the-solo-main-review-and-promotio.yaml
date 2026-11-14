@@ -1,6 +1,6 @@
 id: 10
 title: Define the solo-main review and promotion workflow
-status: in_progress
+status: done
 tags:
   - process
   - git
@@ -23,9 +23,11 @@ epic: portfolio-workflow
 source: ai
 createdAt: "2026-11-14T16:30:04"
 startedAt: "2026-11-14T16:33:06"
-updatedAt: "2026-11-14T16:33:06"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T16:33:24"
+completedAt: "2026-11-14T16:33:24"
+commit: 5e79273b97cc0f8f2d89e04e458fa99b7bca26b4
+outcome: The repo now uses a direct-main workflow with a test-and-review gate before pushing.
+verification: >-
+  CONTRIBUTING, CLAUDE, and README updated; roadmapped validate passed; the Roadmapped guard blocked
+  the first attempted commit until task #10 was started.
+release: 1.0.0
