@@ -1,6 +1,6 @@
 id: 14
 title: Make the interactive resume mobile-first
-status: in_progress
+status: done
 tags:
   - mobile
   - touch
@@ -27,9 +27,13 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T17:37:31"
 startedAt: "2026-11-14T17:43:18"
-updatedAt: "2026-11-14T17:43:18"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T17:43:31"
+completedAt: "2026-11-14T17:43:31"
+commit: 258a578dd836a5a205dd6725214c8f8cf22409dc
+outcome: >-
+  The 3D resume now has a portrait content-panel layout, short-screen landscape fallback, safe-area
+  padding, and 44px touch targets.
+verification: >-
+  390x844 origin/experience panels reviewed; 844x390 landscape hides panels and keeps the station
+  sheet; no horizontal overflow; no page errors; check/build pass.
+release: 1.0.0
