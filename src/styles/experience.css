@@ -153,7 +153,8 @@
   transition:
     color 180ms var(--ease),
     border-color 180ms var(--ease),
-    background-color 180ms var(--ease);
+    background-color 180ms var(--ease),
+    opacity 420ms var(--ease);
 }
 
 .station-label-index {
@@ -171,6 +172,8 @@
 .station-label.is-active {
   border-color: color-mix(in srgb, var(--yellow) 70%, transparent);
   color: var(--yellow);
+  box-shadow: 0 0 22px color-mix(in srgb, var(--yellow) 12%, transparent);
+  text-shadow: 0 0 14px color-mix(in srgb, var(--yellow) 28%, transparent);
 }
 
 .experience-intro {
@@ -504,6 +507,7 @@
   border-color: var(--accent);
   background: var(--accent);
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent);
+  animation: dot-pulse 2.4s var(--ease) infinite;
 }
 
 .station-map-name {
@@ -914,6 +918,44 @@
   .station-map-name,
   .station-dialog-close,
   .station-nav-button {
+    transition-duration: 0.01ms;
+  }
+}
+
+.experience-hud,
+.experience-footer,
+.station-map {
+  animation: hud-in 900ms var(--ease) both;
+}
+
+@keyframes hud-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dot-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 7px color-mix(in srgb, var(--accent) 5%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-hud,
+  .experience-footer,
+  .station-map,
+  .station-map-button.is-active .station-map-dot {
+    animation: none;
+  }
+
+  .station-label {
     transition-duration: 0.01ms;
   }
 }

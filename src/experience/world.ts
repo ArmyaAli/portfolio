@@ -7,6 +7,7 @@ type StationVisual = {
   group: THREE.Group;
   orbit: THREE.Group;
   ring: THREE.Mesh<THREE.TorusGeometry, THREE.MeshBasicMaterial>;
+  halo: THREE.Mesh<THREE.RingGeometry, THREE.MeshBasicMaterial>;
   core: THREE.Mesh<THREE.CircleGeometry, THREE.MeshBasicMaterial>;
   targetScale: number;
 };
@@ -20,6 +21,8 @@ export class ResumeWorld {
   private readonly pointer = new THREE.Vector2();
   private readonly sporeLayers: THREE.Points[] = [];
   private readonly pathMaterials: THREE.MeshBasicMaterial[] = [];
+  private pathCurve?: THREE.CatmullRomCurve3;
+  private traveler?: THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial>;
   private activeId?: StationId;
 
   constructor(narrow: boolean) {
@@ -122,6 +125,7 @@ export class ResumeWorld {
         group,
         orbit,
         ring,
+        halo,
         core,
         targetScale: 1,
       });
@@ -135,6 +139,7 @@ export class ResumeWorld {
       "catmullrom",
       0.5,
     );
+    this.pathCurve = curve;
 
     const glow = new THREE.Mesh(
       new THREE.TubeGeometry(curve, 220, 0.11, 6, false),
@@ -160,6 +165,18 @@ export class ResumeWorld {
     );
     this.pathMaterials.push(line.material as THREE.MeshBasicMaterial);
     this.scene.add(line);
+
+    this.traveler = new THREE.Mesh(
+      new THREE.SphereGeometry(0.09, 12, 12),
+      new THREE.MeshBasicMaterial({
+        color: palette.yellow,
+        transparent: true,
+        opacity: 0.9,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending,
+      }),
+    );
+    this.scene.add(this.traveler);
   }
 
   private buildBackdrop(narrow: boolean) {
@@ -186,7 +203,7 @@ export class ResumeWorld {
         new THREE.LineBasicMaterial({
           color: index % 2 === 0 ? palette.line : palette.green,
           transparent: true,
-          opacity: index % 2 === 0 ? 0.16 : 0.07,
+          opacity: index % 2 === 0 ? 0.24 : 0.1,
         }),
       );
       branches.add(branch);
@@ -216,7 +233,7 @@ export class ResumeWorld {
           size: layerIndex === 0 ? 0.055 : 0.035,
           sizeAttenuation: true,
           transparent: true,
-          opacity: layerIndex === 0 ? 0.48 : 0.3,
+          opacity: layerIndex === 0 ? 0.64 : 0.38,
           depthWrite: false,
           blending: THREE.AdditiveBlending,
         }),
@@ -276,7 +293,7 @@ export class ResumeWorld {
     }
 
     let index = 0;
-    for (const visual of this.stationVisuals.values()) {
+    for (const [stationId, visual] of this.stationVisuals) {
       const scale = THREE.MathUtils.lerp(
         visual.group.scale.x,
         visual.targetScale,
@@ -284,7 +301,18 @@ export class ResumeWorld {
       );
       visual.group.scale.setScalar(scale);
       visual.orbit.rotation.z = time * 0.12 + index * 0.7;
+      visual.halo.material.opacity =
+        stationId === this.activeId ? 0.2 + pulse * 0.1 : 0.14;
       index += 1;
+    }
+
+    if (this.pathCurve && this.traveler) {
+      const travel = (time * 0.035) % 1;
+
+      if (Number.isFinite(travel)) {
+        this.pathCurve.getPointAt(travel, this.traveler.position);
+        this.traveler.scale.setScalar(1 + Math.sin(time * 4) * 0.22);
+      }
     }
   }
 }

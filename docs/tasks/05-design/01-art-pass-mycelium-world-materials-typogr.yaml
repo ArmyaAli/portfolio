@@ -1,6 +1,6 @@
 id: 7
 title: "Art pass: mycelium world, materials, typography, and HUD"
-status: todo
+status: done
 tags:
   - 3d
   - design
@@ -22,9 +22,12 @@ dependsOn:
 epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T16:23:38"
-updatedAt: "2026-11-14T16:25:33"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+startedAt: "2026-11-14T17:03:01"
+updatedAt: "2026-11-14T17:05:13"
+completedAt: "2026-11-14T17:05:13"
+commit: 0dd8e396341dc3f193642c903878b5f8efd75cbb
+outcome: The scene now has the Mushroom Grove glow, animated path traveler, active halos, and HUD motion.
+verification: >-
+  Desktop screenshots reviewed; HUD/minimap/path visible; runtime errors cleared; vitals LCP 72ms,
+  CLS 0, INP 48.
+release: 1.0.0

@@ -1,6 +1,6 @@
 id: 8
 title: Accessibility, fallback, and performance hardening
-status: todo
+status: in_progress
 tags:
   - 3d
   - accessibility
@@ -23,7 +23,8 @@ dependsOn:
 epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T16:23:39"
-updatedAt: "2026-11-14T16:23:39"
+startedAt: "2026-11-14T17:05:13"
+updatedAt: "2026-11-14T17:05:13"
 completedAt: null
 commit: null
 outcome: null
