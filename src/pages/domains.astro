@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { domains } from "../data/domains";
+---
+
+<BaseLayout
+  title="Domains"
+  description="Domains Ali Umar has collected and what is currently active."
+>
+  <header class="page-header">
+    <p class="section-kicker">Domains</p>
+    <h1 class="page-title">Names I've collected.</h1>
+    <p class="page-lede">
+      A small archive of domains — one live project, a few waiting for the right
+      idea.
+    </p>
+  </header>
+
+  <ul class="domain-list">
+    {domains.map((entry) => (
+      <li>
+        {entry.active ? (
+          <a
+            class="domain-name"
+            href={`https://${entry.domain}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {entry.domain} <span aria-hidden="true">↗</span>
+          </a>
+        ) : (
+          <span class="domain-name">{entry.domain}</span>
+        )}
+        <span class:list={["domain-status", { active: entry.active }]}>
+          {entry.active ? "Active" : "Inactive"}
+        </span>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>

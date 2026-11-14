@@ -1,0 +1,151 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactForm from "../components/ContactForm.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { projects } from "../data/projects";
+import { site } from "../config";
+---
+
+<BaseLayout>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <p class="eyebrow">Software engineer</p>
+      <h1 id="hero-title">
+        Ali Umar builds <em>realtime</em> things for the web.
+      </h1>
+      <p class="lede">
+        Realtime systems, browser experiments, and small tools that feel good to
+        use. Currently building a gratitude journal and a multiplayer game.
+      </p>
+      <div class="hero-actions">
+        <a class="button" href="#work">
+          See the work
+        </a>
+        <a
+          class="button-ghost"
+          href={site.links.github}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+    <figure class="portrait">
+      <img
+        src="/profile.jpg"
+        width="400"
+        height="400"
+        alt="Ali Umar"
+        fetchpriority="high"
+      />
+      <figcaption>Ali Umar · software engineer</figcaption>
+    </figure>
+  </section>
+
+  <section id="work" class="section" aria-labelledby="work-title">
+    <div class="section-head">
+      <div>
+        <p class="section-kicker">01 — Selected work</p>
+        <h2 id="work-title" class="section-title">
+          Things I've built
+        </h2>
+      </div>
+      <p class="section-note">
+        A mix of shipped products, long-running experiments, and infrastructure
+        I run myself.
+      </p>
+    </div>
+    <div class="work-grid">
+      {projects.map((project, index) => (
+        <ProjectCard project={project} index={index} />
+      ))}
+    </div>
+  </section>
+
+  <section id="about" class="section" aria-labelledby="about-title">
+    <div class="about-grid">
+      <div>
+        <p class="section-kicker">02 — About</p>
+        <h2 id="about-title" class="section-title">
+          The whole path from keystroke to server.
+        </h2>
+      </div>
+      <div class="about-copy">
+        <p>
+          I'm a software engineer who likes the layer where{" "}
+          <strong>product, network, and browser</strong> meet. Most of what I
+          build starts with a simple question — can this feel instantaneous? —
+          and ends with realtime state, low-latency connections, or a canvas
+          doing something it probably shouldn't.
+        </p>
+        <p>
+          My projects tend to be self-hosted: Linux, SQLite or PocketBase, DNS,
+          Cloudflare, and GitHub Actions. I'd rather understand the whole path
+          than stop at the framework.
+        </p>
+        <ul class="fact-list">
+          <li>
+            <span>Focus</span>
+            <span>
+              Realtime web, browser graphics, self-hosted infrastructure
+            </span>
+          </li>
+          <li>
+            <span>Tools</span>
+            <span>TypeScript, Node, SQLite, PocketBase, Ansible</span>
+          </li>
+          <li>
+            <span>Now</span>
+            <span>Building gratitude.forum and Shroom.io</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section" aria-labelledby="contact-title">
+    <div class="contact-grid">
+      <div>
+        <p class="section-kicker">03 — Contact</p>
+        <h2 id="contact-title" class="section-title">
+          Say hello.
+        </h2>
+        <p class="contact-copy">
+          Have a project, a question, or a good link? Send a note or find me
+          elsewhere.
+        </p>
+        <ul class="contact-links">
+          <li>
+            <a
+              href={site.links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub <span aria-hidden="true">↗</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href={site.links.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn <span aria-hidden="true">↗</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href={site.links.discord}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Discord <span aria-hidden="true">↗</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <ContactForm />
+    </div>
+  </section>
+</BaseLayout>

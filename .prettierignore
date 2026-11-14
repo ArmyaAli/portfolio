@@ -1,0 +1,5 @@
+package-lock.json
+flake.lock
+dist/
+.astro/
+node_modules/

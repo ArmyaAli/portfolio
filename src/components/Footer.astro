@@ -1,0 +1,24 @@
+---
+import { site } from "../config";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <p>
+    &copy; {year} {site.name}
+  </p>
+  <p>Built with Astro · Hosted on GitHub Pages</p>
+  <p class="footer-links">
+    <a href={site.links.github} target="_blank" rel="noopener noreferrer">
+      GitHub
+    </a>
+    <a
+      href={`https://github.com/ArmyaAli/portfolio`}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Source
+    </a>
+  </p>
+</footer>
