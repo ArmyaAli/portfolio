@@ -1,6 +1,6 @@
 id: 6
 title: Implement station focus, dialog, minimap, and URL state
-status: in_progress
+status: done
 tags:
   - 3d
   - interaction
@@ -24,9 +24,11 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T16:23:38"
 startedAt: "2026-11-14T16:58:00"
-updatedAt: "2026-11-14T16:58:00"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T17:02:45"
+completedAt: "2026-11-14T17:02:45"
+commit: 0dd8e396341dc3f193642c903878b5f8efd75cbb
+outcome: Stations now open readable dialogs with minimap, deep links, next/previous, and focus restoration.
+verification: >-
+  Dialog opened via minimap, next navigated to Projects, Esc closed and restored focus; hash/deep
+  link and Formspree action verified; check/build pass.
+release: 1.0.0
