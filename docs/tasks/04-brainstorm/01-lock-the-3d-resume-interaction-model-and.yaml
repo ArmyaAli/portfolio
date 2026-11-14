@@ -1,6 +1,6 @@
 id: 2
 title: Lock the 3D resume interaction model and art direction
-status: in_progress
+status: done
 tags:
   - 3d
   - resume
@@ -20,9 +20,11 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T16:23:37"
 startedAt: "2026-11-14T16:38:22"
-updatedAt: "2026-11-14T16:38:22"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T16:38:37"
+completedAt: "2026-11-14T16:38:37"
+commit: fd2aff5caee3aef909b8affbedceb6057ae13ac6
+outcome: >-
+  Locked the 3D resume scope: root experience, free 2D camera, dark mycelium direction, and DOM
+  dialogs.
+verification: Decisions recorded in the spec and reflected in the task graph.
+release: 1.0.0
