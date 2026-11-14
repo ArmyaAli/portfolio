@@ -1,0 +1,27 @@
+id: 2
+title: Lock the 3D resume interaction model and art direction
+status: todo
+tags:
+  - 3d
+  - resume
+  - ux
+  - art-direction
+heat: 85
+detail: >-
+  Resolve the open decisions in the spec: replace / vs /experience, free 2D camera vs guided path,
+  dark mycelium vs light paper, and whether the phone number is public. Acceptance: decisions
+  recorded in the spec and reflected in the scene tasks.
+refs:
+  - docs/specs/2026-11-14-interactive-3d-resume.md
+links: []
+dependsOn:
+  - 1
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T16:23:37"
+updatedAt: "2026-11-14T16:23:37"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null

@@ -1,0 +1,29 @@
+id: 4
+title: Generate the accessible static resume from parsed data
+status: todo
+tags:
+  - resume
+  - accessibility
+  - astro
+heat: 60
+detail: >-
+  Replace the PDF-only /resume page with semantic HTML from resume.generated.json plus the PDF
+  download: experience, projects, skills, education, certifications, contact, JSON-LD, print styles.
+  Acceptance: /resume is complete and readable without JS; content matches the parsed PDF; the
+  experience links to it.
+refs:
+  - src/pages/resume.astro
+  - src/data/resume.generated.json
+  - docs/specs/2026-11-14-interactive-3d-resume.md
+links: []
+dependsOn:
+  - 3
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T16:23:38"
+updatedAt: "2026-11-14T16:23:38"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null

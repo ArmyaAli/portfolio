@@ -26,7 +26,7 @@
             version = "1.0.0";
             src = ./.;
 
-            npmDepsHash = "sha256-VYDFEpdDdR1j70xjbL6cD3DOpCQngT3oPjCe6YMzUXM=";
+            npmDepsHash = "sha256-Rv2EbbD+E5JrpaGD+S5WNLGRFOes9ck1GNIAM1HlnxA=";
             npmBuildScript = "build";
 
             installPhase = ''
@@ -55,6 +55,7 @@
             shellHook = ''
               echo "portfolio dev shell — Node $(node --version)"
               echo "Run: npm ci && npm run dev"
+              echo "Tasks: npx roadmapped sitrep · npx roadmapped dashboard"
             '';
           };
         }

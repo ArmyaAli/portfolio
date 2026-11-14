@@ -1,0 +1,31 @@
+id: 8
+title: Accessibility, fallback, and performance hardening
+status: todo
+tags:
+  - 3d
+  - accessibility
+  - performance
+  - qa
+heat: 45
+detail: >-
+  Add reduced-motion handling, no-WebGL/no-JS fallbacks, screen-reader labels, focus order, contrast
+  checks, DPR and particle budgets, tab-hidden pause, and mobile browser verification. Acceptance:
+  keyboard-only run works; no console errors; /resume fallback is complete; frame timing is
+  acceptable on integrated graphics.
+refs:
+  - src/experience
+  - src/pages
+  - public/resume.pdf
+links: []
+dependsOn:
+  - 6
+  - 7
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T16:23:39"
+updatedAt: "2026-11-14T16:23:39"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null

@@ -1,0 +1,30 @@
+id: 5
+title: Scaffold the Three.js scene, 2D camera rig, and movement
+status: todo
+tags:
+  - 3d
+  - threejs
+  - scene
+  - camera
+heat: 70
+detail: >-
+  Add three and @types/three. Build a fixed-Z perspective camera with damped X/Y movement, soft
+  bounds, drag/wheel/keyboard/touch input, procedural path and spore field, station placeholders,
+  resize handling, DPR cap, and rendering pause when hidden. Acceptance: every station coordinate is
+  reachable on desktop and mobile; camera never rotates; no client framework.
+refs:
+  - src/experience
+  - src/pages/index.astro
+  - docs/specs/2026-11-14-interactive-3d-resume.md
+links: []
+dependsOn:
+  - 2
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T16:23:38"
+updatedAt: "2026-11-14T16:25:33"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null

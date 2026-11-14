@@ -1,0 +1,32 @@
+id: 3
+title: Build the PDF resume parser and generated resume data
+status: todo
+tags:
+  - resume
+  - parser
+  - pdf
+  - astro
+heat: 75
+detail: >-
+  Implement parseResume(pdf) with pdfjs-dist positioned text: contact, education, experience,
+  projects, skills, certifications. Fail the build on missing required sections; collect unknown
+  lines as warnings. Generate src/data/resume.generated.json from predev/prebuild, add fixture/PDF
+  tests, commit the generated artifact, and update npmDepsHash. Acceptance: npm run test:resume
+  passes; generated JSON covers the whole PDF; parser stays out of the client bundle.
+refs:
+  - public/resume.pdf
+  - src/lib/resume
+  - scripts/generate-resume.ts
+  - docs/specs/2026-11-14-interactive-3d-resume.md
+links: []
+dependsOn:
+  - 1
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T16:23:37"
+updatedAt: "2026-11-14T16:23:37"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null

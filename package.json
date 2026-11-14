@@ -10,7 +10,8 @@
     "preview": "astro preview",
     "format": "prettier --write .",
     "astro": "astro",
-    "check": "astro check"
+    "check": "astro check",
+    "prepare": "node scripts/install-hooks.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.5",
@@ -20,6 +21,7 @@
     "@astrojs/check": "^0.9.12",
     "prettier": "^3.10.1",
     "prettier-plugin-astro": "^1.1.2",
+    "roadmapped": "0.3.1",
     "typescript": "^6.0.3"
   }
 }

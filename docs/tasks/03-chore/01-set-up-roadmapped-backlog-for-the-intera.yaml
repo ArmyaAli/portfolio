@@ -1,0 +1,25 @@
+id: 1
+title: Set up Roadmapped backlog for the interactive resume
+status: in_progress
+tags:
+  - roadmapped
+  - tooling
+heat: 80
+detail: >-
+  Initialize Roadmapped as the repo-local tracker, pin it for Nix, write the interactive resume
+  spec, and seed the dependency-linked backlog. Acceptance: CLI validate passes, tasks cover parser,
+  static resume, scene, interaction, art, hardening, and launch, and the setup is committed.
+refs:
+  - docs/specs/2026-11-14-interactive-3d-resume.md
+links: []
+dependsOn: []
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T16:22:56"
+startedAt: "2026-11-14T16:25:53"
+updatedAt: "2026-11-14T16:25:53"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null

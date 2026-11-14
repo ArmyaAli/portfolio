@@ -1,0 +1,29 @@
+id: 9
+title: Launch the interactive resume on main
+status: todo
+tags:
+  - launch
+  - deploy
+  - nix
+  - github-pages
+heat: 30
+detail: >-
+  Run resume parser tests, astro check, build, and nix build; complete desktop/mobile browser smoke
+  tests; update README and spec; merge to main and verify the GitHub Pages deploy. Acceptance:
+  production / serves the experience; /resume remains the fallback; the deploy workflow succeeds.
+refs:
+  - .github/workflows/deploy.yml
+  - flake.nix
+  - docs/specs/2026-11-14-interactive-3d-resume.md
+links: []
+dependsOn:
+  - 8
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T16:23:39"
+updatedAt: "2026-11-14T16:23:39"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null

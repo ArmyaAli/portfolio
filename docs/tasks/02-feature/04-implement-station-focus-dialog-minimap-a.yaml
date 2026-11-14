@@ -1,0 +1,31 @@
+id: 6
+title: Implement station focus, dialog, minimap, and URL state
+status: todo
+tags:
+  - 3d
+  - interaction
+  - dialog
+  - accessibility
+heat: 65
+detail: >-
+  Project DOM station labels from 3D positions; add hover/raycast focus, camera offsets, a native
+  dialog with next/previous, a clickable minimap, hash deep links, browser back handling, Enter/Esc,
+  and focus restoration. Acceptance: every station is reachable by mouse, touch, and keyboard; deep
+  links open the right panel; Esc closes and restores focus.
+refs:
+  - src/experience
+  - src/components/experience
+  - docs/specs/2026-11-14-interactive-3d-resume.md
+links: []
+dependsOn:
+  - 3
+  - 5
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T16:23:38"
+updatedAt: "2026-11-14T16:23:38"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null
