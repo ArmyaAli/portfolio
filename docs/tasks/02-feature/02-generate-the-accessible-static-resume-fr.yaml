@@ -1,6 +1,6 @@
 id: 4
 title: Generate the accessible static resume from parsed data
-status: todo
+status: in_progress
 tags:
   - resume
   - accessibility
@@ -21,7 +21,8 @@ dependsOn:
 epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T16:23:38"
-updatedAt: "2026-11-14T16:23:38"
+startedAt: "2026-11-14T16:45:25"
+updatedAt: "2026-11-14T16:45:25"
 completedAt: null
 commit: null
 outcome: null

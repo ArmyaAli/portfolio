@@ -1,37 +1,184 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../config";
+import type { ResumeDocument } from "../lib/resume/types";
+import parsed from "../data/resume.generated.json";
+
+const resume = parsed as ResumeDocument;
+const telHref = resume.contact.phone
+  ? `tel:${resume.contact.phone.replace(/[^\d+]/g, "")}`
+  : undefined;
+const linkedinUrl = site.links.linkedin;
+const githubUrl = site.links.github;
 ---
 
 <BaseLayout
   title="Resume"
-  description="Ali Umar's resume — software engineer working on realtime web and self-hosted infrastructure."
+  description={`Resume for ${resume.contact.name}: ${resume.experience[0]?.title ?? "software engineer"} in Toronto.`}
 >
-  <header class="page-header">
-    <p class="section-kicker">Resume</p>
-    <h1 class="page-title">Ali Umar</h1>
-    <p class="page-lede">
-      Software engineer working on realtime web, browser-first products, and the
-      infrastructure behind them.
-    </p>
-    <div class="page-actions">
-      <a class="button" href="/resume.pdf" download>
-        Download PDF <span aria-hidden="true">↓</span>
-      </a>
-    </div>
-  </header>
+  <article class="resume">
+    <header class="resume-header">
+      <p class="section-kicker">Resume</p>
+      <h1 class="page-title">{resume.contact.name}</h1>
+      <p class="resume-role">{resume.experience[0]?.title}</p>
 
-  <div class="pdf-frame">
-    <iframe
-      src="/resume.pdf#view=FitH"
-      title="Ali Umar's resume (PDF)"
-      loading="lazy"
-    ></iframe>
-  </div>
-  <p class="page-note">
-    Preview not loading?{" "}
-    <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-      Open the PDF in a new tab
-    </a>
-    .
-  </p>
+      <ul class="resume-contact">
+        <li>
+          <a href={`mailto:${resume.contact.email}`}>{resume.contact.email}</a>
+        </li>
+        {
+          resume.contact.website && (
+            <li>
+              <a href={`https://${resume.contact.website}`}>{resume.contact.website}</a>
+            </li>
+          )
+        }
+        <li><a href={linkedinUrl}>linkedin.com/in/aliumardev</a></li>
+        <li><a href={githubUrl}>github.com/ArmyaAli</a></li>
+        {
+          resume.contact.phone && telHref && (
+            <li>
+              <a href={telHref}>{resume.contact.phone}</a>
+            </li>
+          )
+        }
+      </ul>
+
+      <div class="page-actions">
+        <a class="button" href="/resume.pdf" download>
+          Download PDF <span aria-hidden="true">↓</span>
+        </a>
+        <a class="button-ghost" href="/">Interactive resume</a>
+      </div>
+    </header>
+
+    {
+      resume.summary && (
+        <section class="resume-section" aria-labelledby="summary-title">
+          <h2 id="summary-title">Professional Summary</h2>
+          <p>{resume.summary}</p>
+        </section>
+      )
+    }
+
+    <section class="resume-section" aria-labelledby="experience-title">
+      <h2 id="experience-title">Experience</h2>
+      <div class="resume-section-body">
+        {
+          resume.experience.map((entry) => (
+            <div class="resume-entry">
+              <div class="resume-entry-head">
+                <div>
+                  <h3>{entry.title}</h3>
+                  <p class="resume-org">
+                    {entry.organization}
+                    {entry.location && <span> · {entry.location}</span>}
+                  </p>
+                </div>
+                <p class="resume-date">{entry.date}</p>
+              </div>
+              <ul class="resume-bullets">
+                {entry.bullets.map((bullet) => (
+                  <li>{bullet}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="resume-section" aria-labelledby="projects-title">
+      <h2 id="projects-title">Projects</h2>
+      <div class="resume-section-body">
+        {
+          resume.projects.map((project) => (
+            <div class="resume-entry">
+              <div class="resume-entry-head">
+                <div>
+                  <h3>{project.title}</h3>
+                  <p class="resume-org">{project.technologies.join(" · ")}</p>
+                </div>
+                <p class="resume-date">{project.date}</p>
+              </div>
+              <ul class="resume-bullets">
+                {project.bullets.map((bullet) => (
+                  <li>{bullet}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="resume-section" aria-labelledby="education-title">
+      <h2 id="education-title">Education</h2>
+      <div class="resume-section-body">
+        {
+          resume.education.map((entry) => (
+            <div class="resume-entry resume-entry-compact">
+              <div class="resume-entry-head">
+                <div>
+                  <h3>{entry.credential}</h3>
+                  <p class="resume-org">
+                    {entry.institution}
+                    {entry.location && <span> · {entry.location}</span>}
+                  </p>
+                </div>
+                {entry.date && <p class="resume-date">{entry.date}</p>}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="resume-section" aria-labelledby="skills-title">
+      <h2 id="skills-title">Technical Skills</h2>
+      <div class="resume-section-body resume-skills">
+        {
+          resume.skills.map((group) => (
+            <div class="resume-skill-group">
+              <h3>{group.label}</h3>
+              <ul class="resume-chips">
+                {group.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="resume-section" aria-labelledby="certifications-title">
+      <h2 id="certifications-title">Certifications</h2>
+      <div class="resume-section-body">
+        <ul class="resume-certifications">
+          {
+            resume.certifications.map((certification) => (
+              <li>
+                <span>{certification.name}</span>
+                <span class="resume-date">{certification.date}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    {
+      resume.interests.length > 0 && (
+        <section class="resume-section" aria-labelledby="interests-title">
+          <h2 id="interests-title">Interests</h2>
+          <ul class="resume-chips">
+            {resume.interests.map((interest) => (
+              <li>{interest}</li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+  </article>
 </BaseLayout>
