@@ -1,0 +1,31 @@
+id: 16
+title: Animate and upgrade the HUD name wordmark
+status: in_progress
+tags:
+  - hud
+  - wordmark
+  - animation
+  - brand
+heat: 60
+detail: >-
+  Turn the top-left brand into a proper wordmark: display-size animated letter wave, pulsing spore
+  dot, and a small software-developer/location subtitle. Keep it legible over the scene, respect
+  reduced motion, and keep the animation transform/opacity-only. Acceptance: desktop and mobile
+  screenshots; continuous animation without frame regression; reduced-motion disables it; no
+  overflow or page errors.
+refs:
+  - src/pages/index.astro
+  - src/styles/experience.css
+links: []
+dependsOn:
+  - 14
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T17:43:44"
+startedAt: "2026-11-14T17:43:50"
+updatedAt: "2026-11-14T17:43:50"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null

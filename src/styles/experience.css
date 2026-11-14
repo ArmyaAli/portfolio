@@ -67,17 +67,79 @@
 }
 
 .experience-brand {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
   color: var(--ink);
-  font-family: var(--font-display);
-  font-size: 1.45rem;
-  font-weight: 600;
-  letter-spacing: -0.035em;
   text-decoration: none;
   pointer-events: auto;
 }
 
-.experience-brand span {
+.brand-name {
+  display: inline-flex;
+  align-items: flex-end;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 2.8vw, 2.15rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 0.86;
+}
+
+.brand-letter {
+  display: inline-block;
+  animation: brand-wave 5.4s var(--ease) infinite;
+  animation-delay: calc(var(--i) * 90ms);
+  transition: color 180ms var(--ease);
+  will-change: transform;
+}
+
+.experience-brand:hover .brand-letter {
   color: var(--accent);
+}
+
+.brand-dot {
+  width: 0.22em;
+  height: 0.22em;
+  margin-bottom: 0.08em;
+  margin-left: 0.14em;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: brand-dot 2.8s var(--ease) infinite;
+}
+
+.brand-role {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+@keyframes brand-wave {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  45% {
+    transform: translateY(-2px);
+  }
+  60% {
+    transform: translateY(-1px);
+  }
+}
+
+@keyframes brand-dot {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+  50% {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 5px transparent;
+  }
 }
 
 .experience-links {
@@ -187,8 +249,9 @@
   justify-content: center;
   padding: clamp(2rem, 8vw, 8rem);
   background:
-    radial-gradient(circle at 28% 42%, color-mix(in srgb, var(--accent) 13%, transparent), transparent 48%),
-    color-mix(in srgb, var(--bg) 52%, transparent);
+    radial-gradient(circle at 28% 42%, color-mix(in srgb, var(--accent) 11%, transparent), transparent 48%),
+    color-mix(in srgb, var(--bg) 93%, transparent);
+  backdrop-filter: blur(7px);
   pointer-events: none;
   user-select: none;
   transition:

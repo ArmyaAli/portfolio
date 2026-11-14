@@ -304,39 +304,58 @@ export class ResumeWorld {
     }
   }
 
-  update(time: number, delta: number, cameraX: number, cameraY: number) {
+  update(
+    time: number,
+    delta: number,
+    cameraX: number,
+    cameraY: number,
+    animate = true,
+  ) {
     const pulse = 0.5 + Math.sin(time * 0.8) * 0.5;
 
-    for (const material of this.pathMaterials) {
-      material.opacity = material === this.pathMaterials[0]
-        ? 0.08 + pulse * 0.035
-        : 0.4 + pulse * 0.1;
+    if (animate) {
+      for (const material of this.pathMaterials) {
+        material.opacity = material === this.pathMaterials[0]
+          ? 0.08 + pulse * 0.035
+          : 0.4 + pulse * 0.1;
+      }
+
+      for (const [index, layer] of this.sporeLayers.entries()) {
+        layer.rotation.z = Math.sin(time * 0.03 + index) * 0.015;
+        layer.position.y = Math.sin(time * 0.05 + index * 1.4) * 0.35;
+      }
     }
 
-    for (const [index, layer] of this.sporeLayers.entries()) {
-      layer.rotation.z = Math.sin(time * 0.03 + index) * 0.015;
-      layer.position.y = Math.sin(time * 0.05 + index * 1.4) * 0.35;
+    let nearestId: StationId | undefined;
+    let nearestDistance = Number.POSITIVE_INFINITY;
+
+    for (const station of stations) {
+      const distance = Math.hypot(station.x - cameraX, station.y - cameraY);
+      if (distance < nearestDistance) {
+        nearestDistance = distance;
+        nearestId = station.id;
+      }
     }
 
     let index = 0;
     for (const [stationId, visual] of this.stationVisuals) {
-      const scale = THREE.MathUtils.lerp(
-        visual.group.scale.x,
-        visual.targetScale,
-        1 - Math.exp(-delta * 8),
-      );
-      visual.group.scale.setScalar(scale);
-      visual.orbit.rotation.z = time * 0.12 + index * 0.7;
-      visual.halo.material.opacity =
-        stationId === this.activeId ? 0.2 + pulse * 0.1 : 0.14;
-      visual.text.visible =
-        this.showText &&
-        Math.abs(visual.station.y - cameraY) < 8.5 &&
-        Math.abs(visual.station.x - cameraX) < 10.5;
+      if (animate) {
+        const scale = THREE.MathUtils.lerp(
+          visual.group.scale.x,
+          visual.targetScale,
+          1 - Math.exp(-delta * 8),
+        );
+        visual.group.scale.setScalar(scale);
+        visual.orbit.rotation.z = time * 0.12 + index * 0.7;
+        visual.halo.material.opacity =
+          stationId === this.activeId ? 0.2 + pulse * 0.1 : 0.14;
+      }
+
+      visual.text.visible = this.showText && stationId === nearestId;
       index += 1;
     }
 
-    if (this.pathCurve && this.traveler) {
+    if (animate && this.pathCurve && this.traveler) {
       const travel = (time * 0.035) % 1;
 
       if (this.pathCurve.points.length > 3 && Number.isFinite(travel)) {

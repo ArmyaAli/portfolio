@@ -8,6 +8,7 @@ import parsed from "../data/resume.generated.json";
 
 const resume = parsed as ResumeDocument;
 const role = resume.experience[0]?.title ?? "Software engineer";
+const location = resume.experience[0]?.location ?? "Toronto, Ontario";
 const total = String(stations.length - 1).padStart(2, "0");
 ---
 
@@ -26,7 +27,17 @@ const total = String(stations.length - 1).padStart(2, "0");
 
     <header class="experience-hud">
       <a class="experience-brand" href="/" aria-label={`${site.name} — home`}>
-        {site.name}<span aria-hidden="true">.</span>
+        <span class="brand-name" aria-hidden="true">
+          {
+            [...site.name].map((letter, index) => (
+              <span class="brand-letter" style={`--i:${index}`}>
+                {letter === " " ? "\u00a0" : letter}
+              </span>
+            ))
+          }
+          <span class="brand-dot" aria-hidden="true"></span>
+        </span>
+        <span class="brand-role">Software Developer · {location}</span>
       </a>
       <nav class="experience-links" aria-label="Site">
         <a href="/resume">Read as text</a>

@@ -210,9 +210,13 @@ function start() {
 
     rig.update(delta);
 
-    if (!reducedMotion) {
-      world.update(elapsed, delta, rig.camera.position.x, rig.camera.position.y);
-    }
+    world.update(
+      elapsed,
+      delta,
+      rig.camera.position.x,
+      rig.camera.position.y,
+      !reducedMotion,
+    );
 
     renderer.render(world.scene, rig.camera);
     updateLabels();
