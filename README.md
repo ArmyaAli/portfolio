@@ -51,9 +51,10 @@ npx roadmapped dashboard   # local dashboard
 ```
 
 Every commit references a task id (`feat(#3): ...`). Start the task before
-editing product files, then record its commit, outcome, and verification. The
-full rules are in [`CONTRIBUTING.md`](./CONTRIBUTING.md); the interactive 3D
-resume plan is in
+editing product files. Changes stay local until the task passes its checks and
+has been reviewed; promotion is a normal `git push origin main`. After approval,
+record the commit, outcome, and verification on the task. The full rules are in
+[`CONTRIBUTING.md`](./CONTRIBUTING.md); the interactive 3D resume plan is in
 [`docs/specs/2026-11-14-interactive-3d-resume.md`](./docs/specs/2026-11-14-interactive-3d-resume.md).
 
 ## Content

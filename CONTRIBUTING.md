@@ -39,7 +39,7 @@ Rules:
 - The task id must exist in `docs/tasks/`.
 - Every commit includes at least one `#<id>`, including task-record commits.
 - Merge commits and revert commits are exempt from the message format, but their
-  PR/merge subject should still reference the task when possible.
+  subject should still reference the task when possible.
 - The task must be `in_progress` before product edits, not after.
 - Do not use `--no-verify` to skip the guard unless the commit is a recovery
   operation and the reason is recorded in the task.
@@ -78,9 +78,31 @@ finished task without its `commit`, `outcome`, and `verification` fields.
   must fail the build.
 - `/resume` must remain usable without WebGL or JavaScript.
 
-## Branches and deployment
+## Solo-main promotion
 
-- Work on `task/<id>-<slug>`.
-- Keep `main` deployable.
-- Do not force-push `main` without an explicit request.
-- GitHub Pages deploys from `.github/workflows/deploy.yml` on pushes to `main`.
+This is a single-developer repo. Work directly on `main`; no task branches or PRs
+are required.
+
+Keep exactly one task `in_progress` at a time. A task stays local until it has
+passed its checks and Ali has reviewed it.
+
+Promotion sequence:
+
+1. Implement the task.
+2. Run the quality gates and a browser check of the changed surface.
+3. Commit locally with the task id:
+   `feat(#3): parse resume.pdf into typed data`.
+4. Ask Ali to review. Do not push `main` yet.
+5. After approval, record delivery:
+   `npx roadmapped done <id> --commit <sha> --outcome ... --verification ...`.
+6. Commit the delivery record with `chore(#<id>): record delivery`.
+7. Promote by pushing `main`:
+   `git push origin main`.
+8. Verify the GitHub Actions run and the production URL. If the deploy fails,
+   fix forward before starting another task.
+
+`main` on the remote is therefore the last reviewed and promoted state. Local
+commits may be ahead of it between review and promotion.
+
+Do not force-push `main` without an explicit request. GitHub Pages deploys from
+`.github/workflows/deploy.yml` on pushes to `main`.

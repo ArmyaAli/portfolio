@@ -13,9 +13,15 @@ This repo uses **Roadmapped** (flat-file project management, agent-driven).
 
 Read [`CONTRIBUTING.md`](./CONTRIBUTING.md) before changing the repo.
 
-- Start a Roadmapped task before editing product files.
+- Start a Roadmapped task before editing product files. Keep one task
+  `in_progress` at a time.
+- Work directly on `main`; no task branches or PRs.
 - Every commit references a task id: `feat(#3): ...`.
-- After the implementation commit, record it with
-  `npx roadmapped done <id> --commit <sha> --outcome ... --verification ...`.
+- Test the change, then wait for Ali to review it. **Do not push `main` before
+  review.**
+- After approval, record delivery with
+  `npx roadmapped done <id> --commit <sha> --outcome ... --verification ...`,
+  commit `chore(#<id>): record delivery`, then `git push origin main` and verify
+  the Pages deploy.
 - Never edit `docs/tasks/*.yaml` by hand; use the Roadmapped CLI or dashboard.
 - `npm run check`, `npm run build`, and `nix build` are the quality gates.

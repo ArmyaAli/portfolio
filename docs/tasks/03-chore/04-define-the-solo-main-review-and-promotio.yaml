@@ -1,0 +1,31 @@
+id: 10
+title: Define the solo-main review and promotion workflow
+status: in_progress
+tags:
+  - process
+  - git
+  - roadmapped
+heat: 40
+detail: >-
+  Document direct-to-main work with a review gate: commit locally with the task id, run the checks,
+  wait for Ali to review, then record delivery and push main. Acceptance: CONTRIBUTING and CLAUDE
+  rules match the solo workflow; no PR/branch requirement; push only after review; verify the Pages
+  deploy after each promotion.
+refs:
+  - CONTRIBUTING.md
+  - CLAUDE.md
+  - README.md
+  - .github/workflows/deploy.yml
+links: []
+dependsOn:
+  - 1
+epic: portfolio-workflow
+source: ai
+createdAt: "2026-11-14T16:30:04"
+startedAt: "2026-11-14T16:33:06"
+updatedAt: "2026-11-14T16:33:06"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null
