@@ -1,6 +1,6 @@
 id: 3
 title: Build the PDF resume parser and generated resume data
-status: in_progress
+status: done
 tags:
   - resume
   - parser
@@ -25,9 +25,11 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T16:23:37"
 startedAt: "2026-11-14T16:38:48"
-updatedAt: "2026-11-14T16:38:48"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T16:45:08"
+completedAt: "2026-11-14T16:45:08"
+commit: 17e97281f343afebb118b1f4f975a20ecd4105c8
+outcome: public/resume.pdf now parses into committed structured data at build time.
+verification: >-
+  5 parser tests pass; generated data covers 2 pages, 3 roles, 3 projects, skills, certs, interests;
+  npm run check/build and nix build pass.
+release: 1.0.0
