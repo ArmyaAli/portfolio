@@ -1,6 +1,6 @@
 id: 8
 title: Accessibility, fallback, and performance hardening
-status: in_progress
+status: done
 tags:
   - 3d
   - accessibility
@@ -24,9 +24,14 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T16:23:39"
 startedAt: "2026-11-14T17:05:13"
-updatedAt: "2026-11-14T17:05:13"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T17:08:35"
+completedAt: "2026-11-14T17:08:35"
+commit: 1314608ffba09a8f11bcd2213497a4779ae28d87
+outcome: >-
+  The experience now has a no-WebGL fallback, skip link, visible-only tab order, focus restoration,
+  reduced-motion handling, and a measured 60fps loop.
+verification: >-
+  No-WebGL fallback rendered with working resume/email actions; reduced-motion and mobile contact
+  sheet checked; first Tab focuses the skip link; dialog focuses its heading and restores to the
+  minimap; 120-frame average 16.57ms; no page errors.
+release: 1.0.0
