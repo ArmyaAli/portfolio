@@ -1,6 +1,8 @@
 import * as THREE from "three";
+import type { ResumeDocument } from "../lib/resume/types";
 import { palette } from "./theme";
 import { stations, type Station, type StationId, worldBounds } from "./stations";
+import { createStationTextTexture, textPanelSize } from "./text";
 
 type StationVisual = {
   station: Station;
@@ -9,6 +11,7 @@ type StationVisual = {
   ring: THREE.Mesh<THREE.TorusGeometry, THREE.MeshBasicMaterial>;
   halo: THREE.Mesh<THREE.RingGeometry, THREE.MeshBasicMaterial>;
   core: THREE.Mesh<THREE.CircleGeometry, THREE.MeshBasicMaterial>;
+  text: THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial>;
   targetScale: number;
 };
 
@@ -25,14 +28,14 @@ export class ResumeWorld {
   private traveler?: THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial>;
   private activeId?: StationId;
 
-  constructor(narrow: boolean) {
+  constructor(narrow: boolean, resume: ResumeDocument) {
     this.scene.fog = new THREE.FogExp2(palette.background, 0.016);
     this.buildBackdrop(narrow);
     this.buildPath();
-    this.buildStations();
+    this.buildStations(resume);
   }
 
-  private buildStations() {
+  private buildStations(resume: ResumeDocument) {
     for (const station of stations) {
       const group = new THREE.Group();
       group.position.set(station.x, station.y, 0);
@@ -97,6 +100,23 @@ export class ResumeWorld {
       );
       group.add(stem);
 
+      const text = new THREE.Mesh(
+        new THREE.PlaneGeometry(textPanelSize.width, textPanelSize.height),
+        new THREE.MeshBasicMaterial({
+          map: createStationTextTexture(station, resume),
+          transparent: false,
+          alphaTest: 0.5,
+          depthWrite: true,
+          side: THREE.DoubleSide,
+          toneMapped: false,
+        }),
+      );
+      text.position.set(0, 3.0, -0.8);
+      text.renderOrder = 2;
+      text.userData.stationId = station.id;
+      group.add(text);
+      this.raycastTargets.push(text);
+
       const orbit = new THREE.Group();
       for (let index = 0; index < 3; index++) {
         const dot = new THREE.Mesh(
@@ -127,6 +147,7 @@ export class ResumeWorld {
         ring,
         halo,
         core,
+        text,
         targetScale: 1,
       });
     }
@@ -182,7 +203,7 @@ export class ResumeWorld {
   private buildBackdrop(narrow: boolean) {
     const branches = new THREE.Group();
 
-    for (let index = 0; index < 7; index++) {
+    for (let index = 0; index < 11; index++) {
       const points: THREE.Vector3[] = [];
       const startX = (index - 3) * 4.5;
       const startY = worldBounds.maxY - index * 3;
@@ -211,8 +232,8 @@ export class ResumeWorld {
 
     this.scene.add(branches);
 
-    const counts = narrow ? [90, 55] : [260, 120];
-    const colors = [palette.accent, palette.green];
+    const counts = narrow ? [360, 180, 100] : [1000, 420, 200];
+    const colors = [palette.accent, palette.green, palette.yellow];
 
     counts.forEach((count, layerIndex) => {
       const positions = new Float32Array(count * 3);
@@ -230,15 +251,15 @@ export class ResumeWorld {
         geometry,
         new THREE.PointsMaterial({
           color: colors[layerIndex],
-          size: layerIndex === 0 ? 0.055 : 0.035,
+          size: layerIndex === 0 ? 0.07 : layerIndex === 1 ? 0.05 : 0.035,
           sizeAttenuation: true,
           transparent: true,
-          opacity: layerIndex === 0 ? 0.64 : 0.38,
+          opacity: layerIndex === 0 ? 0.72 : layerIndex === 1 ? 0.52 : 0.36,
           depthWrite: false,
           blending: THREE.AdditiveBlending,
         }),
       );
-      points.position.z = -layerIndex * 2;
+      points.position.z = layerIndex === 2 ? 4 : -layerIndex * 2;
       this.sporeLayers.push(points);
       this.scene.add(points);
     });

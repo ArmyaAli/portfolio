@@ -9,7 +9,7 @@
   --accent-soft: #3a2420;
   --green: #9dbb6d;
   --yellow: #e5b65d;
-  overflow: hidden;
+  overflow: clip;
   background: var(--bg);
   color: var(--ink);
 }
@@ -17,7 +17,7 @@
 .experience {
   position: fixed;
   inset: 0;
-  overflow: hidden;
+  overflow: clip;
   isolation: isolate;
   background: var(--bg);
 }

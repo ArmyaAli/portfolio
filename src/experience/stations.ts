@@ -12,6 +12,7 @@ export type Station = {
   kicker: string;
   label: string;
   title: string;
+  caption: string;
   x: number;
   y: number;
 };
@@ -23,6 +24,7 @@ export const stations: Station[] = [
     kicker: "00 — Origin",
     label: "Origin",
     title: "Ali Umar",
+    caption: "Software Developer · Toronto",
     x: 0,
     y: 0,
   },
@@ -32,6 +34,7 @@ export const stations: Station[] = [
     kicker: "01 — Experience",
     label: "Experience",
     title: "The work",
+    caption: "3 roles · 2020 — present",
     x: -5.5,
     y: -12,
   },
@@ -41,6 +44,7 @@ export const stations: Station[] = [
     kicker: "02 — Projects",
     label: "Projects",
     title: "Things built",
+    caption: "3 projects · shipped + lab",
     x: 5.5,
     y: -24,
   },
@@ -50,6 +54,7 @@ export const stations: Station[] = [
     kicker: "03 — Skills",
     label: "Skills",
     title: "The toolkit",
+    caption: "Languages · systems · delivery",
     x: -5,
     y: -36,
   },
@@ -59,6 +64,7 @@ export const stations: Station[] = [
     kicker: "04 — Education",
     label: "Education",
     title: "The foundation",
+    caption: "York · Seneca · certifications",
     x: 5,
     y: -48,
   },
@@ -68,6 +74,7 @@ export const stations: Station[] = [
     kicker: "05 — Contact",
     label: "Contact",
     title: "Say hello",
+    caption: "Email · GitHub · LinkedIn",
     x: 0,
     y: -60,
   },

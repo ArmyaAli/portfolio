@@ -1,0 +1,34 @@
+id: 14
+title: Make the interactive resume mobile-first
+status: todo
+tags:
+  - mobile
+  - touch
+  - responsive
+  - 3d
+  - accessibility
+heat: 85
+detail: >-
+  Treat phone portrait and landscape as primary surfaces. Adapt the 3D content panels, camera
+  framing, HUD/wordmark, intro, minimap, station buttons, and dialog bottom sheet for touch. Remove
+  hover-only affordances, use 44px targets, respect safe-area insets, keep one-finger drag/tap
+  navigation, and cap DPR/particles for mobile performance. Acceptance: 390x844, 430x932, and
+  844x390 layouts have no horizontal overflow; panels and sheet text are readable;
+  drag/tap/open/close/form/deep links work; no console errors; frame budget holds.
+refs:
+  - src/styles/experience.css
+  - src/experience
+  - src/components/experience/StationDialog.astro
+  - docs/specs/2026-11-14-interactive-3d-resume.md
+links: []
+dependsOn:
+  - 13
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T17:37:31"
+updatedAt: "2026-11-14T17:37:31"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null

@@ -1,0 +1,31 @@
+id: 15
+title: Run the mobile device and touch test matrix
+status: todo
+tags:
+  - mobile
+  - qa
+  - touch
+  - performance
+heat: 70
+detail: >-
+  Verify iOS Safari and Android Chrome, plus 390x844, 430x932, and landscape 844x390 emulation.
+  Exercise one-finger drag, tap station panels, minimap, bottom-sheet scroll, contact form, deep
+  links, keyboard where available, reduced motion, and no-WebGL fallback. Capture screenshots,
+  console errors, frame timing, and safe-area behavior; record gaps as follow-up tasks. Acceptance:
+  matrix results are attached to the task and launch is gated on no blocking mobile defects.
+refs:
+  - src/experience
+  - src/components/experience
+  - docs/specs/2026-11-14-interactive-3d-resume.md
+links: []
+dependsOn:
+  - 14
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T17:37:39"
+updatedAt: "2026-11-14T17:37:39"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null

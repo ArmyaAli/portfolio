@@ -1,0 +1,31 @@
+id: 13
+title: Add readable 3D floating text to each resume node
+status: in_progress
+tags:
+  - 3d
+  - text
+  - canvas
+  - stations
+heat: 65
+detail: >-
+  Render a high-resolution canvas texture per station on a 3D plane above its ring: kicker, node
+  title, caption, and click affordance. Keep it crisp as the fixed-Z camera moves, add it to
+  raycasting, dim inactive text, and move the DOM labels below the ring to avoid duplication.
+  Acceptance: desktop/mobile screenshots show readable world-space text; clicking a panel opens the
+  station; no frame errors; check/build/nix pass.
+refs:
+  - src/experience/world.ts
+  - src/experience/stations.ts
+  - src/experience/main.ts
+links: []
+dependsOn: []
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T17:25:18"
+startedAt: "2026-11-14T17:25:21"
+updatedAt: "2026-11-14T17:25:21"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null

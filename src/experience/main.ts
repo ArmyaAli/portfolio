@@ -2,6 +2,8 @@ import * as THREE from "three";
 import { CameraRig } from "./camera-rig";
 import { ExperienceInput } from "./input";
 import { createStationOverlay, type StationOverlay } from "./overlay";
+import type { ResumeDocument } from "../lib/resume/types";
+import resumeJson from "../data/resume.generated.json";
 import { stationById, stations, type StationId } from "./stations";
 import { palette } from "./theme";
 import { ResumeWorld } from "./world";
@@ -27,6 +29,7 @@ const mapButtons = Array.from(
 const stationCount = document.querySelector<HTMLElement>("[data-station-count]");
 const live = document.querySelector<HTMLElement>("[data-live]");
 const projected = new THREE.Vector3();
+const resume = resumeJson as ResumeDocument;
 
 let activeId: StationId | undefined;
 let hoveredId: StationId | undefined;
@@ -53,7 +56,7 @@ function updateLabels() {
     const station = id ? stationById.get(id) : undefined;
     if (!station) continue;
 
-    projected.set(station.x, station.y + 1.7, 0).project(rig.camera);
+    projected.set(station.x, station.y - 1.75, 0).project(rig.camera);
     const visible = projected.z < 1 && Math.abs(projected.x) < 1.25 && Math.abs(projected.y) < 1.25;
     const x = (projected.x * 0.5 + 0.5) * width;
     const y = (-projected.y * 0.5 + 0.5) * height;
@@ -117,7 +120,7 @@ function start() {
   renderer.setClearColor(palette.background, 1);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
 
-  world = new ResumeWorld(narrow);
+  world = new ResumeWorld(narrow, resume);
   rig = new CameraRig();
 
   const resize = () => {
