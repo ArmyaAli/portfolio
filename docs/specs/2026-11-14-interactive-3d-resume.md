@@ -1,6 +1,6 @@
 # Interactive 3D Resume — Plan
 
-Status: proposed
+Status: implemented — review pending
 Owner: Ali Umar
 Epic: `interactive-resume`
 
