@@ -28,6 +28,10 @@ const mapButtons = Array.from(
   document.querySelectorAll<HTMLButtonElement>("[data-station-map]"),
 );
 const stationCount = document.querySelector<HTMLElement>("[data-station-count]");
+const autoButton = document.querySelector<HTMLButtonElement>("[data-auto]");
+const autoLabel = document.querySelector<HTMLElement>("[data-auto-label]");
+const autoIcon = document.querySelector<HTMLElement>("[data-auto-icon]");
+const nextButton = document.querySelector<HTMLButtonElement>("[data-next-node]");
 const live = document.querySelector<HTMLElement>("[data-live]");
 const projected = new THREE.Vector3();
 const resume = resumeJson as ResumeDocument;
@@ -37,6 +41,9 @@ let hoveredId: StationId | undefined;
 let rig: CameraRig;
 let world: ResumeWorld;
 let overlay: StationOverlay | undefined;
+let autoTour = false;
+let autoNextAt = 0;
+let autoIndex = -1;
 
 function setState(state: "loading" | "intro" | "exploring" | "fallback") {
   experienceRoot.dataset.state = state;
@@ -107,7 +114,46 @@ function activateStation(
   }
 }
 
+function updateAutoControl() {
+  autoButton?.setAttribute("aria-pressed", String(autoTour));
+  if (autoLabel) autoLabel.textContent = autoTour ? "Pause tour" : "Auto tour";
+  if (autoIcon) autoIcon.textContent = autoTour ? "Ⅱ" : "▶";
+}
+
+function stopAuto() {
+  if (!autoTour) return;
+  autoTour = false;
+  updateAutoControl();
+  if (live) live.textContent = "Auto tour stopped.";
+}
+
+function advanceTour() {
+  autoIndex = (autoIndex + 1) % stations.length;
+  const station = stations[autoIndex];
+  activateStation(station.id, { openDialog: false });
+  autoNextAt = performance.now() + 5400;
+}
+
+function setAutoTour(enabled: boolean) {
+  autoTour = enabled;
+
+  if (enabled) {
+    autoIndex = activeId ? (stationById.get(activeId)?.index ?? -1) : -1;
+    advanceTour();
+    if (live) live.textContent = "Auto tour started.";
+  }
+
+  updateAutoControl();
+}
+
+function nextNode() {
+  stopAuto();
+  autoIndex = activeId ? (stationById.get(activeId)?.index ?? -1) : -1;
+  advanceTour();
+}
+
 function selectStation(id: StationId, trigger?: HTMLElement) {
+  stopAuto();
   activateStation(id, { openDialog: true, trigger });
 }
 
@@ -141,6 +187,7 @@ function start() {
 
   const input = new ExperienceInput(experienceCanvas, {
     onFirstInput: setExploring,
+    onManualInput: stopAuto,
     onDrag: (dx, dy) => rig.panByPixels(dx, dy, experienceCanvas.clientHeight),
     onWheel: (dx, dy) =>
       rig.panByPixels(-dx * 1.8, -dy * 1.8, experienceCanvas.clientHeight),
@@ -179,6 +226,9 @@ function start() {
     });
   }
 
+  autoButton?.addEventListener("click", () => setAutoTour(!autoTour));
+  nextButton?.addEventListener("click", nextNode);
+
   for (const button of document.querySelectorAll<HTMLButtonElement>(
     "[data-open-station]",
   )) {
@@ -202,6 +252,10 @@ function start() {
     previous = now;
     elapsed += delta;
     const keyboard = input.keyboardDirection();
+
+    if (autoTour && performance.now() >= autoNextAt) {
+      advanceTour();
+    }
 
     if (keyboard.x !== 0 || keyboard.y !== 0) {
       const speed = 7.5 * delta;
@@ -249,6 +303,7 @@ function start() {
       state: experienceRoot.dataset.state,
       activeId,
       hoveredId,
+      autoTour,
       camera: { x: rig.camera.position.x, y: rig.camera.position.y },
     }),
     openStation: (id: StationId) => selectStation(id),

@@ -1,0 +1,34 @@
+id: 17
+title: Add auto tour and next-node controls
+status: in_progress
+tags:
+  - 3d
+  - navigation
+  - auto
+  - mobile
+heat: 75
+detail: >-
+  Add an Auto tour toggle that moves the fixed-Z camera station-to-station with a readable dwell
+  time, plus a persistent Next node button. Auto must stop on manual drag/wheel/key input, disable
+  when a station sheet opens, expose aria-pressed state, and work on mobile without overlapping the
+  minimap or safe areas. Acceptance: desktop/mobile auto tour reaches all stations smoothly; next
+  button focuses each node; manual input cancels auto; reduced motion remains usable; no frame or
+  console regressions.
+refs:
+  - src/experience/main.ts
+  - src/experience/input.ts
+  - src/pages/index.astro
+  - src/styles/experience.css
+links: []
+dependsOn:
+  - 14
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T17:53:35"
+startedAt: "2026-11-14T17:53:49"
+updatedAt: "2026-11-14T17:53:49"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null

@@ -106,6 +106,16 @@ const total = String(stations.length - 1).padStart(2, "0");
 
     <StationDialog resume={resume} />
 
+    <div class="experience-controls" role="group" aria-label="Tour controls">
+      <button class="experience-control" type="button" data-auto aria-pressed="false">
+        <span class="experience-control-icon" data-auto-icon aria-hidden="true">▶</span>
+        <span data-auto-label>Auto tour</span>
+      </button>
+      <button class="experience-control" type="button" data-next-node>
+        Next node <span aria-hidden="true">→</span>
+      </button>
+    </div>
+
     <footer class="experience-footer">
       <p class="experience-progress">
         <span data-station-count>00 / {total}</span>

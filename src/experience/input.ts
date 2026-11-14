@@ -4,6 +4,7 @@ type InputCallbacks = {
   onWheel: (dx: number, dy: number) => void;
   onHover: (clientX: number, clientY: number) => void;
   onClick: (clientX: number, clientY: number) => void;
+  onManualInput: () => void;
 };
 
 export class ExperienceInput {
@@ -60,6 +61,7 @@ export class ExperienceInput {
     this.lastY = event.clientY;
     this.dragDistance = 0;
     this.canvas.setPointerCapture(event.pointerId);
+    this.callbacks.onManualInput();
     this.callbacks.onHover(event.clientX, event.clientY);
     this.first();
   };
@@ -101,6 +103,7 @@ export class ExperienceInput {
 
   private onWheel = (event: WheelEvent) => {
     event.preventDefault();
+    this.callbacks.onManualInput();
     this.callbacks.onWheel(event.deltaX, event.deltaY);
     this.first();
   };
@@ -123,6 +126,7 @@ export class ExperienceInput {
     }
 
     event.preventDefault();
+    this.callbacks.onManualInput();
     this.keys.add(key);
     this.first();
   };
