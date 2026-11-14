@@ -1,6 +1,6 @@
 id: 11
 title: Replace the site resume with the updated USB general resume
-status: in_progress
+status: done
 tags:
   - resume
   - pdf
@@ -23,9 +23,11 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T16:33:41"
 startedAt: "2026-11-14T16:33:45"
-updatedAt: "2026-11-14T16:33:45"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T16:34:45"
+completedAt: "2026-11-14T16:34:45"
+commit: dc0b423d1d2194ca127313ea0d63bd01a5b975b3
+outcome: >-
+  The site resume is now the newer two-page USB general resume, and the parser plan covers its
+  summary, interests, and multi-page layout.
+verification: PDF is 2 pages, sha256 624ee90a…; npm run check and npm run build passed; nix build passed.
+release: 1.0.0
