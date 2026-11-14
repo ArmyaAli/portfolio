@@ -1,6 +1,6 @@
 id: 5
 title: Scaffold the Three.js scene, 2D camera rig, and movement
-status: in_progress
+status: done
 tags:
   - 3d
   - threejs
@@ -23,9 +23,13 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T16:23:38"
 startedAt: "2026-11-14T16:49:29"
-updatedAt: "2026-11-14T16:49:29"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T16:57:52"
+completedAt: "2026-11-14T16:57:52"
+commit: 1a4b9a919cf547a6fa0409f8c5d686f5f8b795a4
+outcome: >-
+  The root page is now a 3D mycelium world with a fixed-Z 2D camera and drag/scroll/keyboard
+  traversal.
+verification: >-
+  Desktop dark screenshot reviewed; drag and wheel move the camera; label projection and fallback
+  exist; npm run check/build and nix build pass.
+release: 1.0.0
