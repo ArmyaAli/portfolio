@@ -94,7 +94,15 @@ export function createStationOverlay(
       updateHash();
     }
 
-    lastTrigger?.focus({ preventScroll: true });
+    const fallback = root.querySelector<HTMLElement>(
+      '[data-station-map][aria-current="true"]',
+    );
+    const focusTarget =
+      lastTrigger && lastTrigger.offsetParent !== null && lastTrigger.tabIndex >= 0
+        ? lastTrigger
+        : fallback;
+
+    focusTarget?.focus({ preventScroll: true });
   });
 
   closeButton?.addEventListener("click", close);

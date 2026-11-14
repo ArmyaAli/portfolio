@@ -61,6 +61,7 @@ function updateLabels() {
     label.style.transform = `translate(-50%, -50%) translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
     label.style.opacity = visible ? "1" : "0";
     label.style.pointerEvents = visible ? "auto" : "none";
+    label.tabIndex = visible ? 0 : -1;
     label.classList.toggle("is-hovered", hoveredId === id);
     label.classList.toggle("is-active", activeId === id);
     label.setAttribute("aria-current", activeId === id ? "true" : "false");

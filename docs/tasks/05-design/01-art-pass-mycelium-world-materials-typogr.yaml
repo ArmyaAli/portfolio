@@ -23,9 +23,9 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T16:23:38"
 startedAt: "2026-11-14T17:03:01"
-updatedAt: "2026-11-14T17:05:13"
+updatedAt: "2026-11-14T17:06:33"
 completedAt: "2026-11-14T17:05:13"
-commit: 0dd8e396341dc3f193642c903878b5f8efd75cbb
+commit: badadf30ce72fb606ec6df1bed976cb3f65fdace
 outcome: The scene now has the Mushroom Grove glow, animated path traveler, active halos, and HUD motion.
 verification: >-
   Desktop screenshots reviewed; HUD/minimap/path visible; runtime errors cleared; vitals LCP 72ms,

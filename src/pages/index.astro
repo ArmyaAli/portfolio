@@ -15,6 +15,7 @@ const total = String(stations.length - 1).padStart(2, "0");
   title={site.name}
   description={site.description}
 >
+  <a class="skip-link" href="/resume">Skip to text resume</a>
   <div class="experience" data-experience data-state="loading">
     <canvas
       class="experience-canvas"
@@ -44,6 +45,7 @@ const total = String(stations.length - 1).padStart(2, "0");
             aria-label={`Open ${station.label}`}
             aria-haspopup="dialog"
             aria-current="false"
+            tabindex="-1"
           >
             <span class="station-label-index">
               {String(station.index).padStart(2, "0")}

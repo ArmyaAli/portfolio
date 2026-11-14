@@ -111,7 +111,7 @@ export class ExperienceInput {
     if (
       target instanceof HTMLElement &&
       (target.isContentEditable ||
-        ["INPUT", "TEXTAREA", "SELECT", "BUTTON"].includes(target.tagName) ||
+        ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName) ||
         document.querySelector("dialog[open]"))
     ) {
       return;

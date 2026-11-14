@@ -348,13 +348,16 @@
   max-width: 48rem;
   margin-inline: auto;
   padding: clamp(2rem, 8vw, 8rem);
+  overflow-y: auto;
 }
 
 .experience[data-state="fallback"] .experience-canvas,
 .experience[data-state="fallback"] .station-labels,
 .experience[data-state="fallback"] .experience-intro,
 .experience[data-state="fallback"] .experience-footer,
-.experience[data-state="fallback"] .experience-loading {
+.experience[data-state="fallback"] .experience-loading,
+.experience[data-state="fallback"] .experience-hud,
+.experience[data-state="fallback"] .station-map {
   display: none;
 }
 
@@ -375,6 +378,10 @@
   max-width: 38rem;
   margin-top: 1.25rem;
   color: var(--muted);
+}
+
+.experience-fallback .intro-actions {
+  animation: none;
 }
 
 .experience-fallback-noscript {
