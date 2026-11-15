@@ -1,6 +1,6 @@
 id: 24
 title: Expand the landing intro and align static nav
-status: in_progress
+status: done
 tags:
   - landing
   - layout
@@ -26,9 +26,13 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T19:19:35"
 startedAt: "2026-11-14T19:19:36"
-updatedAt: "2026-11-14T19:19:36"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T19:21:41"
+completedAt: "2026-11-14T19:21:41"
+commit: e79ea930a4691917da7b73b27c93c9db3e9d6173
+outcome: >-
+  The landing intro now uses a wider two-column layout, Interactive resume copy is removed, and
+  static nav items share a 44px alignment line.
+verification: >-
+  1440/2560 and mobile screenshots; intro copy 17.28px desktop; no overflow; nav items all y=65.75
+  h=44 on /resume; no page errors; check/build pass.
+release: 1.0.0
