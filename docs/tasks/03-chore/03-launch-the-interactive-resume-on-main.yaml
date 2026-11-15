@@ -1,6 +1,6 @@
 id: 9
 title: Launch the interactive resume on main
-status: todo
+status: in_progress
 tags:
   - launch
   - deploy
@@ -29,11 +29,13 @@ dependsOn:
   - 22
   - 23
   - 24
+  - 25
+  - 26
 epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T16:23:39"
 startedAt: "2026-11-14T17:08:46"
-updatedAt: "2026-11-14T19:25:24"
+updatedAt: "2026-11-14T19:29:02"
 completedAt: null
 commit: null
 outcome: null
