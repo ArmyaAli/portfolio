@@ -1,6 +1,6 @@
 id: 9
 title: Launch the interactive resume on main
-status: in_progress
+status: done
 tags:
   - launch
   - deploy
@@ -35,9 +35,14 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T16:23:39"
 startedAt: "2026-11-14T17:08:46"
-updatedAt: "2026-11-14T19:36:51"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T19:42:08"
+completedAt: "2026-11-14T19:42:08"
+commit: 9e19c023f7
+outcome: >-
+  Interactive resume is live on main: aligned static nav, animated thermometer roadmap, auto tour
+  with Pause/Next, responsive 3D panels, and the /resume fallback.
+verification: >-
+  npm test 5/5; npm run check 0 errors; npm run build 4 pages; desktop/mobile Playwright smoke has
+  no page errors or overflow; GitHub Pages run 43659321973 succeeded (Nix build); live
+  https://aliumar.dev/ and /resume verified.
+release: 1.0.0

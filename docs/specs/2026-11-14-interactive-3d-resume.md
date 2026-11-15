@@ -1,6 +1,6 @@
 # Interactive 3D Resume — Plan
 
-Status: implemented — deployment pending
+Status: implemented — live at https://aliumar.dev
 Owner: Ali Umar
 Epic: `interactive-resume`
 
