@@ -106,14 +106,33 @@ const total = String(stations.length - 1).padStart(2, "0");
 
     <StationDialog resume={resume} />
 
-    <div class="experience-controls" role="group" aria-label="Tour controls">
-      <button class="experience-control" type="button" data-auto aria-pressed="false">
-        <span class="experience-control-icon" data-auto-icon aria-hidden="true">▶</span>
-        <span data-auto-label>Auto tour</span>
-      </button>
-      <button class="experience-control" type="button" data-next-node>
-        Next node <span aria-hidden="true">→</span>
-      </button>
+    <div class="experience-tour" data-tour>
+      <div
+        class="experience-tour-progress"
+        data-tour-progress
+        role="progressbar"
+        aria-label="Time until the next resume station"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="100"
+      >
+        <div class="experience-tour-track" aria-hidden="true">
+          <span class="experience-tour-bar" data-tour-bar></span>
+        </div>
+        <span class="experience-tour-countdown" data-tour-countdown aria-hidden="true">
+          Next in 8s
+        </span>
+      </div>
+
+      <div class="experience-controls" role="group" aria-label="Tour controls">
+        <button class="experience-control" type="button" data-auto aria-pressed="false">
+          <span class="experience-control-icon" data-auto-icon aria-hidden="true">▶</span>
+          <span data-auto-label>Auto tour</span>
+        </button>
+        <button class="experience-control" type="button" data-next-node>
+          Next node <span aria-hidden="true">→</span>
+        </button>
+      </div>
     </div>
 
     <footer class="experience-footer">

@@ -1,0 +1,32 @@
+id: 19
+title: Add a smooth countdown bar to the auto tour
+status: in_progress
+tags:
+  - 3d
+  - auto
+  - progress
+  - animation
+heat: 60
+detail: >-
+  Show a progress meter and seconds countdown until the next node while Auto tour is active. The bar
+  must drain smoothly every frame, reset at each station, expose progressbar semantics, hide when
+  auto is paused or a station opens, and position correctly on desktop/mobile above the tour
+  controls. Acceptance: countdown matches the 7.5s/9.2s schedules, bar is smooth, manual pause hides
+  it, no overflow/errors, check/build/nix pass.
+refs:
+  - src/experience/main.ts
+  - src/pages/index.astro
+  - src/styles/experience.css
+links: []
+dependsOn:
+  - 18
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T19:02:46"
+startedAt: "2026-11-14T19:02:51"
+updatedAt: "2026-11-14T19:02:51"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null

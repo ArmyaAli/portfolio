@@ -32,6 +32,10 @@ const autoButton = document.querySelector<HTMLButtonElement>("[data-auto]");
 const autoLabel = document.querySelector<HTMLElement>("[data-auto-label]");
 const autoIcon = document.querySelector<HTMLElement>("[data-auto-icon]");
 const nextButton = document.querySelector<HTMLButtonElement>("[data-next-node]");
+const tourElement = document.querySelector<HTMLElement>("[data-tour]");
+const tourProgress = document.querySelector<HTMLElement>("[data-tour-progress]");
+const tourBar = document.querySelector<HTMLElement>("[data-tour-bar]");
+const tourCountdown = document.querySelector<HTMLElement>("[data-tour-countdown]");
 const live = document.querySelector<HTMLElement>("[data-live]");
 const projected = new THREE.Vector3();
 const resume = resumeJson as ResumeDocument;
@@ -44,6 +48,8 @@ let overlay: StationOverlay | undefined;
 let autoTour = true;
 let autoNextAt = Number.POSITIVE_INFINITY;
 let autoZoomAt = 0;
+let autoLegStart = 0;
+let lastCountdown = -1;
 let autoIndex = -1;
 
 function setState(state: "loading" | "intro" | "exploring" | "fallback") {
@@ -57,7 +63,8 @@ function setExploring() {
 
   if (autoTour && !Number.isFinite(autoNextAt)) {
     autoIndex = 0;
-    autoNextAt = performance.now() + 7500;
+    autoLegStart = performance.now();
+    autoNextAt = autoLegStart + 7500;
     autoZoomAt = 0;
   }
 }
@@ -125,6 +132,39 @@ function updateAutoControl() {
   autoButton?.setAttribute("aria-pressed", String(autoTour));
   if (autoLabel) autoLabel.textContent = autoTour ? "Pause tour" : "Auto tour";
   if (autoIcon) autoIcon.textContent = autoTour ? "Ⅱ" : "▶";
+  tourElement?.setAttribute("data-active", String(autoTour));
+
+  if (!autoTour) {
+    tourProgress?.setAttribute("aria-valuenow", "0");
+    if (tourBar) tourBar.style.transform = "scaleX(0)";
+    if (tourCountdown) tourCountdown.textContent = "Paused";
+    lastCountdown = -1;
+  }
+}
+
+function updateTourProgress(now: number) {
+  if (!autoTour || !Number.isFinite(autoNextAt)) return;
+
+  const total = Math.max(autoNextAt - autoLegStart, 1);
+  const remaining = Math.max(autoNextAt - now, 0);
+  const progress = Math.min(remaining / total, 1);
+
+  if (tourBar) {
+    tourBar.style.transform = `scaleX(${progress.toFixed(4)})`;
+  }
+
+  const seconds = Math.ceil(remaining / 1000);
+
+  if (seconds !== lastCountdown) {
+    lastCountdown = seconds;
+    if (tourCountdown) {
+      tourCountdown.textContent = seconds > 0 ? `Next in ${seconds}s` : "Next now";
+    }
+    tourProgress?.setAttribute(
+      "aria-valuenow",
+      String(Math.round(progress * 100)),
+    );
+  }
 }
 
 function stopAuto() {
@@ -132,6 +172,7 @@ function stopAuto() {
   autoTour = false;
   autoNextAt = Number.POSITIVE_INFINITY;
   autoZoomAt = 0;
+  autoLegStart = 0;
   rig.setDamping(7.5);
   rig.zoomBase();
   updateAutoControl();
@@ -143,10 +184,12 @@ function advanceTour() {
   autoIndex = (autoIndex + 1) % stations.length;
   const station = stations[autoIndex];
   activateStation(station.id, { openDialog: false });
+  const now = performance.now();
+  autoLegStart = now;
+  autoZoomAt = now + 3400;
+  autoNextAt = now + 9200;
   rig.setDamping(3);
   rig.zoomOut();
-  autoZoomAt = performance.now() + 3400;
-  autoNextAt = performance.now() + 9200;
 }
 
 function setAutoTour(enabled: boolean) {
@@ -155,7 +198,8 @@ function setAutoTour(enabled: boolean) {
   if (enabled) {
     autoIndex = activeId ? (stationById.get(activeId)?.index ?? -1) : -1;
     autoZoomAt = 0;
-    autoNextAt = performance.now() + 1200;
+    autoLegStart = performance.now();
+    autoNextAt = autoLegStart + 1200;
     rig.setDamping(7.5);
     rig.zoomBase();
     setExploring();
@@ -271,7 +315,8 @@ function start() {
 
     if (autoTour) {
       autoIndex = 0;
-      autoNextAt = performance.now() + 7500;
+      autoLegStart = performance.now();
+      autoNextAt = autoLegStart + 7500;
       autoZoomAt = 0;
     }
   });
@@ -294,6 +339,8 @@ function start() {
     if (autoTour && now >= autoNextAt) {
       advanceTour();
     }
+
+    updateTourProgress(now);
 
     if (keyboard.x !== 0 || keyboard.y !== 0) {
       const speed = 7.5 * delta;

@@ -978,7 +978,7 @@
     padding-bottom: max(1rem, env(safe-area-inset-bottom));
   }
 
-  .experience-controls {
+  .experience-tour {
     bottom: calc(8.25rem + env(safe-area-inset-bottom));
   }
 }
@@ -1039,7 +1039,8 @@
     animation: none;
   }
 
-  .experience-controls {
+  .experience-tour,
+  .experience-tour-progress {
     transition-duration: 0.01ms;
   }
 
@@ -1050,12 +1051,14 @@
 
 /* Tour controls */
 
-.experience-controls {
+.experience-tour {
   position: absolute;
   bottom: calc(4.5rem + env(safe-area-inset-bottom));
   left: 50%;
   z-index: 18;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 0.5rem;
   transform: translateX(-50%);
   pointer-events: none;
@@ -1064,11 +1067,65 @@
     visibility 260ms var(--ease);
 }
 
-.experience[data-state="intro"] .experience-controls,
-.experience[data-state="fallback"] .experience-controls {
+.experience[data-state="intro"] .experience-tour,
+.experience[data-state="fallback"] .experience-tour {
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
+}
+
+.experience-controls {
+  display: flex;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+
+.experience-tour-progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  width: 12rem;
+  color: var(--muted);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(4px);
+  transition:
+    opacity 180ms var(--ease),
+    transform 180ms var(--ease),
+    visibility 180ms var(--ease);
+}
+
+.experience-tour[data-active="true"] .experience-tour-progress {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.experience-tour-track {
+  width: 100%;
+  height: 2px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--line) 75%, transparent);
+}
+
+.experience-tour-bar {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--accent);
+  transform: scaleX(1);
+  transform-origin: left center;
+  will-change: transform;
+}
+
+.experience-tour-countdown {
+  font-family: var(--font-mono);
+  font-size: 0.54rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .experience-control {
