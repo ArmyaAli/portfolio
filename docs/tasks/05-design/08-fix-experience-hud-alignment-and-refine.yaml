@@ -1,6 +1,6 @@
 id: 28
 title: Fix experience HUD alignment and refine the station rail
-status: in_progress
+status: done
 tags:
   - hud
   - station-rail
@@ -25,9 +25,14 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T19:45:13"
 startedAt: "2026-11-14T19:45:15"
-updatedAt: "2026-11-14T19:45:15"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T19:51:11"
+completedAt: "2026-11-14T19:51:11"
+commit: a77d14a155
+outcome: >-
+  Experience HUD controls share one centerline; the station map is now a fixed numbered rail with
+  always-visible labels and a compact mobile pill.
+verification: >-
+  npm run check 0 errors; npm run build 4 pages; live desktop HUD centers all controls at 69.4px;
+  live rail labels visible; live mobile active button background transparent with no outline; no
+  overflow/page errors; Pages run 43660033555 succeeded.
+release: 1.0.0

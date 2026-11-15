@@ -40,12 +40,30 @@ const total = String(stations.length - 1).padStart(2, "0");
         </span>
         <span class="brand-role">Software Engineer · {location}</span>
       </a>
-      <nav class="experience-links" aria-label="Site">
-        <a href="/resume">Read as text</a>
-        <a href="/domains">Domains</a>
-        <button type="button" data-open-station="contact">Contact</button>
-        <ThemeToggle />
-      </nav>
+      <div class="experience-actions">
+        <nav class="experience-links" aria-label="Site">
+          <a href="/resume">Read as text</a>
+          <a href="/domains">Domains</a>
+          <button type="button" data-open-station="contact">Contact</button>
+        </nav>
+        <div class="experience-theme"><ThemeToggle /></div>
+      </div>
+      <details class="experience-menu" data-experience-menu>
+        <summary class="experience-menu-trigger" aria-label="Open menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </summary>
+        <div class="experience-menu-panel">
+          <a href="/resume">Read as text</a>
+          <a href="/domains">Domains</a>
+          <button type="button" data-open-station="contact">Contact</button>
+          <div class="experience-menu-theme">
+            <span>Theme</span>
+            <ThemeToggle />
+          </div>
+        </div>
+      </details>
     </header>
 
     <div class="station-labels">

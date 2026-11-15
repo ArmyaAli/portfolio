@@ -72,6 +72,9 @@ vertical on desktop, horizontal on mobile.
 - The thermometer fill animates to the active station. Desktop keeps every
   station label and index visible in a fixed-width rail, highlights the active
   row, and pulses the current tick; mobile collapses to a compact dot rail.
+- Mobile keeps the brand and theme switch in the top bar, one bottom tour/map
+  dock, concise station previews, and no secondary site links or floating
+  station labels.
 - URL hash sync: `/#experience`, `/#projects`, `/#skills`, `/#education`,
   `/#contact`; browser back closes an open station.
 - Intro hint: “Drag to move · click a node to open”; fades after first input.

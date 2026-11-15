@@ -1,0 +1,33 @@
+id: 29
+title: Simplify and align the mobile roadmap experience
+status: in_progress
+tags:
+  - mobile
+  - hud
+  - roadmap
+  - ux
+heat: 70
+detail: >-
+  Reduce mobile HUD clutter: hide secondary site links, the floating station labels, and the
+  keyboard hint; keep the theme switch and essential footer actions. Shorten the mobile 3D preview
+  copy, add a bottom scrim behind the tour/map, and align the remaining HUD/footer controls.
+  Acceptance: mobile roadmap has a clear brand/theme bar, a concise preview, one bottom navigation
+  rail, and a readable controls dock; no overlaps, no horizontal overflow, no page errors;
+  check/build pass and deploy succeeds.
+refs:
+  - src/pages/index.astro
+  - src/styles/experience.css
+  - src/experience/text.ts
+  - src/experience/main.ts
+links: []
+dependsOn: []
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T19:52:52"
+startedAt: "2026-11-14T19:52:52"
+updatedAt: "2026-11-14T19:52:52"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null

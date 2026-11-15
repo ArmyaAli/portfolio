@@ -358,6 +358,33 @@ function start() {
     });
   }
 
+  const experienceMenu = document.querySelector<HTMLDetailsElement>(
+    "[data-experience-menu]",
+  );
+  if (experienceMenu) {
+    const closeMenu = () => {
+      experienceMenu.open = false;
+    };
+
+    experienceMenu.addEventListener("click", (event) => {
+      const target = event.target as HTMLElement;
+      if (target.closest("a, [data-open-station]")) closeMenu();
+    });
+
+    document.addEventListener("click", (event) => {
+      if (
+        experienceMenu.open &&
+        !experienceMenu.contains(event.target as Node)
+      ) {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && experienceMenu.open) closeMenu();
+    });
+  }
+
   document.querySelector("[data-enter]")?.addEventListener("click", () => {
     setExploring();
     rig.focusStation(stations[0], narrow);

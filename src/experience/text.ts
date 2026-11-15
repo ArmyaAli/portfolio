@@ -75,10 +75,10 @@ const desktopLayout: Layout = {
 
 const mobileLayout: Layout = {
   width: 900,
-  height: 1400,
+  height: 827,
   margin: 56,
   bodyTop: 250,
-  bodyBottom: 1320,
+  bodyBottom: 780,
   columnGap: 0,
   radius: 24,
   kickerY: 44,
@@ -282,6 +282,15 @@ function drawColumn(
   return truncated;
 }
 
+function previewCopy(text: string, limit = 260): string {
+  const normalized = text.replace(/\s+/g, " ").trim();
+  if (normalized.length <= limit) return normalized;
+
+  const cut = normalized.slice(0, limit);
+  const end = Math.max(cut.lastIndexOf(". "), cut.lastIndexOf("; "));
+  return `${(end > 80 ? cut.slice(0, end + 1) : cut).trim()}…`;
+}
+
 function mobileContentFor(station: Station, resume: ResumeDocument): Column[] {
   const role = resume.experience[0];
 
@@ -289,7 +298,7 @@ function mobileContentFor(station: Station, resume: ResumeDocument): Column[] {
     case "origin":
       return [
         [
-          { heading: "Profile", lines: [resume.summary ?? ""] },
+          { heading: "Profile", lines: [previewCopy(resume.summary ?? "", 180)] },
           {
             heading: "Currently",
             meta: role ? `${role.title} · ${role.organization}` : undefined,
@@ -307,12 +316,8 @@ function mobileContentFor(station: Station, resume: ResumeDocument): Column[] {
                 {
                   heading: first.title,
                   meta: `${first.organization} · ${first.date}`,
-                  lines: first.bullets.slice(0, 2),
-                  bullets: true,
-                  note:
-                    first.bullets.length > 2
-                      ? `+${first.bullets.length - 2} more in the station panel`
-                      : undefined,
+                  lines: [],
+                  note: `${first.bullets.length} impact bullets in the station panel`,
                 },
               ]
             : []),
@@ -325,23 +330,54 @@ function mobileContentFor(station: Station, resume: ResumeDocument): Column[] {
       ];
     }
 
-    case "projects":
-      return [
-        resume.projects.map((project) => ({
-          heading: project.title,
-          meta: `${project.technologies.join(" · ")} · ${project.date}`,
-          lines: project.bullets.slice(0, 1),
-          bullets: true,
-        })),
-      ];
+    case "projects": {
+      const visible = resume.projects.slice(0, 2);
+      const more = resume.projects.length - visible.length;
 
-    case "skills":
       return [
-        resume.skills.map((group) => ({
-          heading: group.label,
-          lines: [group.items.join(", ")],
-        })),
+        [
+          ...visible.map((project) => ({
+            heading: project.title,
+            meta: `${project.technologies.join(" · ")} · ${project.date}`,
+            lines: [],
+          })),
+          ...(more > 0
+            ? [
+                {
+                  heading: "More",
+                  lines: [`+${more} projects in the station panel`],
+                },
+              ]
+            : []),
+        ],
       ];
+    }
+
+    case "skills": {
+      const visible = resume.skills.slice(0, 2);
+      const more = resume.skills.length - visible.length;
+
+      return [
+        [
+          ...visible.map((group) => {
+            const items = group.items.slice(0, 4);
+            const rest = group.items.length - items.length;
+            return {
+              heading: group.label,
+              lines: [`${items.join(", ")}${rest > 0 ? ", …" : ""}`],
+            };
+          }),
+          ...(more > 0
+            ? [
+                {
+                  heading: "More",
+                  lines: [`+${more} skill groups in the station panel`],
+                },
+              ]
+            : []),
+        ],
+      ];
+    }
 
     case "education":
       return [
@@ -351,17 +387,6 @@ function mobileContentFor(station: Station, resume: ResumeDocument): Column[] {
             meta: `${entry.institution} · ${entry.date ?? ""}`,
             lines: [],
           })),
-          {
-            heading: "Certifications",
-            lines: resume.certifications.map(
-              (certification) =>
-                `${certification.name} · ${certification.date}`,
-            ),
-          },
-          {
-            heading: "Interests",
-            lines: [resume.interests.join(", ")],
-          },
         ],
       ];
 
@@ -379,10 +404,6 @@ function mobileContentFor(station: Station, resume: ResumeDocument): Column[] {
               resume.contact.linkedin ?? "",
               resume.contact.github ?? "",
             ],
-          },
-          {
-            heading: "Full resume",
-            lines: ["Open the station panel for downloads and the contact form."],
           },
         ],
       ];
@@ -616,6 +637,6 @@ export function createStationTextTexture(
 
 export function textPanelFor(narrow: boolean) {
   return narrow
-    ? { width: 7.4, height: 11.5 }
+    ? { width: 7.4, height: 6.8 }
     : { width: 12, height: 7 };
 }
