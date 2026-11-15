@@ -62,7 +62,8 @@
     max(clamp(1.5rem, 3vw, 5rem), env(safe-area-inset-left));
   background: linear-gradient(
     to bottom,
-    color-mix(in srgb, var(--bg) 92%, transparent),
+    var(--bg) 0%,
+    var(--bg) 82%,
     transparent
   );
   pointer-events: none;

@@ -1,6 +1,6 @@
 id: 27
 title: Align static nav and turn the station map into an animated thermometer
-status: in_progress
+status: done
 tags:
   - nav
   - minimap
@@ -27,9 +27,13 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T19:33:37"
 startedAt: "2026-11-14T19:33:38"
-updatedAt: "2026-11-14T19:33:38"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T19:36:41"
+completedAt: "2026-11-14T19:36:41"
+commit: 891406bacf
+outcome: >-
+  Static nav now aligns all text options with a separate theme utility; the station map is an
+  animated thermometer with desktop/mobile tracks.
+verification: >-
+  check pass; desktop nav centers all 5 controls at y=40.39; thermometer reaches progress 0.2/0.6;
+  mobile map/tour overlap resolved; no page errors.
+release: 1.0.0

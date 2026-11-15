@@ -1,6 +1,6 @@
 # Interactive 3D Resume — Plan
 
-Status: implemented — review pending
+Status: implemented — deployment pending
 Owner: Ali Umar
 Epic: `interactive-resume`
 
@@ -54,17 +54,23 @@ Suggested layout, top to bottom:
 | 04 Education | York, Seneca, certifications, interests | `(5, -48)` |
 | 05 Contact | Email, GitHub, LinkedIn, PDF download | `(0, -60)` |
 
-Camera bounds are soft-clamped around `x ±14`, `y -68…8`. A minimap shows the path,
-station states, and current position.
+Camera bounds are soft-clamped around `x ±14`, `y -68…8`. A thermometer-style
+minimap shows the path, station states, current station, and animated progress:
+vertical on desktop, horizontal on mobile.
 
 ## Interaction contract
 
 - Drag: pan camera in X/Y.
 - Wheel/trackpad: pan; native keyboard pairs with W/A/S/D and arrows.
-- Click/tap station or its minimap dot: focus station.
+- Click/tap station or its thermometer node: focus station.
 - `Enter`: open focused station.
 - `Esc`: close the station dialog.
 - Next/previous inside the dialog: sequential resume reading.
+- Auto tour starts at the origin and advances every nine seconds. Pause/resume
+  controls the tour; Next steps immediately; manual movement pauses auto and it
+  resumes 6.5 seconds after the user stops.
+- The thermometer fill animates to the active station; labels appear on hover or
+  active state, and the current tick pulses.
 - URL hash sync: `/#experience`, `/#projects`, `/#skills`, `/#education`,
   `/#contact`; browser back closes an open station.
 - Intro hint: “Drag to move · click a node to open”; fades after first input.

@@ -3,7 +3,9 @@
 An interactive 3D resume for Ali Umar, generated from `public/resume.pdf`.
 
 The root experience is a mycelium world you move through in a fixed X/Y plane.
-A readable, printable resume is always available at `/resume`.
+Stations auto-advance every nine seconds; pause/resume the tour or step through
+with Next. A thermometer-style minimap tracks progress. A readable, printable
+resume is always available at `/resume`.
 
 ## Stack
 
