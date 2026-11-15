@@ -1,6 +1,6 @@
 id: 30
 title: Redesign the static-page header navigation
-status: in_progress
+status: done
 tags:
   - nav
   - header
@@ -22,9 +22,14 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T19:59:54"
 startedAt: "2026-11-14T19:59:54"
-updatedAt: "2026-11-14T19:59:54"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T20:05:07"
+completedAt: "2026-11-14T20:05:07"
+commit: cf954fd513
+outcome: >-
+  Static pages now share a cohesive sticky header with brand/role, segmented nav, active pill, and
+  theme switch; mobile stacks a full-width segmented nav.
+verification: >-
+  npm run check 0 errors; npm run build 4 pages; desktop nav centers 37.8px; mobile nav grid active
+  state; no overflow at 390px; live /domains nav grid active Domains; Pages run 43661242254
+  succeeded.
+release: 1.0.0
