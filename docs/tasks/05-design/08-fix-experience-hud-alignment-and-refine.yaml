@@ -1,0 +1,33 @@
+id: 28
+title: Fix experience HUD alignment and refine the station rail
+status: in_progress
+tags:
+  - hud
+  - station-rail
+  - thermometer
+  - nav
+heat: 65
+detail: >-
+  Align Read as text, Domains, Contact, and the theme switch on one centerline in the experience
+  HUD. Replace the expanding station dot list with a fixed-width node rail: always-visible labels,
+  aligned dot/index/label columns, active-row highlight, animated thermometer fill and bulb, no
+  layout shift on hover, and a compact horizontal mobile rail. Acceptance: all HUD items share a
+  centerline at desktop/mobile; station labels are readable without hover; active row and fill track
+  selection; no overflow, console errors, or overlap with the tour dock; check/build pass; deploy
+  succeeds.
+refs:
+  - src/pages/index.astro
+  - src/styles/experience.css
+  - src/experience/main.ts
+links: []
+dependsOn: []
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T19:45:13"
+startedAt: "2026-11-14T19:45:15"
+updatedAt: "2026-11-14T19:45:15"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null

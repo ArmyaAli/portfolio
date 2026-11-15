@@ -106,6 +106,9 @@ const total = String(stations.length - 1).padStart(2, "0");
             aria-current="false"
           >
             <span class="station-map-dot" aria-hidden="true"></span>
+            <span class="station-map-index" aria-hidden="true">
+              {String(station.index).padStart(2, "0")}
+            </span>
             <span class="station-map-name">{station.label}</span>
           </button>
         ))

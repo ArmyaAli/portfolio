@@ -147,11 +147,27 @@
 
 .experience-links {
   display: flex;
+  align-items: center;
   gap: clamp(1.25rem, 2.4vw, 2.75rem);
   font-family: var(--font-mono);
   font-size: clamp(0.68rem, 0.7vw, 0.95rem);
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+.experience-links a,
+.experience-links > button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.2rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.experience-links > .theme-toggle {
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .experience-links a {
@@ -610,23 +626,29 @@
 /* Minimap */
 
 .station-map {
+  --rail-x: 1.125rem;
   position: absolute;
   top: 50%;
   right: clamp(1rem, 3vw, 2.5rem);
   z-index: 15;
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
-  padding: 0.5rem;
+  gap: 0.15rem;
+  padding: 0.55rem 0.75rem 0.55rem 0.5rem;
+  border: 1px solid color-mix(in srgb, var(--line) 72%, transparent);
+  border-radius: 0.9rem;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  box-shadow: 0 18px 60px rgb(0 0 0 / 0.18);
+  backdrop-filter: blur(14px);
   transform: translateY(-50%);
 }
 
 .station-map-line {
   position: absolute;
-  top: 1.1rem;
-  bottom: 1.1rem;
-  left: 50%;
-  width: 3px;
+  top: 1.725rem;
+  bottom: 1.725rem;
+  left: var(--rail-x);
+  width: 2px;
   border-radius: 999px;
   background: color-mix(in srgb, var(--line) 82%, transparent);
   transform: translateX(-50%);
@@ -634,11 +656,11 @@
 
 .station-map-fill {
   position: absolute;
-  top: 1.1rem;
-  bottom: 1.1rem;
-  left: 50%;
+  top: 1.725rem;
+  bottom: 1.725rem;
+  left: var(--rail-x);
   z-index: 0;
-  width: 3px;
+  width: 2px;
   border-radius: 999px;
   background: linear-gradient(
     to bottom,
@@ -646,7 +668,7 @@
     var(--green) 60%,
     var(--yellow)
   );
-  box-shadow: 0 0 16px color-mix(in srgb, var(--accent) 32%, transparent);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 28%, transparent);
   transform: translateX(-50%) scaleY(var(--roadmap-progress, 0));
   transform-origin: top center;
   transition: transform 900ms var(--ease);
@@ -656,42 +678,60 @@
 .station-map::after {
   content: "";
   position: absolute;
-  bottom: 0.1rem;
-  left: 50%;
+  bottom: 0.12rem;
+  left: var(--rail-x);
   z-index: 0;
-  width: 0.65rem;
-  height: 0.65rem;
+  width: 0.62rem;
+  height: 0.62rem;
   border-radius: 50%;
   background: var(--accent);
-  box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 38%, transparent);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--accent) 34%, transparent);
   transform: translateX(-50%);
   pointer-events: none;
 }
 
 .station-map-button {
-  z-index: 1;
-}
-
-.station-map-button {
   position: relative;
-  display: flex;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.25rem 1.5rem minmax(0, 1fr);
   align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  min-width: 44px;
-  min-height: 44px;
-  padding: 0;
+  gap: 0.5rem;
+  width: 100%;
+  min-height: 2.35rem;
+  padding: 0 0.55rem 0 0;
   border: 0;
-  background: none;
+  border-radius: 0.55rem;
+  background: transparent;
   color: var(--muted);
   font-family: var(--font-mono);
   font-size: clamp(0.64rem, 0.5vw, 0.82rem);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   cursor: pointer;
+  transition:
+    background-color 180ms var(--ease),
+    color 180ms var(--ease);
+}
+
+.station-map-button:hover,
+.station-map-button:focus-visible {
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
+  color: var(--ink);
+}
+
+.station-map-button:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: -1px;
+}
+
+.station-map-button.is-active {
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  color: var(--ink);
 }
 
 .station-map-dot {
+  justify-self: center;
   width: 0.45rem;
   height: 0.45rem;
   border: 1px solid var(--muted);
@@ -703,11 +743,6 @@
     box-shadow 180ms var(--ease);
 }
 
-.station-map-button:hover,
-.station-map-button.is-active {
-  color: var(--ink);
-}
-
 .station-map-button.is-active .station-map-dot {
   border-color: var(--accent);
   background: var(--accent);
@@ -715,23 +750,20 @@
   animation: dot-pulse 2.4s var(--ease) infinite;
 }
 
-.station-map-name {
-  max-width: 0;
-  overflow: hidden;
-  opacity: 0;
-  transform: translateX(-4px);
-  transition:
-    max-width 220ms var(--ease),
-    opacity 220ms var(--ease),
-    transform 220ms var(--ease);
+.station-map-index {
+  color: color-mix(in srgb, var(--muted) 72%, transparent);
+  font-size: 0.56rem;
+  letter-spacing: 0.08em;
+  text-align: center;
 }
 
-.station-map:hover .station-map-name,
-.station-map-button:focus-visible .station-map-name,
-.station-map-button.is-active .station-map-name {
-  max-width: 8rem;
-  opacity: 1;
-  transform: none;
+.station-map-button.is-active .station-map-index {
+  color: var(--accent);
+}
+
+.station-map-name {
+  min-width: 0;
+  white-space: nowrap;
 }
 
 /* Station dialog */
@@ -1065,33 +1097,54 @@
     right: 50%;
     bottom: calc(4.5rem + env(safe-area-inset-bottom));
     flex-direction: row;
-    gap: 0.7rem;
-    padding: 0;
+    gap: 0;
+    padding: 0.25rem 0.35rem;
+    border-radius: 999px;
     transform: translateX(50%);
   }
 
   .station-map-line {
     top: 50%;
-    right: 1.1rem;
+    right: 1.675rem;
     bottom: auto;
-    left: 1.1rem;
+    left: 1.675rem;
     width: auto;
-    height: 3px;
+    height: 2px;
     transform: translateY(-50%);
   }
 
   .station-map-fill {
     top: 50%;
-    right: 1.1rem;
+    right: 1.675rem;
     bottom: auto;
-    left: 1.1rem;
+    left: 1.675rem;
     width: auto;
-    height: 3px;
+    height: 2px;
     transform: translateY(-50%) scaleX(var(--roadmap-progress, 0));
     transform-origin: left center;
   }
 
+  .station-map .station-map-button,
+  .station-map .station-map-button:hover,
+  .station-map .station-map-button:focus-visible,
+  .station-map .station-map-button.is-active {
+    display: flex;
+    width: 2.65rem;
+    min-width: 2.65rem;
+    min-height: 2.65rem;
+    padding: 0;
+    background: transparent;
+    outline: none;
+  }
+
+  .station-map .station-map-button:focus-visible .station-map-dot {
+    box-shadow:
+      0 0 0 3px var(--bg),
+      0 0 0 4px var(--accent);
+  }
+
   .station-map::after,
+  .station-map-index,
   .station-map-name {
     display: none;
   }

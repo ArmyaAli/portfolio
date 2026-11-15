@@ -69,8 +69,9 @@ vertical on desktop, horizontal on mobile.
 - Auto tour starts at the origin and advances every nine seconds. Pause/resume
   controls the tour; Next steps immediately; manual movement pauses auto and it
   resumes 6.5 seconds after the user stops.
-- The thermometer fill animates to the active station; labels appear on hover or
-  active state, and the current tick pulses.
+- The thermometer fill animates to the active station. Desktop keeps every
+  station label and index visible in a fixed-width rail, highlights the active
+  row, and pulses the current tick; mobile collapses to a compact dot rail.
 - URL hash sync: `/#experience`, `/#projects`, `/#skills`, `/#education`,
   `/#contact`; browser back closes an open station.
 - Intro hint: “Drag to move · click a node to open”; fades after first input.
