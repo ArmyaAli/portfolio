@@ -1,6 +1,6 @@
 id: 21
 title: Polish and fit the tour and intro buttons
-status: in_progress
+status: done
 tags:
   - buttons
   - hud
@@ -24,9 +24,13 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T19:05:29"
 startedAt: "2026-11-14T19:05:30"
-updatedAt: "2026-11-14T19:05:30"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T19:06:38"
+completedAt: "2026-11-14T19:06:38"
+commit: 8ec2194c5e8c3658bee70d87178b39bae69b3a16
+outcome: >-
+  Tour controls are now a compact segmented dock with one-line labels, and the intro actions are
+  tightened.
+verification: >-
+  Desktop/mobile screenshots; group width 149px, one-line Pause/Next, 44px targets, no overflow;
+  check/build pass.
+release: 1.0.0
