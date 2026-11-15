@@ -1,0 +1,34 @@
+id: 24
+title: Expand the landing intro and align static nav
+status: in_progress
+tags:
+  - landing
+  - layout
+  - nav
+  - copy
+heat: 60
+detail: >-
+  Remove the visible Interactive resume copy from the experience (intro and footer) and use an
+  Experience link on /resume. Turn the intro into a two-column desktop layout with larger
+  summary/buttons and less dead space; stack on mobile. Align all static-header nav items, Contact
+  pill, and theme switch on a common 44px centerline. Acceptance: 1440/2560 and mobile screenshots;
+  no AI label; no overflow/errors; check/build/nix pass.
+refs:
+  - src/pages/index.astro
+  - src/pages/resume.astro
+  - src/components/Header.astro
+  - src/styles/experience.css
+  - src/styles/global.css
+links: []
+dependsOn:
+  - 23
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T19:19:35"
+startedAt: "2026-11-14T19:19:36"
+updatedAt: "2026-11-14T19:19:36"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null

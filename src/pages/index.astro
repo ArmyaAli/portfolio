@@ -71,17 +71,22 @@ const total = String(stations.length - 1).padStart(2, "0");
 
     <section class="experience-intro" aria-labelledby="intro-title">
       <div class="intro-theme"><ThemeToggle /></div>
-      <p class="section-kicker">Interactive resume</p>
-      <h1 id="intro-title">{site.name}</h1>
-      <p class="intro-role">{role}</p>
-      <p class="intro-copy">{resume.summary}</p>
-      <div class="intro-actions">
-        <button class="button" type="button" data-enter>
-          Enter <span aria-hidden="true">→</span>
-        </button>
-        <a class="button-ghost" href="/resume">Read resume</a>
+      <div class="intro-inner">
+        <div class="intro-lead">
+          <h1 id="intro-title">{site.name}</h1>
+          <p class="intro-role">{role}</p>
+        </div>
+        <div class="intro-body">
+          <p class="intro-copy">{resume.summary}</p>
+          <div class="intro-actions">
+            <button class="button" type="button" data-enter>
+              Enter <span aria-hidden="true">→</span>
+            </button>
+            <a class="button-ghost" href="/resume">Read resume</a>
+          </div>
+          <p class="intro-hint">Drag to move · scroll to explore · click a node</p>
+        </div>
       </div>
-      <p class="intro-hint">Drag to move · scroll to explore · click a node</p>
     </section>
 
     <div class="experience-loading" aria-live="polite">
@@ -151,7 +156,6 @@ const total = String(stations.length - 1).padStart(2, "0");
     <footer class="experience-footer">
       <p class="experience-progress">
         <span data-station-count>00 / {total}</span>
-        <span>Interactive resume</span>
       </p>
       <p class="experience-hint">Drag · scroll · WASD</p>
       <p class="experience-meta">
@@ -161,7 +165,7 @@ const total = String(stations.length - 1).padStart(2, "0");
     </footer>
 
     <section class="experience-fallback" aria-labelledby="fallback-title">
-      <p class="section-kicker">Interactive resume unavailable</p>
+      <p class="section-kicker">Resume unavailable</p>
       <h1 id="fallback-title">{site.name}</h1>
       <p>{resume.summary}</p>
       <div class="intro-actions">

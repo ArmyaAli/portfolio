@@ -286,8 +286,16 @@ a {
   letter-spacing: 0.12em;
 }
 
+.site-nav > a,
+.site-nav .theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  line-height: 1;
+}
+
 .site-nav a {
-  padding-block: 0.35rem;
+  padding-block: 0;
   border-bottom: 1px solid transparent;
   color: var(--muted);
   text-decoration: none;
@@ -303,6 +311,7 @@ a {
 }
 
 .site-nav .nav-contact {
+  min-height: 44px;
   padding: 0.5rem 0.85rem;
   border: 1px solid var(--line);
   border-radius: 999px;
