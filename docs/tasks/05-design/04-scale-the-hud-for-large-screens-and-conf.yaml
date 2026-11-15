@@ -1,0 +1,32 @@
+id: 22
+title: Scale the HUD for large screens and confirm auto default
+status: in_progress
+tags:
+  - hud
+  - responsive
+  - large-screens
+  - auto
+heat: 55
+detail: >-
+  The corner chrome (wordmark, nav, footer, minimap, tour controls) is too small on high-resolution
+  desktop viewports. Scale it with viewport-aware clamps while keeping mobile sizes and safe areas.
+  Confirm Auto tour is active by default after entry and the countdown/controls are readable.
+  Acceptance: 1440/1920/2560 screenshots; no overlap or overflow; auto default verified;
+  check/build/nix pass.
+refs:
+  - src/styles/experience.css
+  - src/experience/main.ts
+  - src/pages/index.astro
+links: []
+dependsOn:
+  - 19
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T19:08:28"
+startedAt: "2026-11-14T19:08:31"
+updatedAt: "2026-11-14T19:08:31"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null
