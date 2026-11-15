@@ -1,6 +1,6 @@
 id: 26
 title: Keep auto tour alive across node opens and manual pauses
-status: in_progress
+status: done
 tags:
   - auto
   - progress
@@ -22,9 +22,13 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T19:28:44"
 startedAt: "2026-11-14T19:28:46"
-updatedAt: "2026-11-14T19:28:46"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T19:28:54"
+completedAt: "2026-11-14T19:28:54"
+commit: 151175855bbdad505534f2658b5357cd6af38825
+outcome: >-
+  Auto tour now pauses across node opens/manual input and resumes automatically; closing a node
+  restarts its full countdown.
+verification: >-
+  Station open set autoRunning false; close restarted at Next in 9s with auto still enabled; manual
+  wheel paused then resumed after 6.5s; explicit Auto/Pause turned it off; no errors.
+release: 1.0.0
