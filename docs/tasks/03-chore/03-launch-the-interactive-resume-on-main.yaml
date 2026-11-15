@@ -1,6 +1,6 @@
 id: 9
 title: Launch the interactive resume on main
-status: done
+status: in_progress
 tags:
   - launch
   - deploy
@@ -35,8 +35,8 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T16:23:39"
 startedAt: "2026-11-14T17:08:46"
-updatedAt: "2026-11-14T19:42:08"
-completedAt: "2026-11-14T19:42:08"
+updatedAt: "2026-11-14T19:42:18"
+completedAt: null
 commit: 9e19c023f7
 outcome: >-
   Interactive resume is live on main: aligned static nav, animated thermometer roadmap, auto tour
