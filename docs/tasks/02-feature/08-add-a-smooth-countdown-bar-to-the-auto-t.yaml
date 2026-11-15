@@ -1,6 +1,6 @@
 id: 19
 title: Add a smooth countdown bar to the auto tour
-status: in_progress
+status: done
 tags:
   - 3d
   - auto
@@ -24,9 +24,11 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T19:02:46"
 startedAt: "2026-11-14T19:02:51"
-updatedAt: "2026-11-14T19:02:51"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T19:04:19"
+completedAt: "2026-11-14T19:04:19"
+commit: 8a2bbe3e07366c7722d782e09b1e96611f06eb2a
+outcome: Auto tour now shows a smooth draining countdown bar with a seconds label.
+verification: >-
+  Countdown read Next in 7s at t1 and Next in 4s at t4; bar transform/aria-valuenow shrank smoothly;
+  active state and pause hiding verified; check/build pass.
+release: 1.0.0
