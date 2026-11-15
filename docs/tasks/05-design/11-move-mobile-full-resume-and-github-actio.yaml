@@ -1,0 +1,29 @@
+id: 31
+title: Move mobile full-resume and GitHub actions into the hamburger
+status: in_progress
+tags:
+  - mobile
+  - menu
+  - actions
+heat: 45
+detail: >-
+  On the mobile experience, move Full resume and GitHub from the footer into the hamburger sheet,
+  alongside Domains, Contact, and Theme. Avoid duplicating the resume link; label it Full resume.
+  Hide the footer meta links on mobile while keeping the station count. Acceptance: menu contains
+  Full resume, Domains, Contact, GitHub, Theme; both destinations work; footer meta hidden on
+  mobile; desktop unchanged; no overflow or page errors; check/build/deploy pass.
+refs:
+  - src/pages/index.astro
+  - src/styles/experience.css
+links: []
+dependsOn: []
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T20:11:05"
+startedAt: "2026-11-14T20:11:06"
+updatedAt: "2026-11-14T20:11:06"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null

@@ -55,9 +55,16 @@ const total = String(stations.length - 1).padStart(2, "0");
           <span></span>
         </summary>
         <div class="experience-menu-panel">
-          <a href="/resume">Read as text</a>
+          <a href="/resume">Full resume</a>
           <a href="/domains">Domains</a>
           <button type="button" data-open-station="contact">Contact</button>
+          <a
+            href={site.links.github}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub <span aria-hidden="true">↗</span>
+          </a>
           <div class="experience-menu-theme">
             <span>Theme</span>
             <ThemeToggle />

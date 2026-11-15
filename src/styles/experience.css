@@ -219,7 +219,7 @@
   top: calc(100% + 0.6rem);
   right: 0;
   z-index: 30;
-  display: grid;
+  display: none;
   gap: 0.15rem;
   width: min(15rem, calc(100vw - 2rem));
   padding: 0.45rem;
@@ -228,6 +228,10 @@
   background: color-mix(in srgb, var(--surface) 96%, transparent);
   box-shadow: 0 24px 70px rgb(0 0 0 / 0.32);
   backdrop-filter: blur(18px);
+}
+
+.experience-menu[open] .experience-menu-panel {
+  display: grid;
 }
 
 .experience-menu-panel > a,
@@ -414,6 +418,10 @@
 .experience[data-state="exploring"] .experience-intro {
   visibility: hidden;
   opacity: 0;
+  pointer-events: none;
+}
+
+.experience[data-state="exploring"] .experience-intro * {
   pointer-events: none;
 }
 
@@ -1581,7 +1589,8 @@
 @media (max-width: 760px) {
   .experience-actions,
   .station-label,
-  .experience-hint {
+  .experience-hint,
+  .experience-meta {
     display: none;
   }
 
