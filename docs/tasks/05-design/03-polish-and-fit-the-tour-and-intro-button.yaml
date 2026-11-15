@@ -1,0 +1,32 @@
+id: 21
+title: Polish and fit the tour and intro buttons
+status: in_progress
+tags:
+  - buttons
+  - hud
+  - mobile
+  - design
+heat: 55
+detail: >-
+  Replace wrapping control labels with a compact segmented pill dock: Auto/Pause (play/pause icon)
+  and Next (arrow), full aria-labels, 44px targets, no wrapping. Tighten the intro actions to Enter
+  (arrow) and Read resume, with consistent hover/focus states. Acceptance: desktop/mobile
+  screenshots; one-line labels; controls fit above the minimap with countdown; no overflow/errors;
+  check/build pass.
+refs:
+  - src/pages/index.astro
+  - src/styles/experience.css
+  - src/experience/main.ts
+links: []
+dependsOn:
+  - 19
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T19:05:29"
+startedAt: "2026-11-14T19:05:30"
+updatedAt: "2026-11-14T19:05:30"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null

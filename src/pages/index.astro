@@ -73,8 +73,10 @@ const total = String(stations.length - 1).padStart(2, "0");
       <p class="intro-role">{role}</p>
       <p class="intro-copy">{resume.summary}</p>
       <div class="intro-actions">
-        <button class="button" type="button" data-enter>Enter the grove</button>
-        <a class="button-ghost" href="/resume">Read as text</a>
+        <button class="button" type="button" data-enter>
+          Enter <span aria-hidden="true">→</span>
+        </button>
+        <a class="button-ghost" href="/resume">Read resume</a>
       </div>
       <p class="intro-hint">Drag to move · scroll to explore · click a node</p>
     </section>
@@ -122,12 +124,23 @@ const total = String(stations.length - 1).padStart(2, "0");
       </div>
 
       <div class="experience-controls" role="group" aria-label="Tour controls">
-        <button class="experience-control" type="button" data-auto aria-pressed="false">
+        <button
+          class="experience-control"
+          type="button"
+          data-auto
+          aria-pressed="false"
+          aria-label="Start auto tour"
+        >
           <span class="experience-control-icon" data-auto-icon aria-hidden="true">▶</span>
-          <span data-auto-label>Auto tour</span>
+          <span data-auto-label>Auto</span>
         </button>
-        <button class="experience-control" type="button" data-next-node>
-          Next node <span aria-hidden="true">→</span>
+        <button
+          class="experience-control"
+          type="button"
+          data-next-node
+          aria-label="Go to the next resume node"
+        >
+          Next <span aria-hidden="true">→</span>
         </button>
       </div>
     </div>

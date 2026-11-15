@@ -130,8 +130,12 @@ function activateStation(
 
 function updateAutoControl() {
   autoButton?.setAttribute("aria-pressed", String(autoTour));
-  if (autoLabel) autoLabel.textContent = autoTour ? "Pause tour" : "Auto tour";
+  if (autoLabel) autoLabel.textContent = autoTour ? "Pause" : "Auto";
   if (autoIcon) autoIcon.textContent = autoTour ? "Ⅱ" : "▶";
+  autoButton?.setAttribute(
+    "aria-label",
+    autoTour ? "Pause auto tour" : "Start auto tour",
+  );
   tourElement?.setAttribute("data-active", String(autoTour));
 
   if (!autoTour) {
