@@ -41,8 +41,9 @@ let hoveredId: StationId | undefined;
 let rig: CameraRig;
 let world: ResumeWorld;
 let overlay: StationOverlay | undefined;
-let autoTour = false;
-let autoNextAt = 0;
+let autoTour = true;
+let autoNextAt = Number.POSITIVE_INFINITY;
+let autoZoomAt = 0;
 let autoIndex = -1;
 
 function setState(state: "loading" | "intro" | "exploring" | "fallback") {
@@ -50,8 +51,14 @@ function setState(state: "loading" | "intro" | "exploring" | "fallback") {
 }
 
 function setExploring() {
-  if (experienceRoot.dataset.state === "intro") {
-    setState("exploring");
+  if (experienceRoot.dataset.state !== "intro") return;
+
+  setState("exploring");
+
+  if (autoTour && !Number.isFinite(autoNextAt)) {
+    autoIndex = 0;
+    autoNextAt = performance.now() + 7500;
+    autoZoomAt = 0;
   }
 }
 
@@ -121,17 +128,25 @@ function updateAutoControl() {
 }
 
 function stopAuto() {
-  if (!autoTour) return;
+  const wasRunning = autoTour;
   autoTour = false;
+  autoNextAt = Number.POSITIVE_INFINITY;
+  autoZoomAt = 0;
+  rig.setDamping(7.5);
+  rig.zoomBase();
   updateAutoControl();
-  if (live) live.textContent = "Auto tour stopped.";
+
+  if (wasRunning && live) live.textContent = "Auto tour stopped.";
 }
 
 function advanceTour() {
   autoIndex = (autoIndex + 1) % stations.length;
   const station = stations[autoIndex];
   activateStation(station.id, { openDialog: false });
-  autoNextAt = performance.now() + 5400;
+  rig.setDamping(3);
+  rig.zoomOut();
+  autoZoomAt = performance.now() + 3400;
+  autoNextAt = performance.now() + 9200;
 }
 
 function setAutoTour(enabled: boolean) {
@@ -139,8 +154,17 @@ function setAutoTour(enabled: boolean) {
 
   if (enabled) {
     autoIndex = activeId ? (stationById.get(activeId)?.index ?? -1) : -1;
-    advanceTour();
+    autoZoomAt = 0;
+    autoNextAt = performance.now() + 1200;
+    rig.setDamping(7.5);
+    rig.zoomBase();
+    setExploring();
     if (live) live.textContent = "Auto tour started.";
+  } else {
+    autoNextAt = Number.POSITIVE_INFINITY;
+    autoZoomAt = 0;
+    rig.setDamping(7.5);
+    rig.zoomBase();
   }
 
   updateAutoControl();
@@ -149,7 +173,8 @@ function setAutoTour(enabled: boolean) {
 function nextNode() {
   stopAuto();
   autoIndex = activeId ? (stationById.get(activeId)?.index ?? -1) : -1;
-  advanceTour();
+  autoIndex = (autoIndex + 1) % stations.length;
+  activateStation(stations[autoIndex].id, { openDialog: false });
 }
 
 function selectStation(id: StationId, trigger?: HTMLElement) {
@@ -187,7 +212,9 @@ function start() {
 
   const input = new ExperienceInput(experienceCanvas, {
     onFirstInput: setExploring,
-    onManualInput: stopAuto,
+    onManualInput: () => {
+      if (experienceRoot.dataset.state === "exploring") stopAuto();
+    },
     onDrag: (dx, dy) => rig.panByPixels(dx, dy, experienceCanvas.clientHeight),
     onWheel: (dx, dy) =>
       rig.panByPixels(-dx * 1.8, -dy * 1.8, experienceCanvas.clientHeight),
@@ -241,6 +268,12 @@ function start() {
   document.querySelector("[data-enter]")?.addEventListener("click", () => {
     setExploring();
     rig.focusStation(stations[0], narrow);
+
+    if (autoTour) {
+      autoIndex = 0;
+      autoNextAt = performance.now() + 7500;
+      autoZoomAt = 0;
+    }
   });
 
   let previous = performance.now();
@@ -253,7 +286,12 @@ function start() {
     elapsed += delta;
     const keyboard = input.keyboardDirection();
 
-    if (autoTour && performance.now() >= autoNextAt) {
+    if (autoTour && autoZoomAt > 0 && now >= autoZoomAt) {
+      rig.zoomIn();
+      autoZoomAt = 0;
+    }
+
+    if (autoTour && now >= autoNextAt) {
       advanceTour();
     }
 
@@ -291,8 +329,12 @@ function start() {
   setState("intro");
   updateLabels();
 
+  updateAutoControl();
+
   const initialId = window.location.hash.slice(1) as StationId;
   if (stationById.has(initialId)) {
+    autoTour = false;
+    updateAutoControl();
     activateStation(initialId, { openDialog: true, pushHistory: false });
   }
 
@@ -304,7 +346,11 @@ function start() {
       activeId,
       hoveredId,
       autoTour,
-      camera: { x: rig.camera.position.x, y: rig.camera.position.y },
+      camera: {
+        x: rig.camera.position.x,
+        y: rig.camera.position.y,
+        z: rig.camera.position.z,
+      },
     }),
     openStation: (id: StationId) => selectStation(id),
   };

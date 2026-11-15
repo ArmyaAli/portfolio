@@ -1,0 +1,32 @@
+id: 18
+title: Default auto tour with slower cinematic pans
+status: in_progress
+tags:
+  - 3d
+  - animation
+  - auto
+  - camera
+heat: 70
+detail: >-
+  Enable Auto tour by default when the visitor enters, slow the station-to-station camera travel,
+  and add a pronounced zoom-out then zoom-in at each stop. Keep manual input cancellation, the
+  next-node button, reduced-motion behavior, and mobile framing intact. Acceptance: auto starts
+  without pressing Auto after Enter, dwell and travel are visibly slower, camera z moves out then
+  in, manual input stops and restores base framing, check/build/nix pass.
+refs:
+  - src/experience/main.ts
+  - src/experience/camera-rig.ts
+  - src/styles/experience.css
+links: []
+dependsOn:
+  - 17
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T18:57:40"
+startedAt: "2026-11-14T18:57:42"
+updatedAt: "2026-11-14T18:57:42"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null

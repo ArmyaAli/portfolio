@@ -9,6 +9,8 @@ export class CameraRig {
 
   private readonly position = new THREE.Vector2(0, 0);
   private baseZ = 18;
+  private targetZ = 18;
+  private damping = 7.5;
   private reducedMotion = false;
 
   constructor() {
@@ -23,7 +25,24 @@ export class CameraRig {
 
     this.camera.aspect = aspect;
     this.camera.position.z = this.baseZ;
+    this.targetZ = this.baseZ;
     this.camera.updateProjectionMatrix();
+  }
+
+  setDamping(value: number) {
+    this.damping = value;
+  }
+
+  zoomOut() {
+    this.targetZ = this.baseZ + 9;
+  }
+
+  zoomIn() {
+    this.targetZ = this.baseZ + 0.2;
+  }
+
+  zoomBase() {
+    this.targetZ = this.baseZ;
   }
 
   moveBy(dx: number, dy: number) {
@@ -57,10 +76,12 @@ export class CameraRig {
   update(delta: number) {
     const factor = this.reducedMotion
       ? 1
-      : 1 - Math.exp(-Math.min(delta, 0.05) * 7.5);
+      : 1 - Math.exp(-Math.min(delta, 0.05) * this.damping);
 
     this.position.lerp(this.target, factor);
-    this.camera.position.set(this.position.x, this.position.y, this.baseZ);
+    this.camera.position.x = this.position.x;
+    this.camera.position.y = this.position.y;
+    this.camera.position.z += (this.targetZ - this.camera.position.z) * factor;
     this.camera.lookAt(this.position.x, this.position.y, 0);
   }
 
