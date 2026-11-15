@@ -5,7 +5,7 @@ import { createStationOverlay, type StationOverlay } from "./overlay";
 import type { ResumeDocument } from "../lib/resume/types";
 import resumeJson from "../data/resume.generated.json";
 import { stationById, stations, type StationId } from "./stations";
-import { palette } from "./theme";
+import { paletteFor, type Theme } from "./theme";
 import { ResumeWorld } from "./world";
 
 const root = document.querySelector<HTMLElement>("[data-experience]");
@@ -39,6 +39,8 @@ const tourCountdown = document.querySelector<HTMLElement>("[data-tour-countdown]
 const live = document.querySelector<HTMLElement>("[data-live]");
 const projected = new THREE.Vector3();
 const resume = resumeJson as ResumeDocument;
+const currentTheme = (): Theme =>
+  document.documentElement.dataset.theme === "light" ? "light" : "dark";
 
 let activeId: StationId | undefined;
 let hoveredId: StationId | undefined;
@@ -237,10 +239,11 @@ function start() {
     alpha: false,
     powerPreference: "high-performance",
   });
-  renderer.setClearColor(palette.background, 1);
+  const initialTheme = currentTheme();
+  renderer.setClearColor(paletteFor(initialTheme).background, 1);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
 
-  world = new ResumeWorld(narrow, resume, compact);
+  world = new ResumeWorld(narrow, resume, compact, initialTheme);
   rig = new CameraRig();
 
   const resize = () => {
@@ -250,6 +253,16 @@ function start() {
     renderer.setSize(width, height, false);
     rig.setViewport(width, height, reducedMotion);
   };
+
+  const applyTheme = (theme: Theme) => {
+    world.setTheme(theme);
+    renderer.setClearColor(paletteFor(theme).background, 1);
+  };
+
+  document.addEventListener("themechange", (event) => {
+    const theme = (event as CustomEvent<{ theme?: Theme }>).detail?.theme;
+    if (theme === "light" || theme === "dark") applyTheme(theme);
+  });
 
   resize();
   window.addEventListener("resize", resize);

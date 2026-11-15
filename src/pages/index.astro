@@ -1,6 +1,7 @@
 ---
 import ExperienceLayout from "../layouts/ExperienceLayout.astro";
 import StationDialog from "../components/experience/StationDialog.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
 import { site } from "../config";
 import { stations } from "../experience/stations";
 import type { ResumeDocument } from "../lib/resume/types";
@@ -43,6 +44,7 @@ const total = String(stations.length - 1).padStart(2, "0");
         <a href="/resume">Read as text</a>
         <a href="/domains">Domains</a>
         <button type="button" data-open-station="contact">Contact</button>
+        <ThemeToggle />
       </nav>
     </header>
 
@@ -68,6 +70,7 @@ const total = String(stations.length - 1).padStart(2, "0");
     </div>
 
     <section class="experience-intro" aria-labelledby="intro-title">
+      <div class="intro-theme"><ThemeToggle /></div>
       <p class="section-kicker">Interactive resume</p>
       <h1 id="intro-title">{site.name}</h1>
       <p class="intro-role">{role}</p>

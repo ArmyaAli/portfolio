@@ -33,16 +33,26 @@ const personSchema = {
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="generator" content={Astro.generator} />
 <meta name="color-scheme" content="light dark" />
-<meta
-  name="theme-color"
-  content="#f4f0e8"
-  media="(prefers-color-scheme: light)"
-/>
-<meta
-  name="theme-color"
-  content="#171310"
-  media="(prefers-color-scheme: dark)"
-/>
+<meta name="theme-color" content="#f4f0e8" data-theme-color />
+<script is:inline>
+  (() => {
+    let stored = null;
+    try {
+      stored = localStorage.getItem("portfolio-theme");
+    } catch {
+      // Private contexts may block storage.
+    }
+    const theme =
+      stored === "light" || stored === "dark"
+        ? stored
+        : window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+    document.documentElement.dataset.theme = theme;
+    const meta = document.querySelector("meta[data-theme-color]");
+    if (meta) meta.setAttribute("content", theme === "dark" ? "#171310" : "#f4f0e8");
+  })();
+</script>
 
 <title>{pageTitle}</title>
 <meta name="description" content={description} />

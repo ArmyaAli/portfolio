@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import type { ResumeDocument } from "../lib/resume/types";
-import { palette } from "./theme";
+import { palettes, type Theme } from "./theme";
 import { stations, type Station, type StationId, worldBounds } from "./stations";
 import { createStationTextTexture, textPanelFor } from "./text";
 
@@ -8,6 +8,7 @@ type StationVisual = {
   station: Station;
   group: THREE.Group;
   orbit: THREE.Group;
+  disc: THREE.Mesh<THREE.CircleGeometry, THREE.MeshBasicMaterial>;
   ring: THREE.Mesh<THREE.TorusGeometry, THREE.MeshBasicMaterial>;
   halo: THREE.Mesh<THREE.RingGeometry, THREE.MeshBasicMaterial>;
   core: THREE.Mesh<THREE.CircleGeometry, THREE.MeshBasicMaterial>;
@@ -24,14 +25,28 @@ export class ResumeWorld {
   private readonly pointer = new THREE.Vector2();
   private readonly sporeLayers: THREE.Points[] = [];
   private readonly pathMaterials: THREE.MeshBasicMaterial[] = [];
+  private readonly branchMaterials: THREE.LineBasicMaterial[] = [];
   private readonly showText: boolean;
+  private readonly resume: ResumeDocument;
+  private readonly narrow: boolean;
+  private theme: Theme;
+  private palette = palettes.dark;
   private pathCurve?: THREE.CatmullRomCurve3;
   private traveler?: THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial>;
   private activeId?: StationId;
 
-  constructor(narrow: boolean, resume: ResumeDocument, compact = false) {
+  constructor(
+    narrow: boolean,
+    resume: ResumeDocument,
+    compact = false,
+    theme: Theme = "dark",
+  ) {
     this.showText = !compact;
-    this.scene.fog = new THREE.FogExp2(palette.background, 0.016);
+    this.resume = resume;
+    this.narrow = narrow;
+    this.theme = theme;
+    this.palette = palettes[theme];
+    this.scene.fog = new THREE.FogExp2(this.palette.background, 0.016);
     this.buildBackdrop(narrow);
     this.buildPath();
     this.buildStations(resume, narrow);
@@ -47,7 +62,7 @@ export class ResumeWorld {
       const disc = new THREE.Mesh(
         new THREE.CircleGeometry(0.82, 48),
         new THREE.MeshBasicMaterial({
-          color: palette.surface,
+          color: this.palette.surface,
           transparent: true,
           opacity: 0.62,
           depthWrite: false,
@@ -59,7 +74,7 @@ export class ResumeWorld {
       const halo = new THREE.Mesh(
         new THREE.RingGeometry(0.94, 1.08, 64),
         new THREE.MeshBasicMaterial({
-          color: palette.accent,
+          color: this.palette.accent,
           transparent: true,
           opacity: 0.14,
           depthWrite: false,
@@ -71,7 +86,7 @@ export class ResumeWorld {
       const ring = new THREE.Mesh(
         new THREE.TorusGeometry(1.04, 0.018, 8, 64),
         new THREE.MeshBasicMaterial({
-          color: palette.accent,
+          color: this.palette.accent,
           transparent: true,
           opacity: 0.62,
           depthWrite: false,
@@ -82,7 +97,7 @@ export class ResumeWorld {
       const core = new THREE.Mesh(
         new THREE.CircleGeometry(0.16, 24),
         new THREE.MeshBasicMaterial({
-          color: palette.ink,
+          color: this.palette.ink,
           transparent: true,
           opacity: 0.9,
           depthWrite: false,
@@ -97,7 +112,7 @@ export class ResumeWorld {
           new THREE.Vector3(0, -0.9, -0.1),
         ]),
         new THREE.LineBasicMaterial({
-          color: palette.muted,
+          color: this.palette.muted,
           transparent: true,
           opacity: 0.24,
         }),
@@ -107,7 +122,7 @@ export class ResumeWorld {
       const text = new THREE.Mesh(
         new THREE.PlaneGeometry(panel.width, panel.height),
         new THREE.MeshBasicMaterial({
-          map: createStationTextTexture(station, resume, narrow),
+          map: createStationTextTexture(station, resume, narrow, this.theme),
           transparent: false,
           alphaTest: 0.5,
           depthWrite: true,
@@ -127,7 +142,7 @@ export class ResumeWorld {
         const dot = new THREE.Mesh(
           new THREE.CircleGeometry(0.035, 12),
           new THREE.MeshBasicMaterial({
-            color: index === 1 ? palette.green : palette.yellow,
+            color: index === 1 ? this.palette.green : this.palette.yellow,
             transparent: true,
             opacity: 0.72,
             depthWrite: false,
@@ -153,6 +168,7 @@ export class ResumeWorld {
         halo,
         core,
         text,
+        disc,
         targetScale: 1,
       });
     }
@@ -170,7 +186,7 @@ export class ResumeWorld {
     const glow = new THREE.Mesh(
       new THREE.TubeGeometry(curve, 220, 0.11, 6, false),
       new THREE.MeshBasicMaterial({
-        color: palette.accent,
+        color: this.palette.accent,
         transparent: true,
         opacity: 0.1,
         depthWrite: false,
@@ -183,7 +199,7 @@ export class ResumeWorld {
     const line = new THREE.Mesh(
       new THREE.TubeGeometry(curve, 220, 0.018, 6, false),
       new THREE.MeshBasicMaterial({
-        color: palette.accent,
+        color: this.palette.accent,
         transparent: true,
         opacity: 0.46,
         depthWrite: false,
@@ -195,7 +211,7 @@ export class ResumeWorld {
     this.traveler = new THREE.Mesh(
       new THREE.SphereGeometry(0.09, 12, 12),
       new THREE.MeshBasicMaterial({
-        color: palette.yellow,
+        color: this.palette.yellow,
         transparent: true,
         opacity: 0.9,
         depthWrite: false,
@@ -227,18 +243,19 @@ export class ResumeWorld {
       const branch = new THREE.Line(
         new THREE.BufferGeometry().setFromPoints(curve.getPoints(80)),
         new THREE.LineBasicMaterial({
-          color: index % 2 === 0 ? palette.line : palette.green,
+          color: index % 2 === 0 ? this.palette.line : this.palette.green,
           transparent: true,
           opacity: index % 2 === 0 ? 0.24 : 0.1,
         }),
       );
+      this.branchMaterials.push(branch.material as THREE.LineBasicMaterial);
       branches.add(branch);
     }
 
     this.scene.add(branches);
 
     const counts = narrow ? [360, 180, 100] : [1000, 420, 200];
-    const colors = [palette.accent, palette.green, palette.yellow];
+    const colors = [this.palette.accent, this.palette.green, this.palette.yellow];
 
     counts.forEach((count, layerIndex) => {
       const positions = new Float32Array(count * 3);
@@ -293,14 +310,77 @@ export class ResumeWorld {
     }
   }
 
+  get backgroundHex() {
+    return this.palette.background;
+  }
+
+  setTheme(theme: Theme) {
+    this.theme = theme;
+    this.palette = palettes[theme];
+
+    if (this.scene.fog instanceof THREE.FogExp2) {
+      this.scene.fog.color.setHex(this.palette.background);
+    }
+
+    for (const [index, material] of this.pathMaterials.entries()) {
+      material.color.setHex(this.palette.accent);
+      material.blending =
+        theme === "light" && index === 0
+          ? THREE.NormalBlending
+          : THREE.AdditiveBlending;
+    }
+
+    this.branchMaterials.forEach((material, index) => {
+      material.color.setHex(
+        index % 2 === 0 ? this.palette.line : this.palette.green,
+      );
+    });
+
+    const sporeColors = [
+      this.palette.accent,
+      this.palette.green,
+      this.palette.yellow,
+    ];
+    this.sporeLayers.forEach((layer, index) => {
+      const material = layer.material as THREE.PointsMaterial;
+      material.color.setHex(sporeColors[index] ?? this.palette.accent);
+      material.blending =
+        theme === "light" ? THREE.NormalBlending : THREE.AdditiveBlending;
+    });
+
+    for (const visual of this.stationVisuals.values()) {
+      visual.disc.material.color.setHex(this.palette.surface);
+      visual.ring.material.color.setHex(this.palette.accent);
+      visual.halo.material.color.setHex(this.palette.accent);
+      visual.core.material.color.setHex(this.palette.ink);
+
+      visual.text.material.map?.dispose();
+      visual.text.material.map = createStationTextTexture(
+        visual.station,
+        this.resume,
+        this.narrow,
+        this.theme,
+      );
+      visual.text.material.needsUpdate = true;
+    }
+
+    if (this.traveler) {
+      this.traveler.material.color.setHex(this.palette.yellow);
+      this.traveler.material.blending =
+        theme === "light" ? THREE.NormalBlending : THREE.AdditiveBlending;
+    }
+
+    this.setActive(this.activeId);
+  }
+
   setActive(id?: StationId) {
     this.activeId = id;
 
     for (const [stationId, visual] of this.stationVisuals) {
       const active = stationId === id;
       visual.targetScale = active ? 1.12 : 1;
-      visual.ring.material.color.setHex(active ? palette.yellow : palette.accent);
-      visual.core.material.color.setHex(active ? palette.accent : palette.ink);
+      visual.ring.material.color.setHex(active ? this.palette.yellow : this.palette.accent);
+      visual.core.material.color.setHex(active ? this.palette.accent : this.palette.ink);
     }
   }
 

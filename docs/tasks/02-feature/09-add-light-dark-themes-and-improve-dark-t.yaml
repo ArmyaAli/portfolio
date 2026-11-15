@@ -1,0 +1,37 @@
+id: 23
+title: Add light/dark themes and improve dark-theme readability
+status: in_progress
+tags:
+  - theme
+  - accessibility
+  - 3d
+  - toggle
+heat: 75
+detail: >-
+  Add a persisted light/dark switch to the experience HUD and static site header. Make the WebGL
+  scene, resume text panels, materials, fog, and renderer clear color theme-aware, not just CSS.
+  Raise dark-theme contrast and text sizes where needed. Respect system preference on first load,
+  update immediately on toggle, and keep reduced motion/mobile intact. Acceptance: both themes on /
+  and /resume; toggle persists; 3D panels and scene recolor cleanly; readable contrast; no errors;
+  check/build/nix pass.
+refs:
+  - src/styles/global.css
+  - src/styles/experience.css
+  - src/components/Header.astro
+  - src/experience/theme.ts
+  - src/experience/text.ts
+  - src/experience/world.ts
+  - src/experience/main.ts
+links: []
+dependsOn:
+  - 22
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T19:11:01"
+startedAt: "2026-11-14T19:11:02"
+updatedAt: "2026-11-14T19:11:02"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null

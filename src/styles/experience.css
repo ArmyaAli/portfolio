@@ -1,14 +1,4 @@
 .experience-body {
-  --bg: #171310;
-  --surface: #1e1814;
-  --surface-2: #2a211d;
-  --ink: #f4e4c1;
-  --muted: #9f9077;
-  --line: #4a302d;
-  --accent: #e86f5a;
-  --accent-soft: #3a2420;
-  --green: #9dbb6d;
-  --yellow: #e5b65d;
   overflow: clip;
   background: var(--bg);
   color: var(--ink);
@@ -48,6 +38,12 @@
   background:
     radial-gradient(circle at 50% 45%, transparent 30%, rgb(0 0 0 / 0.34) 100%),
     linear-gradient(to bottom, rgb(0 0 0 / 0.2), transparent 22%, transparent 76%, rgb(0 0 0 / 0.32));
+}
+
+:root[data-theme="light"] .experience-vignette {
+  background:
+    radial-gradient(circle at 50% 45%, transparent 32%, rgb(120 100 80 / 0.08) 100%),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.24), transparent 22%, transparent 76%, rgb(120 100 80 / 0.07));
 }
 
 .experience-hud {
@@ -269,6 +265,13 @@
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
+}
+
+.intro-theme {
+  position: absolute;
+  top: clamp(1.25rem, 2.2vw, 2.5rem);
+  right: clamp(1.25rem, 3vw, 3.5rem);
+  z-index: 2;
 }
 
 .experience-intro .section-kicker {

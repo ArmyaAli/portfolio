@@ -1,0 +1,79 @@
+<button
+  class="theme-toggle"
+  type="button"
+  data-theme-toggle
+  role="switch"
+  aria-checked="false"
+  aria-label="Switch to light theme"
+>
+  <span class="theme-toggle-track" aria-hidden="true">
+    <span class="theme-toggle-icon theme-toggle-sun">☀</span>
+    <span class="theme-toggle-icon theme-toggle-moon">☾</span>
+    <span class="theme-toggle-thumb"></span>
+  </span>
+</button>
+
+<script>
+  const key = "portfolio-theme";
+  const root = document.documentElement;
+  const toggles = Array.from(
+    document.querySelectorAll<HTMLButtonElement>("[data-theme-toggle]"),
+  );
+
+  const currentTheme = () => (root.dataset.theme === "light" ? "light" : "dark");
+
+  const sync = () => {
+    const dark = currentTheme() === "dark";
+
+    for (const toggle of toggles) {
+      toggle.setAttribute("aria-checked", String(dark));
+      toggle.setAttribute(
+        "aria-label",
+        dark ? "Switch to light theme" : "Switch to dark theme",
+      );
+    }
+
+    const meta = document.querySelector("meta[data-theme-color]");
+    if (meta) meta.setAttribute("content", dark ? "#171310" : "#f4f0e8");
+  };
+
+  const apply = (theme: "light" | "dark", persist = true) => {
+    root.dataset.theme = theme;
+
+    if (persist) {
+      try {
+        localStorage.setItem(key, theme);
+      } catch {
+        // Storage can be unavailable in private contexts.
+      }
+    }
+
+    sync();
+    document.dispatchEvent(
+      new CustomEvent("themechange", { detail: { theme } }),
+    );
+  };
+
+  for (const toggle of toggles) {
+    toggle.addEventListener("click", () => {
+      apply(currentTheme() === "dark" ? "light" : "dark");
+    });
+  }
+
+  window.addEventListener("storage", (event) => {
+    if (
+      event.key === key &&
+      (event.newValue === "light" || event.newValue === "dark")
+    ) {
+      root.dataset.theme = event.newValue;
+      sync();
+      document.dispatchEvent(
+        new CustomEvent("themechange", {
+          detail: { theme: event.newValue },
+        }),
+      );
+    }
+  });
+
+  sync();
+</script>

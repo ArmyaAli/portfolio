@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import type { ResumeDocument } from "../lib/resume/types";
 import type { Station } from "./stations";
+import type { Theme } from "./theme";
 
 type Section = {
   heading?: string;
@@ -102,13 +103,25 @@ const mobileLayout: Layout = {
   bulletIndent: 20,
 };
 
-const colors = {
-  border: "rgba(74, 48, 45, 0.92)",
-  accent: "#e86f5a",
-  ink: "#f4e4c1",
-  muted: "#9f9077",
-  green: "#9dbb6d",
+const darkColors = {
+  panel: "#171310",
+  border: "rgba(90, 61, 55, 0.95)",
+  accent: "#f07f68",
+  ink: "#faf0dc",
+  muted: "#c8b99f",
+  green: "#aecb7d",
 };
+
+const lightColors = {
+  panel: "#f4f0e8",
+  border: "rgba(207, 199, 183, 0.95)",
+  accent: "#a3482a",
+  ink: "#1b1a15",
+  muted: "#55564c",
+  green: "#4f7a3a",
+};
+
+let colors = darkColors;
 
 function wrapText(
   context: CanvasRenderingContext2D,
@@ -511,7 +524,9 @@ export function createStationTextTexture(
   station: Station,
   resume: ResumeDocument,
   narrow = false,
+  theme: Theme = "dark",
 ) {
+  colors = theme === "dark" ? darkColors : lightColors;
   const layout = narrow ? mobileLayout : desktopLayout;
   const canvas = document.createElement("canvas");
   canvas.width = layout.width;
@@ -527,7 +542,7 @@ export function createStationTextTexture(
     layout.height - 16,
     layout.radius,
   );
-  context.fillStyle = "#171310";
+  context.fillStyle = colors.panel;
   context.fill();
   context.lineWidth = 2;
   context.strokeStyle = colors.border;
