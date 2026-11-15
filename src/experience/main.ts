@@ -48,6 +48,8 @@ let rig: CameraRig;
 let world: ResumeWorld;
 let overlay: StationOverlay | undefined;
 let autoTour = true;
+let autoRunning = false;
+let autoResumeAt = 0;
 let autoNextAt = Number.POSITIVE_INFINITY;
 let autoZoomAt = 0;
 let autoLegStart = 0;
@@ -60,15 +62,7 @@ function setState(state: "loading" | "intro" | "exploring" | "fallback") {
 
 function setExploring() {
   if (experienceRoot.dataset.state !== "intro") return;
-
   setState("exploring");
-
-  if (autoTour && !Number.isFinite(autoNextAt)) {
-    autoIndex = 0;
-    autoLegStart = performance.now();
-    autoNextAt = autoLegStart + 7500;
-    autoZoomAt = 0;
-  }
 }
 
 function updateLabels() {
@@ -138,18 +132,18 @@ function updateAutoControl() {
     "aria-label",
     autoTour ? "Pause auto tour" : "Start auto tour",
   );
-  tourElement?.setAttribute("data-active", String(autoTour));
+  tourElement?.setAttribute("data-active", String(autoTour && autoRunning));
 
-  if (!autoTour) {
+  if (!autoTour || !autoRunning) {
     tourProgress?.setAttribute("aria-valuenow", "0");
     if (tourBar) tourBar.style.transform = "scaleX(0)";
-    if (tourCountdown) tourCountdown.textContent = "Paused";
+    if (tourCountdown) tourCountdown.textContent = autoTour ? "Paused" : "Off";
     lastCountdown = -1;
   }
 }
 
 function updateTourProgress(now: number) {
-  if (!autoTour || !Number.isFinite(autoNextAt)) return;
+  if (!autoTour || !autoRunning || !Number.isFinite(autoNextAt)) return;
 
   const total = Math.max(autoNextAt - autoLegStart, 1);
   const remaining = Math.max(autoNextAt - now, 0);
@@ -173,17 +167,46 @@ function updateTourProgress(now: number) {
   }
 }
 
-function stopAuto() {
-  const wasRunning = autoTour;
-  autoTour = false;
-  autoNextAt = Number.POSITIVE_INFINITY;
+function startAutoCountdown(delay: number, index?: number) {
+  if (!autoTour) return;
+
+  autoRunning = true;
+  autoResumeAt = 0;
+  autoIndex =
+    index ??
+    (activeId ? (stationById.get(activeId)?.index ?? -1) : -1);
+  autoLegStart = performance.now();
+  autoNextAt = autoLegStart + delay;
   autoZoomAt = 0;
-  autoLegStart = 0;
   rig.setDamping(7.5);
   rig.zoomBase();
   updateAutoControl();
+  updateTourProgress(autoLegStart);
+}
 
-  if (wasRunning && live) live.textContent = "Auto tour stopped.";
+function pauseAuto(resumeAfterMs = 0) {
+  autoRunning = false;
+  autoNextAt = Number.POSITIVE_INFINITY;
+  autoZoomAt = 0;
+  autoLegStart = 0;
+  autoResumeAt =
+    resumeAfterMs > 0 ? performance.now() + resumeAfterMs : 0;
+  rig.setDamping(7.5);
+  rig.zoomBase();
+  updateAutoControl();
+}
+
+function startAutoForActiveNode(delay = 9200) {
+  if (!autoTour) return;
+  startAutoCountdown(delay);
+}
+
+function disableAuto() {
+  autoTour = false;
+  autoResumeAt = 0;
+  pauseAuto();
+  updateAutoControl();
+  if (live) live.textContent = "Auto tour stopped.";
 }
 
 function advanceTour() {
@@ -191,44 +214,40 @@ function advanceTour() {
   const station = stations[autoIndex];
   activateStation(station.id, { openDialog: false });
   const now = performance.now();
+  autoRunning = true;
+  autoResumeAt = 0;
   autoLegStart = now;
   autoZoomAt = now + 3400;
   autoNextAt = now + 9200;
   rig.setDamping(3);
   rig.zoomOut();
+  updateTourProgress(now);
 }
 
 function setAutoTour(enabled: boolean) {
-  autoTour = enabled;
-
-  if (enabled) {
-    autoIndex = activeId ? (stationById.get(activeId)?.index ?? -1) : -1;
-    autoZoomAt = 0;
-    autoLegStart = performance.now();
-    autoNextAt = autoLegStart + 1200;
-    rig.setDamping(7.5);
-    rig.zoomBase();
-    setExploring();
-    if (live) live.textContent = "Auto tour started.";
-  } else {
-    autoNextAt = Number.POSITIVE_INFINITY;
-    autoZoomAt = 0;
-    rig.setDamping(7.5);
-    rig.zoomBase();
+  if (!enabled) {
+    disableAuto();
+    return;
   }
 
+  autoTour = true;
+  autoResumeAt = 0;
+  autoRunning = false;
+  setExploring();
+  startAutoCountdown(1200);
   updateAutoControl();
+  if (live) live.textContent = "Auto tour started.";
 }
 
 function nextNode() {
-  stopAuto();
+  pauseAuto(6500);
   autoIndex = activeId ? (stationById.get(activeId)?.index ?? -1) : -1;
   autoIndex = (autoIndex + 1) % stations.length;
   activateStation(stations[autoIndex].id, { openDialog: false });
 }
 
 function selectStation(id: StationId, trigger?: HTMLElement) {
-  stopAuto();
+  pauseAuto();
   activateStation(id, { openDialog: true, trigger });
 }
 
@@ -269,12 +288,21 @@ function start() {
 
   overlay = createStationOverlay(experienceRoot, {
     onNavigate: (id) => activateStation(id, { openDialog: false }),
+    onClose: () => startAutoForActiveNode(),
   });
 
   const input = new ExperienceInput(experienceCanvas, {
-    onFirstInput: setExploring,
+    onFirstInput: () => {
+      const entering = experienceRoot.dataset.state === "intro";
+      setExploring();
+      if (entering && autoTour && !autoRunning) {
+        startAutoCountdown(7500, 0);
+      }
+    },
     onManualInput: () => {
-      if (experienceRoot.dataset.state === "exploring") stopAuto();
+      if (experienceRoot.dataset.state === "exploring" && autoTour) {
+        pauseAuto(6500);
+      }
     },
     onDrag: (dx, dy) => rig.panByPixels(dx, dy, experienceCanvas.clientHeight),
     onWheel: (dx, dy) =>
@@ -329,13 +357,7 @@ function start() {
   document.querySelector("[data-enter]")?.addEventListener("click", () => {
     setExploring();
     rig.focusStation(stations[0], narrow);
-
-    if (autoTour) {
-      autoIndex = 0;
-      autoLegStart = performance.now();
-      autoNextAt = autoLegStart + 7500;
-      autoZoomAt = 0;
-    }
+    if (autoTour) startAutoCountdown(7500, 0);
   });
 
   let previous = performance.now();
@@ -348,12 +370,22 @@ function start() {
     elapsed += delta;
     const keyboard = input.keyboardDirection();
 
-    if (autoTour && autoZoomAt > 0 && now >= autoZoomAt) {
+    if (
+      !autoRunning &&
+      autoTour &&
+      autoResumeAt > 0 &&
+      now >= autoResumeAt &&
+      !document.querySelector("dialog[open]")
+    ) {
+      startAutoForActiveNode(9200);
+    }
+
+    if (autoRunning && autoZoomAt > 0 && now >= autoZoomAt) {
       rig.zoomIn();
       autoZoomAt = 0;
     }
 
-    if (autoTour && now >= autoNextAt) {
+    if (autoRunning && now >= autoNextAt) {
       advanceTour();
     }
 
@@ -410,6 +442,7 @@ function start() {
       activeId,
       hoveredId,
       autoTour,
+      autoRunning,
       camera: {
         x: rig.camera.position.x,
         y: rig.camera.position.y,

@@ -2,6 +2,7 @@ import { stationById, stations, type StationId } from "./stations";
 
 type OverlayOptions = {
   onNavigate: (id: StationId) => void;
+  onClose?: () => void;
 };
 
 export type StationOverlay = {
@@ -103,6 +104,7 @@ export function createStationOverlay(
         : fallback;
 
     focusTarget?.focus({ preventScroll: true });
+    options.onClose?.();
   });
 
   closeButton?.addEventListener("click", close);

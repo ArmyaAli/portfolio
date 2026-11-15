@@ -1,6 +1,6 @@
 id: 25
 title: Polish landing typography, buttons, LinkedIn, and device profiles
-status: in_progress
+status: done
 tags:
   - landing
   - responsive
@@ -25,9 +25,13 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T19:25:24"
 startedAt: "2026-11-14T19:25:25"
-updatedAt: "2026-11-14T19:25:25"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T19:28:43"
+completedAt: "2026-11-14T19:28:43"
+commit: 1642ecc3f9f360997130b5dc6da353d82922ffc3
+outcome: >-
+  LinkedIn now uses aliumardev1, the landing SOFTWARE ENGINEER label and buttons scale up across
+  phone/tablet/laptop/monitor profiles.
+verification: >-
+  Profile measurements at 390/820/1440/2560; no overflow; LinkedIn href aliumardev1; check/build
+  pass.
+release: 1.0.0

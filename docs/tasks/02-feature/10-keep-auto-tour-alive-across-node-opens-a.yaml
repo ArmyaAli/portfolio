@@ -1,0 +1,30 @@
+id: 26
+title: Keep auto tour alive across node opens and manual pauses
+status: in_progress
+tags:
+  - auto
+  - progress
+  - navigation
+heat: 65
+detail: >-
+  Auto tour is a user preference, not a transient run state. Opening a station pauses it; closing
+  the sheet restarts the full countdown for that node and continues. Manual drag/wheel/key pauses
+  and resumes after inactivity. Only the explicit Auto/Pause control turns it off. Progress bar
+  hides while paused and restarts full. Acceptance: open/close resumes countdown; manual pause
+  resumes; explicit off stays off; check/build/nix pass.
+refs:
+  - src/experience/main.ts
+  - src/experience/overlay.ts
+links: []
+dependsOn:
+  - 25
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T19:28:44"
+startedAt: "2026-11-14T19:28:46"
+updatedAt: "2026-11-14T19:28:46"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null
