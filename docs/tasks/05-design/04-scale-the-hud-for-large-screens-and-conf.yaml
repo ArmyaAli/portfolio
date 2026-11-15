@@ -1,6 +1,6 @@
 id: 22
 title: Scale the HUD for large screens and confirm auto default
-status: in_progress
+status: done
 tags:
   - hud
   - responsive
@@ -24,9 +24,13 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T19:08:28"
 startedAt: "2026-11-14T19:08:31"
-updatedAt: "2026-11-14T19:08:31"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T19:10:54"
+completedAt: "2026-11-14T19:10:54"
+commit: 3a71cc9de665ac60e011353953d281a694e9c2d9
+outcome: >-
+  Corner HUD text and controls now scale up on large displays, and Auto tour is confirmed active by
+  default after entry.
+verification: >-
+  2560x1440 screenshot and computed sizes reviewed; brand grows to ~322px wide; auto aria-pressed
+  true; check/build pass.
+release: 1.0.0
