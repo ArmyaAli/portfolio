@@ -1,6 +1,6 @@
 id: 23
 title: Add light/dark themes and improve dark-theme readability
-status: in_progress
+status: done
 tags:
   - theme
   - accessibility
@@ -29,9 +29,12 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T19:11:01"
 startedAt: "2026-11-14T19:11:02"
-updatedAt: "2026-11-14T19:11:02"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T19:16:11"
+completedAt: "2026-11-14T19:16:11"
+commit: 06893a06538e3b8cae6152c7e6228f12f9ac19c7
+outcome: The site now has persisted light/dark themes with a themed 3D scene and higher-contrast dark text.
+verification: >-
+  Toggled both themes on the experience and /resume; scene, text panels, HUD, and static pages
+  recolored cleanly; localStorage persisted across reload; no overflow or page errors; check/build
+  pass.
+release: 1.0.0
