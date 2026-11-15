@@ -1,6 +1,6 @@
 id: 29
 title: Simplify and align the mobile roadmap experience
-status: in_progress
+status: done
 tags:
   - mobile
   - hud
@@ -25,9 +25,14 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T19:52:52"
 startedAt: "2026-11-14T19:52:52"
-updatedAt: "2026-11-14T19:52:52"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T19:59:53"
+completedAt: "2026-11-14T19:59:53"
+commit: ea537b8898
+outcome: >-
+  Mobile roadmap now uses a compact hamburger sheet, hides secondary links/labels/hints, and shows
+  concise station previews with a single bottom dock.
+verification: >-
+  npm run check 0 errors; npm run build 4 pages; mobile previews for experience, projects, skills,
+  origin, contact fit without clipping; hamburger opens/closes and Contact opens the dialog; no
+  overflow or page errors.
+release: 1.0.0

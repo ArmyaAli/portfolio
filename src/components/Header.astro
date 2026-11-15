@@ -7,21 +7,22 @@ const pathname = Astro.url.pathname.replace(/\/+$/, "") || "/";
 
 <header class="site-header">
   <a class="brand" href="/" aria-label={`${site.name} — home`}>
-    {site.name}
-    <span aria-hidden="true">.</span>
+    <span class="brand-name">
+      {site.name}
+      <span class="brand-mark" aria-hidden="true">.</span>
+    </span>
+    <span class="brand-role">{site.role} · {site.location}</span>
   </a>
-  <div class="site-actions">
-    <nav class="site-nav" aria-label="Primary">
-      {nav.map((item) => (
-        <a
-          href={item.href}
-          aria-current={item.href === pathname ? "page" : undefined}
-        >
-          {item.label}
-        </a>
-      ))}
-      <a href="/#contact">Contact</a>
-    </nav>
-    <ThemeToggle />
-  </div>
+  <nav class="site-nav" aria-label="Primary">
+    {nav.map((item) => (
+      <a
+        href={item.href}
+        aria-current={item.href === pathname ? "page" : undefined}
+      >
+        {item.label}
+      </a>
+    ))}
+    <a href="/#contact">Contact</a>
+  </nav>
+  <ThemeToggle />
 </header>

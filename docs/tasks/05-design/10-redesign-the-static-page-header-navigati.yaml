@@ -1,0 +1,30 @@
+id: 30
+title: Redesign the static-page header navigation
+status: in_progress
+tags:
+  - nav
+  - header
+  - static
+  - mobile
+heat: 65
+detail: >-
+  Replace the small detached link row on /resume and /domains with a cohesive sticky header: brand
+  plus role, a segmented nav with clear active state, and the theme toggle. Desktop groups nav and
+  theme; mobile stacks a clean segmented nav below a brand/theme row. Keep /resume, /domains, /404
+  accessible. Acceptance: desktop/mobile header looks integrated with the experience HUD; active
+  page obvious; no cramped or wrapped links; no overflow; check/build/deploy pass.
+refs:
+  - src/components/Header.astro
+  - src/styles/global.css
+links: []
+dependsOn: []
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T19:59:54"
+startedAt: "2026-11-14T19:59:54"
+updatedAt: "2026-11-14T19:59:54"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null

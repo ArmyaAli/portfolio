@@ -1,5 +1,7 @@
 export const site = {
   name: "Ali Umar",
+  role: "Software Engineer",
+  location: "Toronto, Ontario",
   title: "Ali Umar — Software engineer",
   description:
     "Software engineer building realtime, browser-first tools. Projects, experiments, and the occasional game.",
