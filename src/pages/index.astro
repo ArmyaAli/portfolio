@@ -7,7 +7,7 @@ import type { ResumeDocument } from "../lib/resume/types";
 import parsed from "../data/resume.generated.json";
 
 const resume = parsed as ResumeDocument;
-const role = resume.experience[0]?.title ?? "Software engineer";
+const role = "Software Engineer";
 const location = resume.experience[0]?.location ?? "Toronto, Ontario";
 const total = String(stations.length - 1).padStart(2, "0");
 ---
@@ -37,7 +37,7 @@ const total = String(stations.length - 1).padStart(2, "0");
           }
           <span class="brand-dot" aria-hidden="true"></span>
         </span>
-        <span class="brand-role">Software Developer · {location}</span>
+        <span class="brand-role">Software Engineer · {location}</span>
       </a>
       <nav class="experience-links" aria-label="Site">
         <a href="/resume">Read as text</a>
@@ -71,10 +71,7 @@ const total = String(stations.length - 1).padStart(2, "0");
       <p class="section-kicker">Interactive resume</p>
       <h1 id="intro-title">{site.name}</h1>
       <p class="intro-role">{role}</p>
-      <p class="intro-copy">
-        A resume you can move through. Six stations, one mycelium path, and no
-        scrolling through a wall of text.
-      </p>
+      <p class="intro-copy">{resume.summary}</p>
       <div class="intro-actions">
         <button class="button" type="button" data-enter>Enter the grove</button>
         <a class="button-ghost" href="/resume">Read as text</a>

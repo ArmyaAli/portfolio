@@ -24,7 +24,7 @@ export const stations: Station[] = [
     kicker: "00 — Origin",
     label: "Origin",
     title: "Ali Umar",
-    caption: "Software Developer · Toronto",
+    caption: "Software Engineer · Toronto",
     x: 0,
     y: 0,
   },

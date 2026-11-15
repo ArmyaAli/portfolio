@@ -296,10 +296,11 @@
 }
 
 .intro-copy {
-  max-width: 32rem;
+  max-width: 40rem;
   margin-top: 1.4rem;
   color: var(--muted);
-  font-size: clamp(1rem, 1.6vw, 1.18rem);
+  font-size: clamp(0.94rem, 1.2vw, 1.04rem);
+  line-height: 1.62;
   animation: intro-rise 900ms 120ms var(--ease) both;
 }
 
@@ -491,13 +492,33 @@
   }
 
   .experience-intro {
-    justify-content: flex-end;
-    padding-bottom: clamp(6rem, 18vh, 10rem);
+    justify-content: flex-start;
+    padding: 4.5rem 1.5rem 4rem;
   }
 
   .experience-intro h1 {
-    max-width: 6ch;
-    font-size: clamp(3.8rem, 20vw, 6.5rem);
+    max-width: 8ch;
+    margin-top: 0.75rem;
+    font-size: clamp(3.1rem, 15vw, 5rem);
+  }
+
+  .intro-role {
+    margin-top: 1rem;
+    font-size: 0.66rem;
+  }
+
+  .intro-copy {
+    margin-top: 1rem;
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  .intro-actions {
+    margin-top: 1.25rem;
+  }
+
+  .intro-hint {
+    margin-top: 1rem;
   }
 
   .station-label {

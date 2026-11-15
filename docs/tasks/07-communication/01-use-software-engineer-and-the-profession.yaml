@@ -1,0 +1,32 @@
+id: 20
+title: Use Software Engineer and the professional summary on the front page
+status: in_progress
+tags:
+  - copy
+  - front-page
+  - mobile
+heat: 65
+detail: >-
+  Remove the AI-style marketing copy from the intro. Set the visible title to exactly Software
+  Engineer, use resume.summary as the intro body, and match the wordmark subtitle and origin caption
+  to Software Engineer · Toronto. Keep the mobile intro readable without overflow. Acceptance:
+  desktop/mobile screenshots; exact title; full professional summary; no AI copy; no overflow;
+  check/build/nix pass.
+refs:
+  - src/pages/index.astro
+  - src/experience/stations.ts
+  - src/styles/experience.css
+  - src/data/resume.generated.json
+links: []
+dependsOn:
+  - 18
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T19:04:26"
+startedAt: "2026-11-14T19:04:37"
+updatedAt: "2026-11-14T19:04:37"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null
