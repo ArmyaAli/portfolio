@@ -1,0 +1,35 @@
+id: 27
+title: Align static nav and turn the station map into an animated thermometer
+status: in_progress
+tags:
+  - nav
+  - minimap
+  - roadmap
+  - animation
+heat: 60
+detail: >-
+  Move the theme switch out of the static nav options, make Contact a normal text link, and center
+  the theme utility with the header actions. Replace the vertical station dot list with a
+  thermometer-style roadmap: gradient fill up to the active node, animated transitions, pulsing
+  current tick, labels on hover, and a horizontal variant on mobile. Acceptance: /resume nav items
+  share a text baseline; desktop/mobile thermometers animate on Next/Auto; no overflow or errors;
+  check/build/nix pass.
+refs:
+  - src/components/Header.astro
+  - src/styles/global.css
+  - src/pages/index.astro
+  - src/styles/experience.css
+  - src/experience/main.ts
+links: []
+dependsOn:
+  - 26
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T19:33:37"
+startedAt: "2026-11-14T19:33:38"
+updatedAt: "2026-11-14T19:33:38"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null

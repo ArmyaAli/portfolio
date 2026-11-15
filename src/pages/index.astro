@@ -95,6 +95,7 @@ const total = String(stations.length - 1).padStart(2, "0");
 
     <nav class="station-map" aria-label="Resume stations">
       <span class="station-map-line" aria-hidden="true"></span>
+      <span class="station-map-fill" data-station-fill aria-hidden="true"></span>
       {
         stations.map((station) => (
           <button

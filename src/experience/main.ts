@@ -27,6 +27,7 @@ const labels = Array.from(
 const mapButtons = Array.from(
   document.querySelectorAll<HTMLButtonElement>("[data-station-map]"),
 );
+const stationMap = document.querySelector<HTMLElement>(".station-map");
 const stationCount = document.querySelector<HTMLElement>("[data-station-count]");
 const autoButton = document.querySelector<HTMLButtonElement>("[data-auto]");
 const autoLabel = document.querySelector<HTMLElement>("[data-auto-label]");
@@ -116,6 +117,9 @@ function activateStation(
     button.classList.toggle("is-active", current);
     button.setAttribute("aria-current", current ? "true" : "false");
   }
+
+  const progress = station.index / (stations.length - 1);
+  stationMap?.style.setProperty("--roadmap-progress", progress.toFixed(3));
 
   if (live) live.textContent = `${station.label} station selected.`;
 
@@ -426,6 +430,7 @@ function start() {
   updateLabels();
 
   updateAutoControl();
+  stationMap?.style.setProperty("--roadmap-progress", "0");
 
   const initialId = window.location.hash.slice(1) as StationId;
   if (stationById.has(initialId)) {

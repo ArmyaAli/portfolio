@@ -60,6 +60,11 @@
     max(clamp(1.5rem, 3vw, 5rem), env(safe-area-inset-right))
     clamp(1.25rem, 2.2vw, 3.4rem)
     max(clamp(1.5rem, 3vw, 5rem), env(safe-area-inset-left));
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--bg) 92%, transparent),
+    transparent
+  );
   pointer-events: none;
 }
 
@@ -620,9 +625,50 @@
   top: 1.1rem;
   bottom: 1.1rem;
   left: 50%;
-  width: 1px;
-  background: var(--line);
+  width: 3px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--line) 82%, transparent);
   transform: translateX(-50%);
+}
+
+.station-map-fill {
+  position: absolute;
+  top: 1.1rem;
+  bottom: 1.1rem;
+  left: 50%;
+  z-index: 0;
+  width: 3px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to bottom,
+    var(--accent),
+    var(--green) 60%,
+    var(--yellow)
+  );
+  box-shadow: 0 0 16px color-mix(in srgb, var(--accent) 32%, transparent);
+  transform: translateX(-50%) scaleY(var(--roadmap-progress, 0));
+  transform-origin: top center;
+  transition: transform 900ms var(--ease);
+  pointer-events: none;
+}
+
+.station-map::after {
+  content: "";
+  position: absolute;
+  bottom: 0.1rem;
+  left: 50%;
+  z-index: 0;
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 38%, transparent);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.station-map-button {
+  z-index: 1;
 }
 
 .station-map-button {
@@ -1023,7 +1069,28 @@
     transform: translateX(50%);
   }
 
-  .station-map-line,
+  .station-map-line {
+    top: 50%;
+    right: 1.1rem;
+    bottom: auto;
+    left: 1.1rem;
+    width: auto;
+    height: 3px;
+    transform: translateY(-50%);
+  }
+
+  .station-map-fill {
+    top: 50%;
+    right: 1.1rem;
+    bottom: auto;
+    left: 1.1rem;
+    width: auto;
+    height: 3px;
+    transform: translateY(-50%) scaleX(var(--roadmap-progress, 0));
+    transform-origin: left center;
+  }
+
+  .station-map::after,
   .station-map-name {
     display: none;
   }
@@ -1120,7 +1187,8 @@
   }
 
   .experience-tour,
-  .experience-tour-progress {
+  .experience-tour-progress,
+  .station-map-fill {
     transition-duration: 0.01ms;
   }
 
@@ -1319,5 +1387,11 @@
   .experience-control {
     min-height: 50px;
     font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .experience-tour {
+    bottom: calc(8.25rem + env(safe-area-inset-bottom));
   }
 }
