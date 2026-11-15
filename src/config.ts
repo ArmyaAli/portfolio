@@ -7,7 +7,7 @@ export const site = {
   ogImage: "/profile.jpg",
   links: {
     github: "https://github.com/ArmyaAli",
-    linkedin: "https://www.linkedin.com/in/aliumardev",
+    linkedin: "https://www.linkedin.com/in/aliumardev1",
     discord: "https://discordapp.com/users/143621097328345088",
   },
   formspreeEndpoint: "https://formspree.io/f/mvovjjvo",

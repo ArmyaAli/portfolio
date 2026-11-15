@@ -109,7 +109,7 @@
 .brand-role {
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: clamp(0.6rem, 0.55vw, 0.82rem);
+  font-size: clamp(0.68rem, 0.65vw, 0.95rem);
   letter-spacing: 0.13em;
   text-transform: uppercase;
 }
@@ -317,8 +317,8 @@
   margin-top: clamp(1.1rem, 2vw, 2rem);
   color: var(--green);
   font-family: var(--font-mono);
-  font-size: clamp(0.82rem, 0.9vw, 1.15rem);
-  letter-spacing: 0.08em;
+  font-size: clamp(1.08rem, 1.2vw, 1.55rem);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
@@ -342,9 +342,9 @@
 
 .intro-actions .button,
 .intro-actions .button-ghost {
-  min-height: 56px;
-  padding: 1.05rem 1.6rem;
-  font-size: clamp(0.92rem, 0.8vw, 1.05rem);
+  min-height: 64px;
+  padding: 1.2rem 1.95rem;
+  font-size: clamp(1rem, 0.9vw, 1.2rem);
 }
 
 .intro-actions .button,
@@ -556,7 +556,7 @@
 
   .intro-role {
     margin-top: 1rem;
-    font-size: 0.66rem;
+    font-size: 0.95rem;
   }
 
   .intro-copy {
@@ -571,8 +571,9 @@
 
   .intro-actions .button,
   .intro-actions .button-ghost {
-    min-height: 48px;
-    padding: 0.85rem 1.1rem;
+    min-height: 56px;
+    padding: 1rem 1.3rem;
+    font-size: 0.94rem;
   }
 
   .intro-hint {
@@ -1218,14 +1219,14 @@
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
-  min-height: 44px;
-  padding: 0.5rem 0.78rem;
+  min-height: 46px;
+  padding: 0.55rem 0.9rem;
   border: 0;
   border-radius: 999px;
   background: transparent;
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: clamp(0.62rem, 0.5vw, 0.82rem);
+  font-size: clamp(0.66rem, 0.55vw, 0.9rem);
   letter-spacing: 0.09em;
   line-height: 1;
   text-transform: uppercase;
@@ -1261,3 +1262,62 @@
   color: var(--bg);
 }
 
+
+/* Device profiles: tablet, laptop, monitor */
+
+@media (min-width: 721px) and (max-width: 1024px) {
+  .intro-inner {
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.9fr);
+    gap: 2.25rem;
+  }
+
+  .experience-intro h1 {
+    font-size: clamp(4rem, 9vw, 6.75rem);
+  }
+
+  .intro-copy {
+    font-size: clamp(1rem, 1.35vw, 1.2rem);
+  }
+
+  .intro-actions .button,
+  .intro-actions .button-ghost {
+    min-height: 58px;
+    padding: 1.05rem 1.5rem;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1800px) {
+  .intro-inner {
+    max-width: 92rem;
+  }
+
+  .experience-control {
+    min-height: 48px;
+  }
+}
+
+@media (min-width: 1801px) {
+  .intro-inner {
+    max-width: 120rem;
+  }
+
+  .intro-copy {
+    font-size: clamp(1.45rem, 1vw, 1.75rem);
+  }
+
+  .intro-role {
+    font-size: 1.75rem;
+  }
+
+  .intro-actions .button,
+  .intro-actions .button-ghost {
+    min-height: 72px;
+    padding: 1.35rem 2.1rem;
+    font-size: 1.18rem;
+  }
+
+  .experience-control {
+    min-height: 50px;
+    font-size: 0.9rem;
+  }
+}

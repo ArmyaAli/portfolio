@@ -1,0 +1,33 @@
+id: 25
+title: Polish landing typography, buttons, LinkedIn, and device profiles
+status: in_progress
+tags:
+  - landing
+  - responsive
+  - links
+  - typography
+heat: 60
+detail: >-
+  Update LinkedIn to aliumardev1 everywhere except parsed source text. Increase the landing SOFTWARE
+  ENGINEER line and CTA sizes across phone/tablet/laptop/monitor profiles without overflow. Add
+  explicit responsive profile refinements and verify 390x844, 820x1180, 1440x1000, 2560x1440.
+  Acceptance: aliumardev1 links, larger role/buttons, no overflow, check/build/nix pass.
+refs:
+  - src/config.ts
+  - src/pages/resume.astro
+  - src/pages/index.astro
+  - src/styles/experience.css
+  - src/styles/global.css
+links: []
+dependsOn:
+  - 24
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T19:25:24"
+startedAt: "2026-11-14T19:25:25"
+updatedAt: "2026-11-14T19:25:25"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null
