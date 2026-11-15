@@ -1265,6 +1265,8 @@
   .station-map .station-map-button:focus-visible,
   .station-map .station-map-button.is-active {
     display: flex;
+    align-items: center;
+    justify-content: center;
     width: 2.65rem;
     min-width: 2.65rem;
     min-height: 2.65rem;

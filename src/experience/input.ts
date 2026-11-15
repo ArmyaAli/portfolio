@@ -15,6 +15,7 @@ export class ExperienceInput {
   private lastX = 0;
   private lastY = 0;
   private dragDistance = 0;
+  private pointerType = "mouse";
   private firstInput = false;
 
   constructor(canvas: HTMLCanvasElement, callbacks: InputCallbacks) {
@@ -24,7 +25,7 @@ export class ExperienceInput {
     canvas.addEventListener("pointerdown", this.onPointerDown);
     canvas.addEventListener("pointermove", this.onPointerMove);
     canvas.addEventListener("pointerup", this.onPointerUp);
-    canvas.addEventListener("pointercancel", this.onPointerUp);
+    canvas.addEventListener("pointercancel", this.onPointerCancel);
     canvas.addEventListener("pointerleave", this.onPointerLeave);
     canvas.addEventListener("wheel", this.onWheel, { passive: false });
     window.addEventListener("keydown", this.onKeyDown);
@@ -57,6 +58,7 @@ export class ExperienceInput {
   private onPointerDown = (event: PointerEvent) => {
     if (event.button !== 0) return;
     this.dragging = true;
+    this.pointerType = event.pointerType;
     this.lastX = event.clientX;
     this.lastY = event.clientY;
     this.dragDistance = 0;
@@ -92,8 +94,17 @@ export class ExperienceInput {
       this.canvas.releasePointerCapture(event.pointerId);
     }
 
-    if (this.dragDistance < 6) {
+    const tapSlop = this.pointerType === "touch" ? 14 : 6;
+    if (this.dragDistance < tapSlop) {
       this.callbacks.onClick(event.clientX, event.clientY);
+    }
+  };
+
+  private onPointerCancel = (event: PointerEvent) => {
+    this.dragging = false;
+
+    if (this.canvas.hasPointerCapture(event.pointerId)) {
+      this.canvas.releasePointerCapture(event.pointerId);
     }
   };
 
@@ -139,7 +150,7 @@ export class ExperienceInput {
     this.canvas.removeEventListener("pointerdown", this.onPointerDown);
     this.canvas.removeEventListener("pointermove", this.onPointerMove);
     this.canvas.removeEventListener("pointerup", this.onPointerUp);
-    this.canvas.removeEventListener("pointercancel", this.onPointerUp);
+    this.canvas.removeEventListener("pointercancel", this.onPointerCancel);
     this.canvas.removeEventListener("pointerleave", this.onPointerLeave);
     this.canvas.removeEventListener("wheel", this.onWheel);
     window.removeEventListener("keydown", this.onKeyDown);

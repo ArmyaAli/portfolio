@@ -1,0 +1,32 @@
+id: 32
+title: Fix mobile progress alignment and tap-to-open station cards
+status: in_progress
+tags:
+  - mobile
+  - bug
+  - interaction
+  - progress
+heat: 75
+detail: >-
+  On mobile, the progress bar/rail is visually off and the 3D station card requires a hold instead
+  of a normal tap. Align the progress track, fill, and nodes to exact common centers across widths.
+  Make a normal touch tap on a station card open the dialog without triggering drag/zoom.
+  Acceptance: track/dots/fill share a centerline at 320/390/430px; single tap opens card dialog;
+  drag still pans without opening; no overflow or errors; check/build/deploy pass.
+refs:
+  - src/styles/experience.css
+  - src/experience/input.ts
+  - src/experience/main.ts
+  - src/experience/world.ts
+links: []
+dependsOn: []
+epic: interactive-resume
+source: ai
+createdAt: "2026-11-14T20:16:49"
+startedAt: "2026-11-14T20:16:49"
+updatedAt: "2026-11-14T20:16:49"
+completedAt: null
+commit: null
+outcome: null
+verification: null
+release: null
