@@ -1,6 +1,6 @@
 id: 31
 title: Move mobile full-resume and GitHub actions into the hamburger
-status: in_progress
+status: done
 tags:
   - mobile
   - menu
@@ -21,9 +21,14 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T20:11:05"
 startedAt: "2026-11-14T20:11:06"
-updatedAt: "2026-11-14T20:11:06"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T20:14:36"
+completedAt: "2026-11-14T20:14:36"
+commit: 0ac5823e04
+outcome: >-
+  Mobile footer actions now live in the hamburger: Full resume, Domains, Contact, GitHub, and Theme;
+  footer meta is hidden on mobile.
+verification: >-
+  npm run check 0 errors; npm run build 4 pages; mobile menu opens and shows all five actions;
+  full-resume and GitHub targets correct; footer meta hidden; closed menu non-interactive; live
+  deploy run 43662049469 succeeded and live menu verified.
+release: 1.0.0
