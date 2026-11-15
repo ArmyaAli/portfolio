@@ -1,6 +1,6 @@
 id: 32
 title: Fix mobile progress alignment and tap-to-open station cards
-status: in_progress
+status: done
 tags:
   - mobile
   - bug
@@ -24,9 +24,14 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T20:16:49"
 startedAt: "2026-11-14T20:16:49"
-updatedAt: "2026-11-14T20:16:49"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T20:21:00"
+completedAt: "2026-11-14T20:21:00"
+commit: 04e835fadd
+outcome: >-
+  Mobile progress nodes now sit exactly on the threshold rail, and normal touch taps with finger
+  jitter open station cards while drags still pan.
+verification: >-
+  npm run check 0 errors; npm run build 4 pages; first/last dots centered at rail endpoints
+  (89px/301px); synthetic touch tap with 6.7px jitter opens the Ali Umar card; 30px drag does not;
+  live deploy run 43662542862 succeeded and live checks pass.
+release: 1.0.0
