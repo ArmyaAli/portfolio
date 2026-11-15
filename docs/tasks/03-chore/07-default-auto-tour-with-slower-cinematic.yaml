@@ -1,6 +1,6 @@
 id: 18
 title: Default auto tour with slower cinematic pans
-status: in_progress
+status: done
 tags:
   - 3d
   - animation
@@ -24,9 +24,14 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T18:57:40"
 startedAt: "2026-11-14T18:57:42"
-updatedAt: "2026-11-14T18:57:42"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T19:00:29"
+completedAt: "2026-11-14T19:00:29"
+commit: daa9a869ec504d4e800d1deff59ad4da16e952ee
+outcome: >-
+  Auto tour is now the default after entry, runs slower, and adds a pronounced zoom-out/zoom-in
+  between nodes.
+verification: >-
+  Auto started active after Enter, advanced origin→experience after 7.5s, dwell 9.2s; camera z moved
+  22→31→22.2 on mobile and 18→26.85→18.2 on desktop; manual input stops and restores base framing;
+  check/build pass.
+release: 1.0.0
