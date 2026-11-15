@@ -1,6 +1,6 @@
 id: 20
 title: Use Software Engineer and the professional summary on the front page
-status: in_progress
+status: done
 tags:
   - copy
   - front-page
@@ -24,9 +24,13 @@ epic: interactive-resume
 source: ai
 createdAt: "2026-11-14T19:04:26"
 startedAt: "2026-11-14T19:04:37"
-updatedAt: "2026-11-14T19:04:37"
-completedAt: null
-commit: null
-outcome: null
-verification: null
-release: null
+updatedAt: "2026-11-14T19:05:17"
+completedAt: "2026-11-14T19:05:17"
+commit: f45996ccdc5514904dd4ffd3483d0ac8787c39ca
+outcome: >-
+  The front page now shows Software Engineer and the full parsed professional summary instead of
+  marketing copy.
+verification: >-
+  Desktop/mobile intro screenshots; exact role text; summary matches resume.generated.json; no
+  overflow or page errors; check passes.
+release: 1.0.0
